@@ -40,58 +40,40 @@ namespace CreateGUIDVSPlugin
     internal class Template
     {
         /// <summary>
-        /// Template Name for FileName
+        /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
-        static internal string VariableForFileName = "{FileName}";
+        static internal string VariableLowerCaseGuidWithHyphens = "{LowerCaseGuidWithHyphens}";
 
         /// <summary>
-        /// Template Name for FullPath
+        /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
-        static internal string VariableForFullPath = "{FullPath}";
+        static internal string VariableUpperCaseGuidWithHyphens = "{UpperCaseGuidWithHyphens}";
 
         /// <summary>
-        /// Template Name for Relative Path from opened Solution
+        /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
-        static internal string VariableForRelativePath = "{RelativePath}";
+        static internal string VariableLowerCaseGuidWithoutHyphens = "{LowerCaseGuidWithoutHyphens}";
 
         /// <summary>
-        /// Template Name for Top Line Number
+        /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
-        static internal string VariableForTopLineNumber = "{TopLineNumber}";
-
-        /// <summary>
-        /// Template Name for Bottom Line Number
-        /// </summary>
-        static internal string VariableForBottomLineNumber = "{BottomLineNumber}";
-
-        /// <summary>
-        /// Template Name for Selection
-        /// </summary>
-        static internal string VariableForSelection = "{Selection}";
-
-        /// <summary>
-        /// Template Name for Selection to be replaced a tab to spaces
-        /// </summary>
-        static internal string VariableForSelectionNoTab = "{SelectionNoTab}";
+        static internal string VariableUpperCaseGuidWithoutHyphens = "{UpperCaseGuidWithoutHyphens}";
 
         /// <summary>
         /// Template Variables
         /// </summary>
         internal readonly static VariableManager[] Variables = new VariableManager[]
         {
-            new VariableManager(VariableForFileName, "File Name"),
-            new VariableManager(VariableForFullPath, "Absolute File Path"),
-            new VariableManager(VariableForRelativePath, "Relative File Path from Solution File"),
-            new VariableManager(VariableForTopLineNumber, "Top Line Number"),
-            new VariableManager(VariableForBottomLineNumber, "Bottom Line Number"),
-            new VariableManager(VariableForSelection, "Selection"),
-            new VariableManager(VariableForSelectionNoTab, "Selection replacing tab to spaces"),
+            new VariableManager(VariableLowerCaseGuidWithHyphens, "Lower-case Full GUID with hypens"),
+            new VariableManager(VariableUpperCaseGuidWithHyphens, "Upper-case Full GUID with hypens"),
+            new VariableManager(VariableLowerCaseGuidWithoutHyphens, "Lower-case Full GUID without hypens"),
+            new VariableManager(VariableUpperCaseGuidWithoutHyphens, "Upper-case Full GUID without hypens"),
         };
 
         /// <summary>
         /// Default Template String
         /// </summary>
-        internal readonly static string DefaultFormatString = VariableForSelection;
+        internal readonly static string DefaultFormatString = VariableUpperCaseGuidWithHyphens;
 
         /// <summary>
         /// Replace the template variable to the values defined by dictionary

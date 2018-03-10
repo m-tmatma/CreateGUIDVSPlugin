@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Globalization;
+using System.Text;
+using System.Windows.Forms;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -133,6 +136,33 @@ namespace CreateGUIDVSPlugin
 #endif
 
         /// <summary>
+        /// Create a dictionary for the template values
+        /// </summary>
+        /// <returns></returns>
+        private Dictionary<string, string> CreateValuesDictionary(Guid guid)
+        {
+            var values = new Dictionary<string, string>();
+            foreach (VariableManager variableManager in Template.Variables)
+            {
+                values[variableManager.Variable] = string.Empty;
+            }
+
+            //
+            // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
+            // see https://msdn.microsoft.com/library/system.guid(v=vs.110).aspx
+            // see 'Reference Source' link in the above site.
+            //
+            var lowerWithHyphens = guid.ToString("D");
+            values[Template.VariableLowerCaseGuidWithHyphens] = lowerWithHyphens;
+            values[Template.VariableUpperCaseGuidWithHyphens] = lowerWithHyphens.ToUpper();
+
+            var lowerWithoutHyphens = guid.ToString("N");
+            values[Template.VariableLowerCaseGuidWithoutHyphens] = lowerWithoutHyphens;
+            values[Template.VariableUpperCaseGuidWithoutHyphens] = lowerWithoutHyphens.ToUpper();
+            return values;
+        }
+
+        /// <summary>
         /// This function is the callback used to execute the command when the menu item is clicked.
         /// See the constructor to see how the menu item is associated with this function using
         /// OleMenuCommandService service and MenuCommand class.
@@ -141,17 +171,24 @@ namespace CreateGUIDVSPlugin
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "CopyGuidCommand";
+            var dte = this.package.GetDTE();
+            var activeDocument = dte.ActiveDocument;
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            if (activeDocument != null)
+            {
+                var guid = Guid.NewGuid();
+                var values = CreateValuesDictionary(guid);
+                var configuration = this.package.GetConfiguration();
+                var formatString = configuration.FormatString;
+
+                var copyString = Template.ProcessTemplate(formatString, values);
+#if DEBUG
+                this.ClearOutout();
+                this.ActivateOutout();
+                this.OutputString(copyString);
+#endif
+                Clipboard.SetDataObject(copyString);
+            }
         }
     }
 }
