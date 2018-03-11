@@ -36,6 +36,10 @@ namespace CreateGUIDVSPlugin
         {
             return "{" + this.Keyword + "}";
         }
+        internal string GetVariable(int index)
+        {
+            return string.Format("{{{0}({1})}}", this.Keyword, index);
+        }
     }
 
     /// <summary>

@@ -34,6 +34,8 @@
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonInsertLineEnding = new System.Windows.Forms.Button();
             this.buttonSetDefault = new System.Windows.Forms.Button();
+            this.numericUpDownGUID = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGUID)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxTemplate
@@ -41,7 +43,7 @@
             this.textBoxTemplate.Location = new System.Drawing.Point(40, 120);
             this.textBoxTemplate.Multiline = true;
             this.textBoxTemplate.Name = "textBoxTemplate";
-            this.textBoxTemplate.Size = new System.Drawing.Size(600, 257);
+            this.textBoxTemplate.Size = new System.Drawing.Size(611, 257);
             this.textBoxTemplate.TabIndex = 0;
             // 
             // label1
@@ -59,12 +61,12 @@
             this.comboBoxVariable.FormattingEnabled = true;
             this.comboBoxVariable.Location = new System.Drawing.Point(40, 26);
             this.comboBoxVariable.Name = "comboBoxVariable";
-            this.comboBoxVariable.Size = new System.Drawing.Size(500, 29);
+            this.comboBoxVariable.Size = new System.Drawing.Size(530, 29);
             this.comboBoxVariable.TabIndex = 2;
             // 
             // buttonInsert
             // 
-            this.buttonInsert.Location = new System.Drawing.Point(565, 26);
+            this.buttonInsert.Location = new System.Drawing.Point(576, 25);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(75, 29);
             this.buttonInsert.TabIndex = 3;
@@ -74,11 +76,11 @@
             // 
             // buttonInsertLineEnding
             // 
-            this.buttonInsertLineEnding.Location = new System.Drawing.Point(481, 77);
+            this.buttonInsertLineEnding.Location = new System.Drawing.Point(425, 77);
             this.buttonInsertLineEnding.Name = "buttonInsertLineEnding";
-            this.buttonInsertLineEnding.Size = new System.Drawing.Size(159, 29);
+            this.buttonInsertLineEnding.Size = new System.Drawing.Size(100, 29);
             this.buttonInsertLineEnding.TabIndex = 4;
-            this.buttonInsertLineEnding.Text = "Insert EOL";
+            this.buttonInsertLineEnding.Text = "EOL";
             this.buttonInsertLineEnding.UseVisualStyleBackColor = true;
             this.buttonInsertLineEnding.Click += new System.EventHandler(this.buttonInsertLineEnding_Click);
             // 
@@ -86,16 +88,24 @@
             // 
             this.buttonSetDefault.Location = new System.Drawing.Point(302, 77);
             this.buttonSetDefault.Name = "buttonSetDefault";
-            this.buttonSetDefault.Size = new System.Drawing.Size(159, 29);
+            this.buttonSetDefault.Size = new System.Drawing.Size(100, 29);
             this.buttonSetDefault.TabIndex = 5;
-            this.buttonSetDefault.Text = "Set Default";
+            this.buttonSetDefault.Text = "Default";
             this.buttonSetDefault.UseVisualStyleBackColor = true;
             this.buttonSetDefault.Click += new System.EventHandler(this.buttonSetDefault_Click);
+            // 
+            // numericUpDownGUID
+            // 
+            this.numericUpDownGUID.Location = new System.Drawing.Point(531, 79);
+            this.numericUpDownGUID.Name = "numericUpDownGUID";
+            this.numericUpDownGUID.Size = new System.Drawing.Size(120, 28);
+            this.numericUpDownGUID.TabIndex = 6;
             // 
             // OptionsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.numericUpDownGUID);
             this.Controls.Add(this.buttonSetDefault);
             this.Controls.Add(this.buttonInsertLineEnding);
             this.Controls.Add(this.buttonInsert);
@@ -104,6 +114,7 @@
             this.Controls.Add(this.textBoxTemplate);
             this.Name = "OptionsControl";
             this.Size = new System.Drawing.Size(679, 405);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGUID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,5 +128,6 @@
         private System.Windows.Forms.Button buttonInsert;
         private System.Windows.Forms.Button buttonInsertLineEnding;
         private System.Windows.Forms.Button buttonSetDefault;
+        private System.Windows.Forms.NumericUpDown numericUpDownGUID;
     }
 }

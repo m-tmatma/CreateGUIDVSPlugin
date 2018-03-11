@@ -61,7 +61,9 @@ namespace CreateGUIDVSPlugin
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            var variable = Template.Variables[this.comboBoxVariable.SelectedIndex].GetVariable();
+            var guidIndex = decimal.ToInt32(this.numericUpDownGUID.Value);
+            var keyname = Template.Variables[this.comboBoxVariable.SelectedIndex];
+            var variable = (guidIndex > 0 )? keyname.GetVariable(guidIndex) : keyname.GetVariable();
             var textBox = this.textBoxTemplate;
             textBox.Text = textBox.Text.Insert(textBox.SelectionStart, variable);
         }
