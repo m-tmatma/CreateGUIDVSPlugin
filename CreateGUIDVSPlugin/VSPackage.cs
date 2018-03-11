@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
@@ -103,6 +104,15 @@ namespace CreateGUIDVSPlugin
         public EnvDTE.OutputWindowPane OutputPane { get; private set; }
 
         /// <summary>
+        /// Table between variables of Upper Case and variables of Lower Case
+        /// </summary>
+        internal readonly static Dictionary<string, string> CaseMap = new Dictionary<string, string>
+        {
+            {Template.VariableUpperCaseGuidWithHyphens,    Template.VariableLowerCaseGuidWithHyphens},
+            {Template.VariableUpperCaseGuidWithoutHyphens, Template.VariableLowerCaseGuidWithoutHyphens},
+        };
+
+        /// <summary>
         /// Create a dictionary for the template values
         /// </summary>
         /// <returns></returns>
@@ -121,11 +131,23 @@ namespace CreateGUIDVSPlugin
             //
             var lowerWithHyphens = guid.ToString("D");
             values[Template.VariableLowerCaseGuidWithHyphens] = lowerWithHyphens;
-            values[Template.VariableUpperCaseGuidWithHyphens] = lowerWithHyphens.ToUpper();
 
             var lowerWithoutHyphens = guid.ToString("N");
             values[Template.VariableLowerCaseGuidWithoutHyphens] = lowerWithoutHyphens;
-            values[Template.VariableUpperCaseGuidWithoutHyphens] = lowerWithoutHyphens.ToUpper();
+
+            // set variables for Upper Case
+            foreach (KeyValuePair<string,string> element in CaseMap)
+            {
+                // ex. Template.VariableUpperCaseGuidWithHyphens
+                var targetKeyName = element.Key;
+
+                // ex. Template.VariableLowerCaseGuidWithHyphens
+                var sourceKeyName = element.Value;
+
+                var value = values[sourceKeyName];
+                values[targetKeyName] = value.ToUpper();
+            }
+
             return values;
         }
 
