@@ -151,9 +151,7 @@ namespace CreateGUIDVSPlugin
                 var configuration = this.package.GetConfiguration();
                 var formatString = configuration.FormatString;
 
-                var guid = Guid.NewGuid();
-                var values = Template.CreateValuesDictionary(guid);
-                var copyString = Template.ProcessTemplate(formatString, values);
+                var copyString = Template.ProcessTemplate(formatString);
 #if DEBUG
                 this.ClearOutout();
                 this.ActivateOutout();
