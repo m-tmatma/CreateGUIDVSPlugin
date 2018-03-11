@@ -148,11 +148,11 @@ namespace CreateGUIDVSPlugin
 
             if (activeDocument != null)
             {
-                var guid = Guid.NewGuid();
-                var values = this.package.CreateValuesDictionary(guid);
                 var configuration = this.package.GetConfiguration();
                 var formatString = configuration.FormatString;
 
+                var guid = Guid.NewGuid();
+                var values = Template.CreateValuesDictionary(guid);
                 var copyString = Template.ProcessTemplate(formatString, values);
 #if DEBUG
                 this.ClearOutout();

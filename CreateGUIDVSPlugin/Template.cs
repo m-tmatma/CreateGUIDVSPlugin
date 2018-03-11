@@ -207,6 +207,78 @@ namespace CreateGUIDVSPlugin
         internal readonly static string DefaultFormatString = VariableUpperCaseGuidWithHyphens;
 
         /// <summary>
+        /// Table between variables of Upper Case and variables of Lower Case
+        /// </summary>
+        internal readonly static Dictionary<string, string> CaseMap = new Dictionary<string, string>
+        {
+            {Template.VariableUpperCaseGuidWithHyphens,    Template.VariableLowerCaseGuidWithHyphens},
+            {Template.VariableUpperCaseGuidWithoutHyphens, Template.VariableLowerCaseGuidWithoutHyphens},
+            {Template.VariableUpperCase1stPart, Template.VariableLowerCase1stPart},
+            {Template.VariableUpperCase2ndPart, Template.VariableLowerCase2ndPart},
+            {Template.VariableUpperCase3rdPart, Template.VariableLowerCase3rdPart},
+            {Template.VariableUpperCaseBytesPartByte1, Template.VariableLowerCaseBytesPartByte1},
+            {Template.VariableUpperCaseBytesPartByte2, Template.VariableLowerCaseBytesPartByte2},
+            {Template.VariableUpperCaseBytesPartByte3, Template.VariableLowerCaseBytesPartByte3},
+            {Template.VariableUpperCaseBytesPartByte4, Template.VariableLowerCaseBytesPartByte4},
+            {Template.VariableUpperCaseBytesPartByte5, Template.VariableLowerCaseBytesPartByte5},
+            {Template.VariableUpperCaseBytesPartByte6, Template.VariableLowerCaseBytesPartByte6},
+            {Template.VariableUpperCaseBytesPartByte7, Template.VariableLowerCaseBytesPartByte7},
+            {Template.VariableUpperCaseBytesPartByte8, Template.VariableLowerCaseBytesPartByte8},
+        };
+
+        /// <summary>
+        /// Create a dictionary for the template values
+        /// </summary>
+        /// <returns></returns>
+        internal static Dictionary<string, string> CreateValuesDictionary(Guid guid)
+        {
+            var values = new Dictionary<string, string>();
+            foreach (VariableManager variableManager in Template.Variables)
+            {
+                values[variableManager.Variable] = string.Empty;
+            }
+
+            //
+            // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
+            // see https://msdn.microsoft.com/library/system.guid(v=vs.110).aspx
+            // see 'Reference Source' link in the above site.
+            //
+            var lowerWithHyphens = guid.ToString("D");
+            values[Template.VariableLowerCaseGuidWithHyphens] = lowerWithHyphens;
+
+            var lowerWithoutHyphens = guid.ToString("N");
+            values[Template.VariableLowerCaseGuidWithoutHyphens] = lowerWithoutHyphens;
+
+            var formatGuid = new FormatGuid(guid);
+            values[Template.VariableLowerCase1stPart] = formatGuid.Data1.ToString("x8");
+            values[Template.VariableLowerCase2ndPart] = formatGuid.Data2.ToString("x4");
+            values[Template.VariableLowerCase3rdPart] = formatGuid.Data3.ToString("x4");
+            values[Template.VariableLowerCaseBytesPartByte1] = formatGuid.Bytes[0].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte2] = formatGuid.Bytes[1].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte3] = formatGuid.Bytes[2].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte4] = formatGuid.Bytes[3].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte5] = formatGuid.Bytes[4].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte6] = formatGuid.Bytes[5].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte7] = formatGuid.Bytes[6].ToString("x2");
+            values[Template.VariableLowerCaseBytesPartByte8] = formatGuid.Bytes[7].ToString("x2");
+
+            // set variables for Upper Case
+            foreach (KeyValuePair<string, string> element in CaseMap)
+            {
+                // ex. Template.VariableUpperCaseGuidWithHyphens
+                var targetKeyName = element.Key;
+
+                // ex. Template.VariableLowerCaseGuidWithHyphens
+                var sourceKeyName = element.Value;
+
+                var value = values[sourceKeyName];
+                values[targetKeyName] = value.ToUpper();
+            }
+
+            return values;
+        }
+
+        /// <summary>
         /// Replace the template variable to the values defined by dictionary
         /// </summary>
         /// <param name="template">template string to be replace</param>
