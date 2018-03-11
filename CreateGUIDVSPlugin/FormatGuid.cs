@@ -52,7 +52,7 @@ namespace CreateGUIDVSPlugin
         public short Data3 { get; }
 
         /// <summary>
-        /// GUID (firth part)
+        /// GUID (Bytes part)
         /// </summary>
         public byte[] Bytes { get; }
     }
