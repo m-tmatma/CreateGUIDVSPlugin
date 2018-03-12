@@ -43,8 +43,10 @@
             this.textBoxTemplate.Location = new System.Drawing.Point(40, 120);
             this.textBoxTemplate.Multiline = true;
             this.textBoxTemplate.Name = "textBoxTemplate";
+            this.textBoxTemplate.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxTemplate.Size = new System.Drawing.Size(611, 257);
             this.textBoxTemplate.TabIndex = 0;
+            this.textBoxTemplate.WordWrap = false;
             // 
             // label1
             // 
