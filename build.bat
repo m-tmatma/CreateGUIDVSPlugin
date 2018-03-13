@@ -1,8 +1,13 @@
 cd /d %~dp0
 @echo off
 
+set PACKAGES=packages
 set DEVENV="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\devenv.com"
 set NUGET="C:\Program Files (x86)\NuGet\nuget.exe"
+
+if exist %PACKAGES% rmdir /s /q %PACKAGES%
+if exist %PACKAGES% rmdir /s /q %PACKAGES%
+if exist %PACKAGES% rmdir /s /q %PACKAGES%
 
 if not exist %NUGET% (
 	set NUGET=nuget.exe
