@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CreateGUIDVSPlugin.a0666b41-c91d-4613-9e93-9e38aab1ae6d" Version="1.0" Language="en-US" Publisher="Masaru Tsuchiyama" />
+        <Identity Id="a0666b41-c91d-4613-9e93-9e38aab1ae6d" Version="1.0" Language="en-US" Publisher="Masaru-Tsuchiyama" />
         <DisplayName>CreateGUIDVSPlugin</DisplayName>
         <Description xml:space="preserve">Copy Guid.
 The source code is available at https://github.com/m-tmatma/CreateGUIDVSPlugin
