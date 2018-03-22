@@ -79,6 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
+    <Content Include="..\LICENCE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\CopyGuidCommand.png" />
     <Content Include="Resources\VSPackage.ico" />
     <Content Include="stylesheet.css" />
