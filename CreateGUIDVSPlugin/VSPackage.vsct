@@ -65,8 +65,11 @@
       <Button guid="guidVSPackageCmdSet" id="cmdidInsertGuidCommand" priority="0x0100" type="Button">
         <Parent guid="guidVSPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages1" id="bmpPic1" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>Invoke InsertGuidCommand</ButtonText>
+          <ButtonText>Insert Guid</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -126,6 +129,15 @@
       <IDSymbol name="bmpPicStrikethrough" value="6" />
     </GuidSymbol>
     
+    <GuidSymbol value="{223a5cb9-5734-49e2-8690-5b66f38b886b}" name="guidImages1">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+
     <!-- GUID and ID for not defined Visual Studio SDK -->
     
     <!-- for css file -->
@@ -141,15 +153,6 @@
     <!-- for json file -->
     <GuidSymbol name="guidJSONDocumentContextMenu" value="{f718ca06-cf4f-4a0c-9106-e79e9ee5e7cd}">
       <IDSymbol name="idJSONContextMenu" value="0x3" />
-    </GuidSymbol>
-  
-    <GuidSymbol value="{223a5cb9-5734-49e2-8690-5b66f38b886b}" name="guidImages1">
-      <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

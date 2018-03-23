@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Globalization;
+using System.Text;
+using System.Windows.Forms;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -24,14 +26,30 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// VS Package that provides this command, not null.
         /// </summary>
-        private readonly Package package;
+        private readonly VSPackage package;
 
+
+        /// <summary>
+        /// control whether an menu item is displayed or not.
+        /// </summary>
+        private void BeforeQueryStatus(object sender, EventArgs e)
+        {
+            OleMenuCommand command = sender as OleMenuCommand;
+            if (command != null)
+            {
+                var dte = this.package.GetDTE();
+                var activeDocument = dte.ActiveDocument;
+
+                command.Visible = true;
+            }
+        }
+ 
         /// <summary>
         /// Initializes a new instance of the <see cref="InsertGuidCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private InsertGuidCommand(Package package)
+        private InsertGuidCommand(VSPackage package)
         {
             if (package == null)
             {
@@ -44,7 +62,8 @@ namespace CreateGUIDVSPlugin
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
+                var menuItem = new OleMenuCommand(this.MenuItemCallback, menuCommandID);
+                menuItem.BeforeQueryStatus += this.BeforeQueryStatus;
                 commandService.AddCommand(menuItem);
             }
         }
@@ -73,10 +92,47 @@ namespace CreateGUIDVSPlugin
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static void Initialize(Package package)
+        public static void Initialize(VSPackage package)
         {
             Instance = new InsertGuidCommand(package);
         }
+
+#if DEBUG
+        /// <summary>
+        /// Print to Output Window
+        /// </summary>
+        internal void OutputString(string output)
+        {
+            var outPutPane = this.package.OutputPane;
+            outPutPane.OutputString(output);
+        }
+
+        /// <summary>
+        /// Print to Output Window with Line Ending
+        /// </summary>
+        internal void OutputStringLine(string output)
+        {
+            OutputString(output + Environment.NewLine);
+        }
+
+        /// <summary>
+        /// Clear Output Window
+        /// </summary>
+        internal void ClearOutout()
+        {
+            var outPutPane = this.package.OutputPane;
+            outPutPane.Clear();
+        }
+
+        /// <summary>
+        /// Clear Output Window
+        /// </summary>
+        internal void ActivateOutout()
+        {
+            var outPutPane = this.package.OutputPane;
+            outPutPane.Activate();
+        }
+#endif
 
         /// <summary>
         /// This function is the callback used to execute the command when the menu item is clicked.
@@ -87,17 +143,22 @@ namespace CreateGUIDVSPlugin
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "InsertGuidCommand";
+            var dte = this.package.GetDTE();
+            var activeDocument = dte.ActiveDocument;
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            if (activeDocument != null)
+            {
+                var configuration = this.package.GetConfiguration();
+                var formatString = configuration.FormatString;
+
+                var copyString = Template.ProcessTemplate(formatString);
+#if DEBUG
+                this.ClearOutout();
+                this.ActivateOutout();
+                this.OutputString(copyString);
+#endif
+                Clipboard.SetDataObject(copyString);
+            }
         }
     }
 }
