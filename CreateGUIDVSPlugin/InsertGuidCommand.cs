@@ -158,6 +158,16 @@ namespace CreateGUIDVSPlugin
                 this.OutputString(copyString);
 #endif
                 Clipboard.SetDataObject(copyString);
+
+                var textView = this.package.GetTextView();
+                if (textView != null)
+                {
+                    if (textView.HasAggregateFocus)
+                    {
+                        // Insert GUID
+                        textView.TextBuffer.Insert(textView.Caret.Position.BufferPosition, copyString);
+                    }
+                }
             }
         }
     }
