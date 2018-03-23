@@ -11,6 +11,10 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
+using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Editor;
+using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace CreateGUIDVSPlugin
 {
@@ -70,6 +74,21 @@ namespace CreateGUIDVSPlugin
             return (EnvDTE.DTE)GetService(typeof(SDTE));
         }
 
+        public IVsTextView GetCurrentNativeTextView()
+        {
+            var textManager = (IVsTextManager)GetService(typeof(SVsTextManager));
+
+            ErrorHandler.ThrowOnFailure(textManager.GetActiveView(1, null, out IVsTextView activeView));
+            return activeView;
+        }
+
+        public IWpfTextView GetTextView()
+        {
+            var compService = GetService(typeof(SComponentModel)) as IComponentModel;
+            var editorAdapter = compService.GetService<IVsEditorAdaptersFactoryService>();
+            return editorAdapter.GetWpfTextView(GetCurrentNativeTextView());
+        }
+
 #if DEBUG
         /// <summary>
         /// Get OutputWindow
@@ -116,6 +135,11 @@ namespace CreateGUIDVSPlugin
 
 #if DEBUG
             AddOutputWindow("Copy GUID");
+#endif
+            InsertGuidCommand.Initialize(this);
+
+#if DEBUG
+            AddOutputWindow("Insert GUID");
 #endif
 
             this.configuration = new Configuration(this.UserRegistryRoot);
