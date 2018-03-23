@@ -120,6 +120,7 @@ namespace CreateGUIDVSPlugin
 
             this.configuration = new Configuration(this.UserRegistryRoot);
             this.configuration.Load();
+            InsertGuidCommand.Initialize(this);
         }
 
         #endregion
