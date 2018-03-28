@@ -76,7 +76,7 @@
         <Parent guid="guidVSPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages2" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke RenewGuidCommand</ButtonText>
+          <ButtonText>Renew Guid</ButtonText>
         </Strings>
       </Button>
     </Buttons>
