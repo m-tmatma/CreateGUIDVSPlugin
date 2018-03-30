@@ -20,7 +20,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Registry SubKey for the setting
         /// </summary>
-        private const string SubKeyName = @"CopyWithLineNumbers";
+        private const string SubKeyName = @"CreateGUIDVSPlugin";
 
         /// <summary>
         /// Registry Value Name for FormatString setting
