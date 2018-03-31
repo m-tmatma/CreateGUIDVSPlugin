@@ -1,10 +1,11 @@
-﻿using System;
-using System.ComponentModel.Design;
-using Microsoft.VisualStudio.Shell;
-
+﻿
 namespace CreateGUIDVSPlugin
 {
-    /// <summary>
+    using System;
+    using System.ComponentModel.Design;
+    using Microsoft.VisualStudio.Shell;
+
+   /// <summary>
     /// Command handler
     /// </summary>
     internal sealed class RenewGuidCommand
