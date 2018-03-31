@@ -380,7 +380,7 @@ namespace CreateGUIDVSPlugin
         public string delegateReplaceNewGuid(Match m)
         {
             var processGuid = new ProcessGuid(m);
-            var newGuid = CallNewGuid();
+            var newGuid = this.CallNewGuid();
 
             var guid_str = processGuid.Convert(newGuid);
             return guid_str;
@@ -396,11 +396,11 @@ namespace CreateGUIDVSPlugin
             var processGuid = new ProcessGuid(m);
             var key = processGuid.Key;
             var guid = new Guid(key);
-            if (!dict.ContainsKey(key))
+            if (!this.dict.ContainsKey(key))
             {
-                dict[key] = CallNewGuid();
+                this.dict[key] = this.CallNewGuid();
             }
-            var newGuid = dict[key];
+            var newGuid = this.dict[key];
 
             var guid_str = processGuid.Convert(newGuid);
             return guid_str;
@@ -415,7 +415,7 @@ namespace CreateGUIDVSPlugin
         public string ReplaceNewGuid(string input)
         {
             //Console.WriteLine(guidString);
-            var myEvaluator = new MatchEvaluator(delegateReplaceNewGuid);
+            var myEvaluator = new MatchEvaluator(this.delegateReplaceNewGuid);
 
             // Replace matched characters using the delegate method.
             var output = reg.Replace(input, myEvaluator);
@@ -431,7 +431,7 @@ namespace CreateGUIDVSPlugin
         public string ReplaceSameGuidToSameGuid(string input)
         {
             //Console.WriteLine(guidString);
-            var myEvaluator = new MatchEvaluator(delegateReplaceSameGuidToSameGuid);
+            var myEvaluator = new MatchEvaluator(this.delegateReplaceSameGuidToSameGuid);
 
             // Replace matched characters using the delegate method.
             var output = reg.Replace(input, myEvaluator);
@@ -440,7 +440,7 @@ namespace CreateGUIDVSPlugin
 
         public void Dump()
         {
-            foreach (KeyValuePair<string, Guid> keyvalue in dict)
+            foreach (KeyValuePair<string, Guid> keyvalue in this.dict)
             {
                 Console.WriteLine("{0}:{1}", keyvalue.Key, keyvalue.Value.ToString());
             }
