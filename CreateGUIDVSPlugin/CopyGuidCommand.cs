@@ -1,13 +1,15 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Globalization;
-using System.Text;
-using System.Windows.Forms;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CopyGuidCommand.cs" company="Masaru Tsuchiyama">
+//     Copyright (c) Masaru Tsuchiyama. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace CreateGUIDVSPlugin
 {
+    using System;
+    using System.ComponentModel.Design;
+    using System.Windows.Forms;
+    using Microsoft.VisualStudio.Shell;
+
     /// <summary>
     /// Command handler
     /// </summary>
@@ -28,22 +30,6 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         private readonly VSPackage package;
 
-
-        /// <summary>
-        /// control whether an menu item is displayed or not.
-        /// </summary>
-        private void BeforeQueryStatus(object sender, EventArgs e)
-        {
-            OleMenuCommand command = sender as OleMenuCommand;
-            if (command != null)
-            {
-                var dte = this.package.GetDTE();
-                var activeDocument = dte.ActiveDocument;
-
-                command.Visible = true;
-            }
-        }
- 
         /// <summary>
         /// Initializes a new instance of the <see cref="CopyGuidCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
@@ -101,6 +87,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Print to Output Window
         /// </summary>
+        /// <param name="output">data to be written</param>
         internal void OutputString(string output)
         {
             var outPutPane = this.package.OutputPane;
@@ -110,9 +97,10 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Print to Output Window with Line Ending
         /// </summary>
+        /// <param name="output">data to be written</param>
         internal void OutputStringLine(string output)
         {
-            OutputString(output + Environment.NewLine);
+            this.OutputString(output + Environment.NewLine);
         }
 
         /// <summary>
@@ -158,6 +146,23 @@ namespace CreateGUIDVSPlugin
                 this.OutputString(copyString);
 #endif
                 Clipboard.SetDataObject(copyString);
+            }
+        }
+
+        /// <summary>
+        /// control whether an menu item is displayed or not.
+        /// </summary>
+        /// <param name="sender">event sender</param>
+        /// <param name="e">event data</param>
+        private void BeforeQueryStatus(object sender, EventArgs e)
+        {
+            OleMenuCommand command = sender as OleMenuCommand;
+            if (command != null)
+            {
+                var dte = this.package.GetDTE();
+                var activeDocument = dte.ActiveDocument;
+
+                command.Visible = true;
             }
         }
     }
