@@ -32,7 +32,7 @@ namespace CreateGUIDVSPlugin
             this.Data3 = (short)(((int)guidBytes[7] << 8) | guidBytes[6]);
 
             var bytesPart = new byte[ArraySize];
-            for(var i = 0; i < ArraySize; i++)
+            for (var i = 0; i < ArraySize; i++)
             {
                 bytesPart[i] = guidBytes[i + Offset];
             }
