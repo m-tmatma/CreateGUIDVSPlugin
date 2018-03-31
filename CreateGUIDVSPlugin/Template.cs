@@ -428,7 +428,7 @@
     internal class VariableManager
     {
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance of the <see cref="VariableManager" /> class.
         /// </summary>
         /// <param name="keyword">Variable name</param>
         /// <param name="description">Variable Descriotion</param>
