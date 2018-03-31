@@ -269,6 +269,7 @@ namespace CreateGUIDVSPlugin
                         builder.Append(", ");
                     }
                 }
+
                 return builder.ToString();
             }
 
@@ -407,6 +408,7 @@ namespace CreateGUIDVSPlugin
             {
                 this.dict[key] = this.CallNewGuid();
             }
+
             var newGuid = this.dict[key];
 
             var guid_str = processGuid.Convert(newGuid);
