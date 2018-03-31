@@ -36,7 +36,7 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         private void BeforeQueryStatus(object sender, EventArgs e)
         {
-            bool Enabled = false;
+            bool enabled = false;
             OleMenuCommand command = sender as OleMenuCommand;
             if (command != null)
             {
@@ -46,14 +46,14 @@ namespace CreateGUIDVSPlugin
                 var seltext = selection.Text;
                 if (!string.IsNullOrEmpty(seltext))
                 {
-                    Enabled = true;
+                    enabled = true;
                     command.Text = DefaultCommandText;
                 }
                 else
                 {
                     command.Text = DefaultCommandText + " (Select text that you want to replace with new GUIDs.)";
                 }
-                command.Enabled = Enabled;
+                command.Enabled = enabled;
             }
         }
 
