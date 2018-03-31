@@ -71,6 +71,7 @@ namespace CreateGUIDVSPlugin
         private static string hex4ByteString = "(0[xX][0-9A-Fa-f]{1,8})";
 
         /// <summary>
+        /// 8 comma separated Byte data
         /// for example: 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
         /// </summary>
         private static string hex8of1Byte = hex1ByteString
@@ -135,11 +136,13 @@ namespace CreateGUIDVSPlugin
                                                + @")";
 
         /// <summary>
+        /// hyphen separated GUID
         /// for example: 00000000-0000-0000-0000-000000000000
         /// </summary>
         private static string rawGuidString1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
 
         /// <summary>
+        /// raw 32-digit GUID
         /// for example: 00000000000000000000000000000000
         /// </summary>
         private static string rawGuidString2 = "([0-9A-Fa-f]{32})";
