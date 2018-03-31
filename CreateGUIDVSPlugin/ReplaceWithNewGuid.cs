@@ -309,9 +309,9 @@ namespace CreateGUIDVSPlugin
                         if (!Guid.TryParse(value, out guid))
                         {
                             var builder = new StringBuilder(value);
-                            builder.Replace("0x", "");
-                            builder.Replace(",", "");
-                            builder.Replace(" ", "");
+                            builder.Replace("0x", string.Empty);
+                            builder.Replace(",", string.Empty);
+                            builder.Replace(" ", string.Empty);
                             value = builder.ToString();
                         }
 
