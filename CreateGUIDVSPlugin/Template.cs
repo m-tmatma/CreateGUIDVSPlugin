@@ -340,11 +340,9 @@ namespace CreateGUIDVSPlugin
                 values[variableManager.Keyword] = string.Empty;
             }
 
-            //
             // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
             // see https://msdn.microsoft.com/library/system.guid(v=vs.110).aspx
             // see 'Reference Source' link in the above site.
-            //
             var lowerWithHyphens = guid.ToString("D");
             values[Template.VariableLowerCaseGuidWithHyphens] = lowerWithHyphens;
 
