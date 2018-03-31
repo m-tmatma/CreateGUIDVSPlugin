@@ -352,10 +352,10 @@
         internal static string ProcessTemplate(string template)
         {
             const int NoIndex = -1;
-            const string patternDivide = @"(?<variable>{\w+(\(\d+\))?})";
-            const string patternParse = @"{(?<keyword>\w+)(\((?<index>\d+)\))?}";
-            var substrings = Regex.Split(template, patternDivide, RegexOptions.ExplicitCapture);
-            var regex = new Regex(patternParse, RegexOptions.Compiled);
+            const string PatternDivide = @"(?<variable>{\w+(\(\d+\))?})";
+            const string PatternParse = @"{(?<keyword>\w+)(\((?<index>\d+)\))?}";
+            var substrings = Regex.Split(template, PatternDivide, RegexOptions.ExplicitCapture);
+            var regex = new Regex(PatternParse, RegexOptions.Compiled);
             Dictionary<int, Dictionary<string, string>> dataBase = new Dictionary<int, Dictionary<string, string>>();
 
             var builder = new StringBuilder();
@@ -430,12 +430,12 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="Keyword">Variable name</param>
-        /// <param name="Description">Variable Descriotion</param>
-        internal VariableManager(string Keyword, string Description)
+        /// <param name="keyword">Variable name</param>
+        /// <param name="description">Variable Descriotion</param>
+        internal VariableManager(string keyword, string description)
         {
-            this.Keyword = Keyword;
-            this.Description = this.GetVariable() + ": " + Description;
+            this.Keyword = keyword;
+            this.Description = this.GetVariable() + ": " + description;
         }
 
         /// <summary>
