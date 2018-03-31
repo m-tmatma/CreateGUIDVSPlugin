@@ -443,10 +443,10 @@ namespace CreateGUIDVSPlugin
             /// </summary>
             private class MapFormat
             {
-                public MapFormat(string Key, Format GuidFormat, ConvertGuid delegateConvertGuid)
+                public MapFormat(string key, Format guidFormat, ConvertGuid delegateConvertGuid)
                 {
-                    this.Key = Key;
-                    this.GuidFormat = GuidFormat;
+                    this.Key = key;
+                    this.GuidFormat = guidFormat;
                     this.DelegateConvertGuid = delegateConvertGuid;
                 }
 
