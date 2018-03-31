@@ -11,6 +11,7 @@ namespace CreateGUIDVSPlugin
         private const int ArraySize = 8;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="FormatGuid" /> class.
         /// format a GUID
         /// </summary>
         /// <param name="guid">GUID to format</param>
