@@ -430,7 +430,7 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="Keyword">Variable</param>
+        /// <param name="Keyword">Variable name</param>
         /// <param name="Description">Variable Descriotion</param>
         internal VariableManager(string Keyword, string Description)
         {
