@@ -24,14 +24,14 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// VS Package that provides this command, not null.
         /// </summary>
-        private readonly Package package;
+        private readonly VSPackage package;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RenewGuidCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private RenewGuidCommand(Package package)
+        private RenewGuidCommand(VSPackage package)
         {
             if (package == null)
             {
@@ -73,7 +73,7 @@ namespace CreateGUIDVSPlugin
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static void Initialize(Package package)
+        public static void Initialize(VSPackage package)
         {
             Instance = new RenewGuidCommand(package);
         }
@@ -87,17 +87,22 @@ namespace CreateGUIDVSPlugin
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "RenewGuidCommand";
+            var dte = this.package.GetDTE();
+            var activeDocument = dte.ActiveDocument;
+            if (activeDocument != null)
+            {
+                var selection = (EnvDTE.TextSelection)activeDocument.Selection;
+                var seltext = selection.Text;
+                if ( !string.IsNullOrEmpty(seltext))
+                {
+                    var replaceWithNewGuid = new ReplaceWithNewGuid();
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                    // Renew GUIDs in the selected text.
+                    var output = replaceWithNewGuid.ReplaceNewGuid(seltext);
+                    selection.Delete();
+                    selection.Insert(output);
+                }
+            }
         }
     }
 }
