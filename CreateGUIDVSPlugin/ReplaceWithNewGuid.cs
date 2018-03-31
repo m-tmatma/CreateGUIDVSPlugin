@@ -188,41 +188,6 @@ namespace CreateGUIDVSPlugin
         /// <returns></returns>
         public delegate Guid NewGuid();
 
-        /// <summary>
-        /// delegate for ReplaceNewGuid
-        /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
-        public string DelegateReplaceNewGuid(Match m)
-        {
-            var processGuid = new ProcessGuid(m);
-            var newGuid = this.CallNewGuid();
-
-            var guid_str = processGuid.Convert(newGuid);
-            return guid_str;
-        }
-
-        /// <summary>
-        /// delegate for ReplaceSameGuidToSameGuid
-        /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
-        public string DelegateReplaceSameGuidToSameGuid(Match m)
-        {
-            var processGuid = new ProcessGuid(m);
-            var key = processGuid.Key;
-            var guid = new Guid(key);
-            if (!this.dict.ContainsKey(key))
-            {
-                this.dict[key] = this.CallNewGuid();
-            }
-
-            var newGuid = this.dict[key];
-
-            var guid_str = processGuid.Convert(newGuid);
-            return guid_str;
-        }
-
         public void Dump()
         {
             foreach (KeyValuePair<string, Guid> keyvalue in this.dict)
@@ -268,6 +233,41 @@ namespace CreateGUIDVSPlugin
         private Guid CallNewGuid()
         {
             return this.delegateNewGuid();
+        }
+
+        /// <summary>
+        /// delegate for ReplaceNewGuid
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        private string DelegateReplaceNewGuid(Match m)
+        {
+            var processGuid = new ProcessGuid(m);
+            var newGuid = this.CallNewGuid();
+
+            var guid_str = processGuid.Convert(newGuid);
+            return guid_str;
+        }
+
+        /// <summary>
+        /// delegate for ReplaceSameGuidToSameGuid
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        private string DelegateReplaceSameGuidToSameGuid(Match m)
+        {
+            var processGuid = new ProcessGuid(m);
+            var key = processGuid.Key;
+            var guid = new Guid(key);
+            if (!this.dict.ContainsKey(key))
+            {
+                this.dict[key] = this.CallNewGuid();
+            }
+
+            var newGuid = this.dict[key];
+
+            var guid_str = processGuid.Convert(newGuid);
+            return guid_str;
         }
 
         private class ProcessGuid
