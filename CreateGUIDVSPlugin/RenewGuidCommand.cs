@@ -32,33 +32,6 @@ namespace CreateGUIDVSPlugin
         private const string DefaultCommandText = "Renew Guid";
 
         /// <summary>
-        /// control whether an menu item is displayed or not.
-        /// </summary>
-        private void BeforeQueryStatus(object sender, EventArgs e)
-        {
-            bool enabled = false;
-            OleMenuCommand command = sender as OleMenuCommand;
-            if (command != null)
-            {
-                var dte = this.package.GetDTE();
-                var activeDocument = dte.ActiveDocument;
-                var selection = (EnvDTE.TextSelection)activeDocument.Selection;
-                var seltext = selection.Text;
-                if (!string.IsNullOrEmpty(seltext))
-                {
-                    enabled = true;
-                    command.Text = DefaultCommandText;
-                }
-                else
-                {
-                    command.Text = DefaultCommandText + " (Select text that you want to replace with new GUIDs.)";
-                }
-
-                command.Enabled = enabled;
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="RenewGuidCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
@@ -180,5 +153,33 @@ namespace CreateGUIDVSPlugin
                 }
             }
         }
+
+        /// <summary>
+        /// control whether an menu item is displayed or not.
+        /// </summary>
+        private void BeforeQueryStatus(object sender, EventArgs e)
+        {
+            bool enabled = false;
+            OleMenuCommand command = sender as OleMenuCommand;
+            if (command != null)
+            {
+                var dte = this.package.GetDTE();
+                var activeDocument = dte.ActiveDocument;
+                var selection = (EnvDTE.TextSelection)activeDocument.Selection;
+                var seltext = selection.Text;
+                if (!string.IsNullOrEmpty(seltext))
+                {
+                    enabled = true;
+                    command.Text = DefaultCommandText;
+                }
+                else
+                {
+                    command.Text = DefaultCommandText + " (Select text that you want to replace with new GUIDs.)";
+                }
+
+                command.Enabled = enabled;
+            }
+        }
+
     }
 }
