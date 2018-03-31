@@ -27,6 +27,27 @@ namespace CreateGUIDVSPlugin
         private readonly VSPackage package;
 
         /// <summary>
+        /// control whether an menu item is displayed or not.
+        /// </summary>
+        private void BeforeQueryStatus(object sender, EventArgs e)
+        {
+            bool Enabled = false;
+            OleMenuCommand command = sender as OleMenuCommand;
+            if (command != null)
+            {
+                var dte = this.package.GetDTE();
+                var activeDocument = dte.ActiveDocument;
+                var selection = (EnvDTE.TextSelection)activeDocument.Selection;
+                var seltext = selection.Text;
+                if (!string.IsNullOrEmpty(seltext))
+                {
+                    Enabled = true;
+                }
+                command.Enabled = Enabled;
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RenewGuidCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
@@ -44,7 +65,8 @@ namespace CreateGUIDVSPlugin
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
+                var menuItem = new OleMenuCommand(this.MenuItemCallback, menuCommandID);
+                menuItem.BeforeQueryStatus += this.BeforeQueryStatus;
                 commandService.AddCommand(menuItem);
             }
         }
@@ -78,6 +100,43 @@ namespace CreateGUIDVSPlugin
             Instance = new RenewGuidCommand(package);
         }
 
+#if DEBUG
+        /// <summary>
+        /// Print to Output Window
+        /// </summary>
+        internal void OutputString(string output)
+        {
+            var outPutPane = this.package.OutputPane;
+            outPutPane.OutputString(output);
+        }
+
+        /// <summary>
+        /// Print to Output Window with Line Ending
+        /// </summary>
+        internal void OutputStringLine(string output)
+        {
+            OutputString(output + Environment.NewLine);
+        }
+
+        /// <summary>
+        /// Clear Output Window
+        /// </summary>
+        internal void ClearOutout()
+        {
+            var outPutPane = this.package.OutputPane;
+            outPutPane.Clear();
+        }
+
+        /// <summary>
+        /// Clear Output Window
+        /// </summary>
+        internal void ActivateOutout()
+        {
+            var outPutPane = this.package.OutputPane;
+            outPutPane.Activate();
+        }
+#endif
+
         /// <summary>
         /// This function is the callback used to execute the command when the menu item is clicked.
         /// See the constructor to see how the menu item is associated with this function using
@@ -99,6 +158,12 @@ namespace CreateGUIDVSPlugin
 
                     // Renew GUIDs in the selected text.
                     var output = replaceWithNewGuid.ReplaceNewGuid(seltext);
+#if DEBUG
+	                this.ClearOutout();
+	                this.ActivateOutout();
+	                this.OutputString(seltext);
+	                this.OutputString(output);
+#endif
                     selection.Delete();
                     selection.Insert(output);
                 }
