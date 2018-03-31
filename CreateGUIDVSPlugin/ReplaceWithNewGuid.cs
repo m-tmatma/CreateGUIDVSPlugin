@@ -81,7 +81,9 @@ namespace CreateGUIDVSPlugin
                                                + hex2ByteString + commaSpaces
                                                + hex2ByteString + commaSpaces
                                                + hex8of1Byte;
+
         private static string nameGuidValueDef = @"(?<RAW_GUID_DEF>" + rawGuidValue + ")";
+
         private static string nameGuidValueImp = @"(?<RAW_GUID_IMP>" + rawGuidValue + ")";
 
         /// <summary>
@@ -142,8 +144,11 @@ namespace CreateGUIDVSPlugin
             nameGuidString4,
             nameGuidString5,
         };
+
         private static string[] elementsPar = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
+
         private static string guidString = string.Join("|", elementsPar);
+
         private static Regex reg = new Regex(guidString);
 
         /// <summary>
