@@ -46,7 +46,7 @@ namespace CreateGUIDVSPlugin
         public Guid OrgData { get; }
 
         /// <summary>
-        /// GUID (first part)
+        /// Gets GUID (first part)
         /// </summary>
         public int Data1 { get; }
 
