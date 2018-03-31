@@ -14,11 +14,6 @@ namespace CreateGUIDVSPlugin
     public class Configuration
     {
         /// <summary>
-        /// root registry key for user setting
-        /// </summary>
-        private RegistryKey userRegistryRoot;
-
-        /// <summary>
         /// Registry SubKey for the setting
         /// </summary>
         private const string SubKeyName = @"CreateGUIDVSPlugin";
@@ -27,6 +22,11 @@ namespace CreateGUIDVSPlugin
         /// Registry Value Name for FormatString setting
         /// </summary>
         private const string ValueNameFormatString = "FormatString";
+
+        /// <summary>
+        /// root registry key for user setting
+        /// </summary>
+        private RegistryKey userRegistryRoot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration" /> class.
