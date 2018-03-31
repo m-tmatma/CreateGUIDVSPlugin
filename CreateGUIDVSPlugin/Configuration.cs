@@ -58,7 +58,6 @@ namespace CreateGUIDVSPlugin
             }
             catch (NullReferenceException)
             {
-                ;
             }
         }
 
@@ -76,7 +75,6 @@ namespace CreateGUIDVSPlugin
             }
             catch (NullReferenceException)
             {
-                ;
             }
         }
     }
