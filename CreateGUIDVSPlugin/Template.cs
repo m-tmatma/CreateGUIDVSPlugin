@@ -326,7 +326,7 @@ namespace CreateGUIDVSPlugin
             NormalString,
             TemplateNoIndex,
             TemplateIndex,
-        };
+        }
 
         /// <summary>
         /// Create a dictionary for the template values
