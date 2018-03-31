@@ -476,7 +476,7 @@ namespace CreateGUIDVSPlugin
             /// </summary>
             /// <param name="guid">GUID to be formatted</param>
             /// <returns>return replaced GUID string</returns>
-            static string FormatGuidAsRawValues(Guid guid)
+            private static string FormatGuidAsRawValues(Guid guid)
             {
                 var bytes = guid.ToByteArray();
                 var builder = new StringBuilder();
