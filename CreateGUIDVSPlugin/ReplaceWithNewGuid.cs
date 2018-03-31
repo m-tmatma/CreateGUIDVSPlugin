@@ -520,6 +520,12 @@ namespace CreateGUIDVSPlugin
             /// </summary>
             private class MapFormat
             {
+                /// <summary>
+                /// Initializes a new instance of the <see cref="MapFormat" /> class.
+                /// </summary>
+                /// <param name="key">Key Name for Regular expression</param>
+                /// <param name="guidFormat">GUID format (currently not used)</param>
+                /// <param name="delegateConvertGuid">delegate for Guid formatter</param>
                 public MapFormat(string key, Format guidFormat, ConvertGuid delegateConvertGuid)
                 {
                     this.Key = key;
