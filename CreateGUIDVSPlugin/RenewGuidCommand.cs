@@ -27,6 +27,11 @@ namespace CreateGUIDVSPlugin
         private readonly VSPackage package;
 
         /// <summary>
+        /// default command text
+        /// </summary>
+        private const string DefaultCommandText = "Renew Guid";
+
+        /// <summary>
         /// control whether an menu item is displayed or not.
         /// </summary>
         private void BeforeQueryStatus(object sender, EventArgs e)
@@ -42,6 +47,11 @@ namespace CreateGUIDVSPlugin
                 if (!string.IsNullOrEmpty(seltext))
                 {
                     Enabled = true;
+                    command.Text = DefaultCommandText;
+                }
+                else
+                {
+                    command.Text = DefaultCommandText + " (Select text that you want to replace with new GUIDs.)";
                 }
                 command.Enabled = Enabled;
             }
