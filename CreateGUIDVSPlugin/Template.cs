@@ -313,19 +313,19 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         internal readonly static Dictionary<string, string> CaseMap = new Dictionary<string, string>
         {
-            {Template.VariableUpperCaseGuidWithHyphens,    Template.VariableLowerCaseGuidWithHyphens},
-            {Template.VariableUpperCaseGuidWithoutHyphens, Template.VariableLowerCaseGuidWithoutHyphens},
-            {Template.VariableUpperCase1stPart, Template.VariableLowerCase1stPart},
-            {Template.VariableUpperCase2ndPart, Template.VariableLowerCase2ndPart},
-            {Template.VariableUpperCase3rdPart, Template.VariableLowerCase3rdPart},
-            {Template.VariableUpperCaseBytesPartByte1, Template.VariableLowerCaseBytesPartByte1},
-            {Template.VariableUpperCaseBytesPartByte2, Template.VariableLowerCaseBytesPartByte2},
-            {Template.VariableUpperCaseBytesPartByte3, Template.VariableLowerCaseBytesPartByte3},
-            {Template.VariableUpperCaseBytesPartByte4, Template.VariableLowerCaseBytesPartByte4},
-            {Template.VariableUpperCaseBytesPartByte5, Template.VariableLowerCaseBytesPartByte5},
-            {Template.VariableUpperCaseBytesPartByte6, Template.VariableLowerCaseBytesPartByte6},
-            {Template.VariableUpperCaseBytesPartByte7, Template.VariableLowerCaseBytesPartByte7},
-            {Template.VariableUpperCaseBytesPartByte8, Template.VariableLowerCaseBytesPartByte8},
+            { Template.VariableUpperCaseGuidWithHyphens,    Template.VariableLowerCaseGuidWithHyphens },
+            { Template.VariableUpperCaseGuidWithoutHyphens, Template.VariableLowerCaseGuidWithoutHyphens },
+            { Template.VariableUpperCase1stPart, Template.VariableLowerCase1stPart },
+            { Template.VariableUpperCase2ndPart, Template.VariableLowerCase2ndPart },
+            { Template.VariableUpperCase3rdPart, Template.VariableLowerCase3rdPart },
+            { Template.VariableUpperCaseBytesPartByte1, Template.VariableLowerCaseBytesPartByte1 },
+            { Template.VariableUpperCaseBytesPartByte2, Template.VariableLowerCaseBytesPartByte2 },
+            { Template.VariableUpperCaseBytesPartByte3, Template.VariableLowerCaseBytesPartByte3 },
+            { Template.VariableUpperCaseBytesPartByte4, Template.VariableLowerCaseBytesPartByte4 },
+            { Template.VariableUpperCaseBytesPartByte5, Template.VariableLowerCaseBytesPartByte5 },
+            { Template.VariableUpperCaseBytesPartByte6, Template.VariableLowerCaseBytesPartByte6 },
+            { Template.VariableUpperCaseBytesPartByte7, Template.VariableLowerCaseBytesPartByte7 },
+            { Template.VariableUpperCaseBytesPartByte8, Template.VariableLowerCaseBytesPartByte8 },
         };
 
         /// <summary>
