@@ -10,6 +10,9 @@ namespace CreateGUIDVSPlugin
     using System.Text;
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// Renew GUIDs
+    /// </summary>
     public class ReplaceWithNewGuid
     {
         /// <summary>
