@@ -25,14 +25,14 @@ namespace CreateGUIDVSPlugin
         public static readonly Guid CommandSet = new Guid("21faf2f8-6789-4d5a-bda3-c063d68e1b7d");
 
         /// <summary>
-        /// VS Package that provides this command, not null.
-        /// </summary>
-        private readonly VSPackage package;
-
-        /// <summary>
         /// default command text
         /// </summary>
         private const string DefaultCommandText = "Renew Guid";
+
+        /// <summary>
+        /// VS Package that provides this command, not null.
+        /// </summary>
+        private readonly VSPackage package;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RenewGuidCommand"/> class.
