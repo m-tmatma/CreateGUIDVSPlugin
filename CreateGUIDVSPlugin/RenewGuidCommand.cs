@@ -162,7 +162,7 @@ namespace CreateGUIDVSPlugin
             {
                 var selection = (EnvDTE.TextSelection)activeDocument.Selection;
                 var seltext = selection.Text;
-                if ( !string.IsNullOrEmpty(seltext))
+                if (!string.IsNullOrEmpty(seltext))
                 {
                     var replaceWithNewGuid = new ReplaceWithNewGuid();
 
