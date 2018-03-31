@@ -16,7 +16,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// root registry key for user setting
         /// </summary>
-        private RegistryKey UserRegistryRoot;
+        private RegistryKey userRegistryRoot;
 
         /// <summary>
         /// Registry SubKey for the setting
@@ -35,7 +35,7 @@ namespace CreateGUIDVSPlugin
         /// <param name="userRegistryRoot">root Registry for User setting</param>
         public Configuration(RegistryKey userRegistryRoot)
         {
-            this.UserRegistryRoot = userRegistryRoot;
+            this.userRegistryRoot = userRegistryRoot;
         }
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         public void Load()
         {
-            var DefaultFormatString = Template.DefaultFormatString;
-            this.FormatString = DefaultFormatString;
+            var defaultFormatString = Template.DefaultFormatString;
+            this.FormatString = defaultFormatString;
             try
             {
-                using (RegistryKey subKey = this.UserRegistryRoot.OpenSubKey(SubKeyName))
+                using (RegistryKey subKey = this.userRegistryRoot.OpenSubKey(SubKeyName))
                 {
-                    var value = (string)subKey.GetValue(ValueNameFormatString, DefaultFormatString);
+                    var value = (string)subKey.GetValue(ValueNameFormatString, defaultFormatString);
                     this.FormatString = value;
                 }
             }
@@ -70,7 +70,7 @@ namespace CreateGUIDVSPlugin
         {
             try
             {
-                using (RegistryKey subKey = this.UserRegistryRoot.CreateSubKey(SubKeyName))
+                using (RegistryKey subKey = this.userRegistryRoot.CreateSubKey(SubKeyName))
                 {
                     subKey.SetValue(ValueNameFormatString, this.FormatString);
                 }
