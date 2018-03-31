@@ -29,6 +29,7 @@ namespace CreateGUIDVSPlugin
             {
                 bytesPart[i] = guidBytes[i + Offset];
             }
+
             this.Bytes = bytesPart;
         }
 
