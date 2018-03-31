@@ -39,7 +39,7 @@ namespace CreateGUIDVSPlugin
         }
 
         /// <summary>
-        /// Property for Template
+        /// Gets or sets Template string.
         /// </summary>
         public string FormatString { get; set; }
 
