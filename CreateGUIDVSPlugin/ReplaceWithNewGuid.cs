@@ -15,25 +15,30 @@ namespace CreateGUIDVSPlugin
     /// </summary>
     public class ReplaceWithNewGuid
     {
-        /// <summary>
-        /// Variable
-        /// </summary>
-        private static string rawVariable = @"(<*)\w+(>*)";
+        private static string commaSpaces = spaces + "," + spaces;
+
+        private static string[] elements = new string[]
+        {
+            guidString1,
+            guidString2,
+            nameGuidString3,
+            nameGuidString4,
+            nameGuidString5,
+        };
+
+        private static string[] elementsPar = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
+
+        private static string guidString = string.Join("|", elementsPar);
+
+        private static string guidString1 = wordSeparater + nameGuidString1 + wordSeparater;
+
+        private static string guidString2 = wordSeparater + nameGuidString2 + wordSeparater;
+        //private static string guidString3 = wordSeparater + nameGuidString3 + wordSeparater;
 
         /// <summary>
-        /// 00000000-0000-0000-0000-000000000000
+        /// 0x00
         /// </summary>
-        private static string rawGuidString1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
-
-        /// <summary>
-        /// 00000000000000000000000000000000
-        /// </summary>
-        private static string rawGuidString2 = "([0-9A-Fa-f]{32})";
-
-        /// <summary>
-        /// 0x00000000
-        /// </summary>
-        private static string hex4ByteString = "(0[xX][0-9A-Fa-f]{1,8})";
+        private static string hex1ByteString = "(0[xX][0-9A-Fa-f]{1,2})";
 
         /// <summary>
         /// 0x0000
@@ -41,13 +46,9 @@ namespace CreateGUIDVSPlugin
         private static string hex2ByteString = "(0[xX][0-9A-Fa-f]{1,4})";
 
         /// <summary>
-        /// 0x00
+        /// 0x00000000
         /// </summary>
-        private static string hex1ByteString = "(0[xX][0-9A-Fa-f]{1,2})";
-        private static string spaces = @"\s*";
-        private static string commaSpaces = spaces + "," + spaces;
-        //private static string rawHeadSeparater = @"[{""]";
-        //private static string rawTailSeparater = @"[}""]";
+        private static string hex4ByteString = "(0[xX][0-9A-Fa-f]{1,8})";
 
         /// <summary>
         /// 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
@@ -61,26 +62,15 @@ namespace CreateGUIDVSPlugin
                                      + commaSpaces + hex1ByteString
                                      + commaSpaces + hex1ByteString;
 
-        /// <summary>
-        /// {0x00000000, 0x0000, 0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
-        /// </summary>
-        private static string rawStringArray = "{"
-                                               + spaces
-                                               + hex4ByteString + commaSpaces
-                                               + hex2ByteString + commaSpaces
-                                               + hex2ByteString + commaSpaces
-                                               + "{"
-                                               + spaces
-                                               + hex8of1Byte
-                                               + spaces
-                                               + "}"
-                                               + spaces
-                                               + "}";
+        private static string nameGuidString1 = @"(?<RawHyphenDigits>" + rawGuidString1 + ")";
 
-        private static string rawGuidValue = hex4ByteString + commaSpaces
-                                               + hex2ByteString + commaSpaces
-                                               + hex2ByteString + commaSpaces
-                                               + hex8of1Byte;
+        private static string nameGuidString2 = @"(?<Raw32Digits>" + rawGuidString2 + ")";
+
+        private static string nameGuidString3 = @"(?<GuidVariable>" + rawStringArray + ")";
+
+        private static string nameGuidString4 = @"(?<DEFINE_GUID>" + rawDefineGuid + ")";
+
+        private static string nameGuidString5 = @"(?<OLECREATE>" + rawImpOlecreate + ")";
 
         private static string nameGuidValueDef = @"(?<RAW_GUID_DEF>" + rawGuidValue + ")";
 
@@ -104,6 +94,21 @@ namespace CreateGUIDVSPlugin
                                                + @")";
 
         /// <summary>
+        /// 00000000-0000-0000-0000-000000000000
+        /// </summary>
+        private static string rawGuidString1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
+
+        /// <summary>
+        /// 00000000000000000000000000000000
+        /// </summary>
+        private static string rawGuidString2 = "([0-9A-Fa-f]{32})";
+
+        private static string rawGuidValue = hex4ByteString + commaSpaces
+                                                       + hex2ByteString + commaSpaces
+                                                       + hex2ByteString + commaSpaces
+                                                       + hex8of1Byte;
+
+        /// <summary>
         /// IMPLEMENT_OLECREATE(<<class>>, <<external_name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
         /// </summary>
         private static string rawImpOlecreate = @"(?<="
@@ -122,41 +127,39 @@ namespace CreateGUIDVSPlugin
                                                + @"\)"
                                                + @")";
 
+        //private static string rawHeadSeparater = @"[{""]";
+        //private static string rawTailSeparater = @"[}""]";
+        /// <summary>
+        /// {0x00000000, 0x0000, 0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
+        /// </summary>
+        private static string rawStringArray = "{"
+                                               + spaces
+                                               + hex4ByteString + commaSpaces
+                                               + hex2ByteString + commaSpaces
+                                               + hex2ByteString + commaSpaces
+                                               + "{"
+                                               + spaces
+                                               + hex8of1Byte
+                                               + spaces
+                                               + "}"
+                                               + spaces
+                                               + "}";
+
+        /// <summary>
+        /// Variable
+        /// </summary>
+        private static string rawVariable = @"(<*)\w+(>*)";
+
+        private static Regex reg = new Regex(guidString);
+
+        private static string spaces = @"\s*";
+
         // For reference
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/regular-expression-language-quick-reference#backreference_constructs
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
         //private static string name_head_separater = @"(?:" + rawHeadSeparater + ")";
         //private static string name_tail_separater = @"(?:" + rawTailSeparater + ")";
         private static string wordSeparater = @"\b";
-        private static string nameGuidString1 = @"(?<RawHyphenDigits>" + rawGuidString1 + ")";
-        private static string nameGuidString2 = @"(?<Raw32Digits>" + rawGuidString2 + ")";
-        private static string nameGuidString3 = @"(?<GuidVariable>" + rawStringArray + ")";
-        private static string nameGuidString4 = @"(?<DEFINE_GUID>" + rawDefineGuid + ")";
-        private static string nameGuidString5 = @"(?<OLECREATE>" + rawImpOlecreate + ")";
-        private static string guidString1 = wordSeparater + nameGuidString1 + wordSeparater;
-        private static string guidString2 = wordSeparater + nameGuidString2 + wordSeparater;
-        //private static string guidString3 = wordSeparater + nameGuidString3 + wordSeparater;
-        private static string[] elements = new string[]
-        {
-            guidString1,
-            guidString2,
-            nameGuidString3,
-            nameGuidString4,
-            nameGuidString5,
-        };
-
-        private static string[] elementsPar = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
-
-        private static string guidString = string.Join("|", elementsPar);
-
-        private static Regex reg = new Regex(guidString);
-
-        /// <summary>
-        /// delegate for creating new GUID
-        /// </summary>
-        /// <param name="guid"></param>
-        /// <returns></returns>
-        public delegate Guid NewGuid();
 
         /// <summary>
         /// hold delegate NewGuid
@@ -168,8 +171,177 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         private Dictionary<string, Guid> dict = new Dictionary<string, Guid>();
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        public ReplaceWithNewGuid(NewGuid newGuid = null)
+        {
+            if (newGuid != null)
+            {
+                this.delegateNewGuid = newGuid;
+            }
+            else
+            {
+                this.delegateNewGuid = delegate () { return Guid.NewGuid(); };
+            }
+        }
+
+        /// <summary>
+        /// delegate for creating new GUID
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public delegate Guid NewGuid();
+
+        /// <summary>
+        /// delegate for ReplaceNewGuid
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public string delegateReplaceNewGuid(Match m)
+        {
+            var processGuid = new ProcessGuid(m);
+            var newGuid = this.CallNewGuid();
+
+            var guid_str = processGuid.Convert(newGuid);
+            return guid_str;
+        }
+
+        /// <summary>
+        /// delegate for ReplaceSameGuidToSameGuid
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public string delegateReplaceSameGuidToSameGuid(Match m)
+        {
+            var processGuid = new ProcessGuid(m);
+            var key = processGuid.Key;
+            var guid = new Guid(key);
+            if (!this.dict.ContainsKey(key))
+            {
+                this.dict[key] = this.CallNewGuid();
+            }
+
+            var newGuid = this.dict[key];
+
+            var guid_str = processGuid.Convert(newGuid);
+            return guid_str;
+        }
+
+        public void Dump()
+        {
+            foreach (KeyValuePair<string, Guid> keyvalue in this.dict)
+            {
+                Console.WriteLine("{0}:{1}", keyvalue.Key, keyvalue.Value.ToString());
+            }
+        }
+
+        /// <summary>
+        /// replace GUIDs to new GUIDs.
+        /// all GUIDS will be replaced with the different GUIDs.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string ReplaceNewGuid(string input)
+        {
+            //Console.WriteLine(guidString);
+            var myEvaluator = new MatchEvaluator(this.delegateReplaceNewGuid);
+
+            // Replace matched characters using the delegate method.
+            var output = reg.Replace(input, myEvaluator);
+            return output;
+        }
+
+        /// <summary>
+        /// replace GUIDs to new GUIDs.
+        /// same GUIDS will be replaced with the same GUIDs.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string ReplaceSameGuidToSameGuid(string input)
+        {
+            //Console.WriteLine(guidString);
+            var myEvaluator = new MatchEvaluator(this.delegateReplaceSameGuidToSameGuid);
+
+            // Replace matched characters using the delegate method.
+            var output = reg.Replace(input, myEvaluator);
+            return output;
+        }
+
+        /// <summary>
+        /// utility function to create GUID.
+        /// </summary>
+        /// <returns></returns>
+        private Guid CallNewGuid()
+        {
+            return this.delegateNewGuid();
+        }
+
         private class ProcessGuid
         {
+            /// <summary>
+            /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
+            /// </summary>
+            private static MapFormat[] tableFormats = new MapFormat[] {
+                new MapFormat("RawHyphenDigits", Format.RawHyphenDigits, delegate (Guid guid) { return guid.ToString("D"); }),
+                new MapFormat("Raw32Digits",     Format.Raw32Digits,     delegate (Guid guid) { return guid.ToString("N"); }),
+                new MapFormat("GuidVariable",    Format.GuidVariable,    delegate (Guid guid) { return guid.ToString("X"); }),
+                new MapFormat("RAW_GUID_DEF",    Format.DEFINE_GUID,     delegate (Guid guid) { return FormatGuidAsRawValues(guid); }),
+                new MapFormat("RAW_GUID_IMP",    Format.OLECREATE,       delegate (Guid guid) { return FormatGuidAsRawValues(guid); }),
+            };
+
+            private Match m;
+
+            private MapFormat mapFormat;
+
+            /// <summary>
+            /// constructor
+            /// </summary>
+            /// <param name="m"></param>
+            public ProcessGuid(Match m)
+            {
+                this.m = m;
+
+                this.Key = string.Empty;
+                this.mapFormat = null;
+                this.GuidFormat = Format.Unknown;
+                foreach (MapFormat mapFormat in tableFormats)
+                {
+                    if (m.Groups[mapFormat.Key].Success)
+                    {
+                        Guid guid;
+                        var value = m.Groups[mapFormat.Key].Value;
+
+                        // try converting GUID.
+                        if (!Guid.TryParse(value, out guid))
+                        {
+                            var builder = new StringBuilder(value);
+                            builder.Replace("0x", "");
+                            builder.Replace(",", "");
+                            builder.Replace(" ", "");
+                            value = builder.ToString();
+                        }
+
+                        // retry converting GUID.
+                        if (Guid.TryParse(value, out guid))
+                        {
+                            this.Key = guid.ToString("D");
+                        }
+
+                        this.mapFormat = mapFormat;
+                        this.GuidFormat = mapFormat.GuidFormat;
+                        break;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// delegate for converting a guid to a string
+            /// </summary>
+            /// <param name="guid"></param>
+            /// <returns></returns>
+            delegate string ConvertGuid(Guid guid);
+
             /// <summary>
             /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
             /// </summary>
@@ -204,29 +376,29 @@ namespace CreateGUIDVSPlugin
             }
 
             /// <summary>
-            /// delegate for converting a guid to a string
+            /// guid format
+            /// </summary>
+            public Format GuidFormat { get; private set; }
+
+            /// <summary>
+            /// key for Guid dictionary
+            /// </summary>
+            public string Key { get; private set; }
+
+            /// <summary>
+            /// Format the guid in the original format
             /// </summary>
             /// <param name="guid"></param>
             /// <returns></returns>
-            delegate string ConvertGuid(Guid guid);
-
-            /// <summary>
-            /// class for converting GUID
-            /// </summary>
-            private class MapFormat
+            public string Convert(Guid guid)
             {
-                public string Key { get; private set; }
-
-                public Format GuidFormat { get; private set; }
-
-                public ConvertGuid delegateConvertGuid { get; private set; }
-
-                public MapFormat(string Key, Format GuidFormat, ConvertGuid delegateConvertGuid)
+                if (this.mapFormat != null)
                 {
-                    this.Key = Key;
-                    this.GuidFormat = GuidFormat;
-                    this.delegateConvertGuid = delegateConvertGuid;
+                    return this.mapFormat.delegateConvertGuid(guid);
                 }
+
+                // return original string
+                return this.m.ToString();
             }
 
             /// <summary>
@@ -274,184 +446,22 @@ namespace CreateGUIDVSPlugin
             }
 
             /// <summary>
-            /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
+            /// class for converting GUID
             /// </summary>
-            private static MapFormat[] tableFormats = new MapFormat[] {
-                new MapFormat("RawHyphenDigits", Format.RawHyphenDigits, delegate (Guid guid) { return guid.ToString("D"); }),
-                new MapFormat("Raw32Digits",     Format.Raw32Digits,     delegate (Guid guid) { return guid.ToString("N"); }),
-                new MapFormat("GuidVariable",    Format.GuidVariable,    delegate (Guid guid) { return guid.ToString("X"); }),
-                new MapFormat("RAW_GUID_DEF",    Format.DEFINE_GUID,     delegate (Guid guid) { return FormatGuidAsRawValues(guid); }),
-                new MapFormat("RAW_GUID_IMP",    Format.OLECREATE,       delegate (Guid guid) { return FormatGuidAsRawValues(guid); }),
-            };
- 
-            private Match m;
-
-            private MapFormat mapFormat;
-
-            /// <summary>
-            /// key for Guid dictionary
-            /// </summary>
-            public string Key { get; private set; }
-
-            /// <summary>
-            /// guid format
-            /// </summary>
-            public Format GuidFormat { get; private set; }
-
-            /// <summary>
-            /// constructor
-            /// </summary>
-            /// <param name="m"></param>
-            public ProcessGuid(Match m)
+            private class MapFormat
             {
-                this.m = m;
-
-                this.Key = string.Empty;
-                this.mapFormat = null;
-                this.GuidFormat = Format.Unknown;
-                foreach (MapFormat mapFormat in tableFormats)
+                public MapFormat(string Key, Format GuidFormat, ConvertGuid delegateConvertGuid)
                 {
-                    if (m.Groups[mapFormat.Key].Success)
-                    {
-                        Guid guid;
-                        var value = m.Groups[mapFormat.Key].Value;
-
-                        // try converting GUID.
-                        if (!Guid.TryParse(value, out guid))
-                        {
-                            var builder = new StringBuilder(value);
-                            builder.Replace("0x", "");
-                            builder.Replace(",", "");
-                            builder.Replace(" ", "");
-                            value = builder.ToString();
-                        }
-
-                        // retry converting GUID.
-                        if (Guid.TryParse(value, out guid))
-                        {
-                            this.Key = guid.ToString("D");
-                        }
-
-                        this.mapFormat = mapFormat;
-                        this.GuidFormat = mapFormat.GuidFormat;
-                        break;
-                    }
-                }
-            }
-
-            /// <summary>
-            /// Format the guid in the original format
-            /// </summary>
-            /// <param name="guid"></param>
-            /// <returns></returns>
-            public string Convert(Guid guid)
-            {
-                if (this.mapFormat != null)
-                {
-                    return this.mapFormat.delegateConvertGuid(guid);
+                    this.Key = Key;
+                    this.GuidFormat = GuidFormat;
+                    this.delegateConvertGuid = delegateConvertGuid;
                 }
 
-                // return original string
-                return this.m.ToString();
-            }
-        }
+                public ConvertGuid delegateConvertGuid { get; private set; }
 
-        /// <summary>
-        /// constructor
-        /// </summary>
-        public ReplaceWithNewGuid(NewGuid newGuid = null)
-        {
-            if (newGuid != null)
-            {
-                this.delegateNewGuid = newGuid;
-            }
-            else
-            {
-                this.delegateNewGuid = delegate () { return Guid.NewGuid(); };
-            }
-        }
+                public Format GuidFormat { get; private set; }
 
-        /// <summary>
-        /// utility function to create GUID.
-        /// </summary>
-        /// <returns></returns>
-        private Guid CallNewGuid()
-        {
-            return this.delegateNewGuid();
-        }
-
-        /// <summary>
-        /// delegate for ReplaceNewGuid
-        /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
-        public string delegateReplaceNewGuid(Match m)
-        {
-            var processGuid = new ProcessGuid(m);
-            var newGuid = this.CallNewGuid();
-
-            var guid_str = processGuid.Convert(newGuid);
-            return guid_str;
-        }
-
-        /// <summary>
-        /// delegate for ReplaceSameGuidToSameGuid
-        /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
-        public string delegateReplaceSameGuidToSameGuid(Match m)
-        {
-            var processGuid = new ProcessGuid(m);
-            var key = processGuid.Key;
-            var guid = new Guid(key);
-            if (!this.dict.ContainsKey(key))
-            {
-                this.dict[key] = this.CallNewGuid();
-            }
-
-            var newGuid = this.dict[key];
-
-            var guid_str = processGuid.Convert(newGuid);
-            return guid_str;
-        }
-
-        /// <summary>
-        /// replace GUIDs to new GUIDs.
-        /// all GUIDS will be replaced with the different GUIDs.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public string ReplaceNewGuid(string input)
-        {
-            //Console.WriteLine(guidString);
-            var myEvaluator = new MatchEvaluator(this.delegateReplaceNewGuid);
-
-            // Replace matched characters using the delegate method.
-            var output = reg.Replace(input, myEvaluator);
-            return output;
-        }
-
-        /// <summary>
-        /// replace GUIDs to new GUIDs.
-        /// same GUIDS will be replaced with the same GUIDs.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public string ReplaceSameGuidToSameGuid(string input)
-        {
-            //Console.WriteLine(guidString);
-            var myEvaluator = new MatchEvaluator(this.delegateReplaceSameGuidToSameGuid);
-
-            // Replace matched characters using the delegate method.
-            var output = reg.Replace(input, myEvaluator);
-            return output;
-        }
-
-        public void Dump()
-        {
-            foreach (KeyValuePair<string, Guid> keyvalue in this.dict)
-            {
-                Console.WriteLine("{0}:{1}", keyvalue.Key, keyvalue.Value.ToString());
+                public string Key { get; private set; }
             }
         }
     }
