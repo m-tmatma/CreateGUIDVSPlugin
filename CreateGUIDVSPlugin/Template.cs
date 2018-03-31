@@ -430,16 +430,6 @@ namespace CreateGUIDVSPlugin
     internal class VariableManager
     {
         /// <summary>
-        /// Keyword
-        /// </summary>
-        internal string Keyword { get; set; }
-
-        /// <summary>
-        /// Description for Variable
-        /// </summary>
-        internal string Description { get; set; }
-
-        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="Keyword">Variable</param>
@@ -449,6 +439,17 @@ namespace CreateGUIDVSPlugin
             this.Keyword = Keyword;
             this.Description = this.GetVariable() + ": " + Description;
         }
+
+        /// <summary>
+        /// Keyword
+        /// </summary>
+        internal string Keyword { get; set; }
+
+        /// <summary>
+        /// Description for Variable
+        /// </summary>
+        internal string Description { get; set; }
+
         internal string GetVariable()
         {
             return "{" + this.Keyword + "}";
