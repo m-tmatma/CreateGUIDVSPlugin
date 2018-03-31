@@ -187,6 +187,5 @@ namespace CreateGUIDVSPlugin
                 command.Enabled = enabled;
             }
         }
-
     }
 }
