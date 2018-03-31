@@ -1,5 +1,4 @@
-﻿
-namespace CreateGUIDVSPlugin
+﻿namespace CreateGUIDVSPlugin
 {
     using System;
     using System.ComponentModel.Design;
