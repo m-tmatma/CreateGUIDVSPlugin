@@ -30,7 +30,7 @@ namespace CreateGUIDVSPlugin
         internal VariableManager(string Keyword, string Description)
         {
             this.Keyword = Keyword;
-            this.Description = GetVariable() + ": " + Description;
+            this.Description = this.GetVariable() + ": " + Description;
         }
         internal string GetVariable()
         {
