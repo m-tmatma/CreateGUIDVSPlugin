@@ -158,6 +158,61 @@ namespace CreateGUIDVSPlugin
         };
 
         /// <summary>
+        /// Template Name for 1st part of Lower Case of GUID
+        /// </summary>
+        static internal string VariableLowerCase1stPart = "LowerCase1stPart";
+
+        /// <summary>
+        /// Template Name for 2nd part of Lower Case of GUID
+        /// </summary>
+        static internal string VariableLowerCase2ndPart = "LowerCase2ndPart";
+
+        /// <summary>
+        /// Template Name for 3rd part of Lower Case of GUID
+        /// </summary>
+        static internal string VariableLowerCase3rdPart = "LowerCase3rdPart";
+
+        /// <summary>
+        /// Template Name for Lower Case 1st byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte1 = "LowerCaseBytesPartByte1";
+
+        /// <summary>
+        /// Template Name for Lower Case 2nd byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte2 = "LowerCaseBytesPartByte2";
+
+        /// <summary>
+        /// Template Name for Lower Case 3rd byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte3 = "LowerCaseBytesPartByte3";
+
+        /// <summary>
+        /// Template Name for Lower Case 4th byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte4 = "LowerCaseBytesPartByte4";
+
+        /// <summary>
+        /// Template Name for Lower Case 5th byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte5 = "LowerCaseBytesPartByte5";
+
+        /// <summary>
+        /// Template Name for Lower Case 6th byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte6 = "LowerCaseBytesPartByte6";
+
+        /// <summary>
+        /// Template Name for Lower Case 7th byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte7 = "LowerCaseBytesPartByte7";
+
+        /// <summary>
+        /// Template Name for Lower Case 8th byte of Bytes Part of GUID
+        /// </summary>
+        static internal string VariableLowerCaseBytesPartByte8 = "LowerCaseBytesPartByte8";
+
+        /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
         static internal string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
@@ -176,10 +231,6 @@ namespace CreateGUIDVSPlugin
         /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
         static internal string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
-        /// <summary>
-        /// Template Name for 1st part of Lower Case of GUID
-        /// </summary>
-        static internal string VariableLowerCase1stPart = "LowerCase1stPart";
 
         /// <summary>
         /// Template Name for 1st part of Upper Case of GUID
@@ -187,19 +238,8 @@ namespace CreateGUIDVSPlugin
         static internal string VariableUpperCase1stPart = "UpperCase1stPart";
 
         /// <summary>
-        /// Template Name for 2nd part of Lower Case of GUID
-        /// </summary>
-        static internal string VariableLowerCase2ndPart = "LowerCase2ndPart";
-
-        /// <summary>
         /// Template Name for 2nd part of Upper Case of GUID
-        /// </summary>
         static internal string VariableUpperCase2ndPart = "UpperCase2ndPart";
-
-        /// <summary>
-        /// Template Name for 3rd part of Lower Case of GUID
-        /// </summary>
-        static internal string VariableLowerCase3rdPart = "LowerCase3rdPart";
 
         /// <summary>
         /// Template Name for 3rd part of Upper Case of GUID
@@ -207,19 +247,9 @@ namespace CreateGUIDVSPlugin
         static internal string VariableUpperCase3rdPart = "UpperCase3rdPart";
 
         /// <summary>
-        /// Template Name for Lower Case 1st byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte1 = "LowerCaseBytesPartByte1";
-
-        /// <summary>
         /// Template Name for Upper Case 1st byte of Bytes Part of GUID
         /// </summary>
         static internal string VariableUpperCaseBytesPartByte1 = "UpperCaseBytesPartByte1";
-
-        /// <summary>
-        /// Template Name for Lower Case 2nd byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte2 = "LowerCaseBytesPartByte2";
 
         /// <summary>
         /// Template Name for Upper Case 2nd byte of Bytes Part of GUID
@@ -227,19 +257,9 @@ namespace CreateGUIDVSPlugin
         static internal string VariableUpperCaseBytesPartByte2 = "UpperCaseBytesPartByte2";
 
         /// <summary>
-        /// Template Name for Lower Case 3rd byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte3 = "LowerCaseBytesPartByte3";
-
-        /// <summary>
         /// Template Name for Upper Case 3rd byte of Bytes Part of GUID
         /// </summary>
         static internal string VariableUpperCaseBytesPartByte3 = "UpperCaseBytesPartByte3";
-
-        /// <summary>
-        /// Template Name for Lower Case 4th byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte4 = "LowerCaseBytesPartByte4";
 
         /// <summary>
         /// Template Name for Upper Case 4th byte of Bytes Part of GUID
@@ -247,19 +267,9 @@ namespace CreateGUIDVSPlugin
         static internal string VariableUpperCaseBytesPartByte4 = "UpperCaseBytesPartByte4";
 
         /// <summary>
-        /// Template Name for Lower Case 5th byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte5 = "LowerCaseBytesPartByte5";
-
-        /// <summary>
         /// Template Name for Upper Case 5th byte of Bytes Part of GUID
         /// </summary>
         static internal string VariableUpperCaseBytesPartByte5 = "UpperCaseBytesPartByte5";
-
-        /// <summary>
-        /// Template Name for Lower Case 6th byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte6 = "LowerCaseBytesPartByte6";
 
         /// <summary>
         /// Template Name for Upper Case 6th byte of Bytes Part of GUID
@@ -267,19 +277,9 @@ namespace CreateGUIDVSPlugin
         static internal string VariableUpperCaseBytesPartByte6 = "UpperCaseBytesPartByte6";
 
         /// <summary>
-        /// Template Name for Lower Case 7th byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte7 = "LowerCaseBytesPartByte7";
-
-        /// <summary>
         /// Template Name for Upper Case 7th byte of Bytes Part of GUID
         /// </summary>
         static internal string VariableUpperCaseBytesPartByte7 = "UpperCaseBytesPartByte7";
-
-        /// <summary>
-        /// Template Name for Lower Case 8th byte of Bytes Part of GUID
-        /// </summary>
-        static internal string VariableLowerCaseBytesPartByte8 = "LowerCaseBytesPartByte8";
 
         /// <summary>
         /// Template Name for Upper Case 8th byte of Bytes Part of GUID
