@@ -169,10 +169,10 @@ namespace CreateGUIDVSPlugin
                     // Renew GUIDs in the selected text.
                     var output = replaceWithNewGuid.ReplaceNewGuid(seltext);
 #if DEBUG
-	                this.ClearOutout();
-	                this.ActivateOutout();
-	                this.OutputString(seltext);
-	                this.OutputString(output);
+                    this.ClearOutout();
+                    this.ActivateOutout();
+                    this.OutputString(seltext);
+                    this.OutputString(output);
 #endif
                     selection.Delete();
                     selection.Insert(output);
