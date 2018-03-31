@@ -132,14 +132,11 @@ namespace CreateGUIDVSPlugin
         {
             base.Initialize();
             CopyGuidCommand.Initialize(this);
-
-#if DEBUG
-            AddOutputWindow("Copy GUID");
-#endif
             InsertGuidCommand.Initialize(this);
+            RenewGuidCommand.Initialize(this);
 
 #if DEBUG
-            AddOutputWindow("Insert GUID");
+            AddOutputWindow("Create GUID");
 #endif
 
             this.configuration = new Configuration(this.UserRegistryRoot);
