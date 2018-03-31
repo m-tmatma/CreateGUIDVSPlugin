@@ -12,41 +12,41 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Variable
         /// </summary>
-        static private string raw_variable = @"(<*)\w+(>*)";
+        private static string raw_variable = @"(<*)\w+(>*)";
 
         /// <summary>
         /// 00000000-0000-0000-0000-000000000000
         /// </summary>
-        static private string raw_guid_string1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
+        private static string raw_guid_string1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
 
         /// <summary>
         /// 00000000000000000000000000000000
         /// </summary>
-        static private string raw_guid_string2 = "([0-9A-Fa-f]{32})";
+        private static string raw_guid_string2 = "([0-9A-Fa-f]{32})";
 
         /// <summary>
         /// 0x00000000
         /// </summary>
-        static private string hex_4byte_string = "(0[xX][0-9A-Fa-f]{1,8})";
+        private static string hex_4byte_string = "(0[xX][0-9A-Fa-f]{1,8})";
 
         /// <summary>
         /// 0x0000
         /// </summary>
-        static private string hex_2byte_string = "(0[xX][0-9A-Fa-f]{1,4})";
+        private static string hex_2byte_string = "(0[xX][0-9A-Fa-f]{1,4})";
 
         /// <summary>
         /// 0x00
         /// </summary>
-        static private string hex_1byte_string = "(0[xX][0-9A-Fa-f]{1,2})";
-        static private string spaces = @"\s*";
-        static private string comma_spaces = spaces + "," + spaces;
-        //static private string raw_head_separater = @"[{""]";
-        //static private string raw_tail_separater = @"[}""]";
+        private static string hex_1byte_string = "(0[xX][0-9A-Fa-f]{1,2})";
+        private static string spaces = @"\s*";
+        private static string comma_spaces = spaces + "," + spaces;
+        //private static string raw_head_separater = @"[{""]";
+        //private static string raw_tail_separater = @"[}""]";
 
         /// <summary>
         /// 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
         /// </summary>
-        static private string hex_8_of_1byte = hex_1byte_string
+        private static string hex_8_of_1byte = hex_1byte_string
                                      + comma_spaces + hex_1byte_string
                                      + comma_spaces + hex_1byte_string
                                      + comma_spaces + hex_1byte_string
@@ -58,7 +58,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// {0x00000000, 0x0000, 0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
         /// </summary>
-        static private string raw_string_array = "{"
+        private static string raw_string_array = "{"
                                                + spaces
                                                + hex_4byte_string + comma_spaces
                                                + hex_2byte_string + comma_spaces
@@ -71,17 +71,17 @@ namespace CreateGUIDVSPlugin
                                                + spaces
                                                + "}";
 
-        static private string raw_guid_value = hex_4byte_string + comma_spaces
+        private static string raw_guid_value = hex_4byte_string + comma_spaces
                                                + hex_2byte_string + comma_spaces
                                                + hex_2byte_string + comma_spaces
                                                + hex_8_of_1byte;
-        static private string name_guid_value_def = @"(?<RAW_GUID_DEF>" + raw_guid_value + ")";
-        static private string name_guid_value_imp = @"(?<RAW_GUID_IMP>" + raw_guid_value + ")";
+        private static string name_guid_value_def = @"(?<RAW_GUID_DEF>" + raw_guid_value + ")";
+        private static string name_guid_value_imp = @"(?<RAW_GUID_IMP>" + raw_guid_value + ")";
 
         /// <summary>
         /// DEFINE_GUID(<<name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
         /// </summary>
-        static private string raw_define_guid = @"(?<="
+        private static string raw_define_guid = @"(?<="
                                                + @"DEFINE_GUID"
                                                + spaces
                                                + @"\("
@@ -98,7 +98,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// IMPLEMENT_OLECREATE(<<class>>, <<external_name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
         /// </summary>
-        static private string raw_impl_olecreate = @"(?<="
+        private static string raw_impl_olecreate = @"(?<="
                                                + @"IMPLEMENT_OLECREATE"
                                                + spaces
                                                + @"\("
@@ -117,18 +117,18 @@ namespace CreateGUIDVSPlugin
         // For reference
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/regular-expression-language-quick-reference#backreference_constructs
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
-        //static private string name_head_separater = @"(?:" + raw_head_separater + ")";
-        //static private string name_tail_separater = @"(?:" + raw_tail_separater + ")";
-        static private string word_separater = @"\b";
-        static private string name_guid_string1 = @"(?<RawHyphenDigits>" + raw_guid_string1 + ")";
-        static private string name_guid_string2 = @"(?<Raw32Digits>" + raw_guid_string2 + ")";
-        static private string name_guid_string3 = @"(?<GuidVariable>" + raw_string_array + ")";
-        static private string name_guid_string4 = @"(?<DEFINE_GUID>" + raw_define_guid + ")";
-        static private string name_guid_string5 = @"(?<OLECREATE>" + raw_impl_olecreate + ")";
-        static private string guid_string1 = word_separater + name_guid_string1 + word_separater;
-        static private string guid_string2 = word_separater + name_guid_string2 + word_separater;
-        //static private string guid_string3 = word_separater + name_guid_string3 + word_separater;
-        static private string[] elements = new string[]
+        //private static string name_head_separater = @"(?:" + raw_head_separater + ")";
+        //private static string name_tail_separater = @"(?:" + raw_tail_separater + ")";
+        private static string word_separater = @"\b";
+        private static string name_guid_string1 = @"(?<RawHyphenDigits>" + raw_guid_string1 + ")";
+        private static string name_guid_string2 = @"(?<Raw32Digits>" + raw_guid_string2 + ")";
+        private static string name_guid_string3 = @"(?<GuidVariable>" + raw_string_array + ")";
+        private static string name_guid_string4 = @"(?<DEFINE_GUID>" + raw_define_guid + ")";
+        private static string name_guid_string5 = @"(?<OLECREATE>" + raw_impl_olecreate + ")";
+        private static string guid_string1 = word_separater + name_guid_string1 + word_separater;
+        private static string guid_string2 = word_separater + name_guid_string2 + word_separater;
+        //private static string guid_string3 = word_separater + name_guid_string3 + word_separater;
+        private static string[] elements = new string[]
         {
             guid_string1,
             guid_string2,
@@ -136,9 +136,9 @@ namespace CreateGUIDVSPlugin
             name_guid_string4,
             name_guid_string5,
         };
-        static private string[] elements_par = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
-        static private string guid_string = string.Join("|", elements_par);
-        static private Regex reg = new Regex(guid_string);
+        private static string[] elements_par = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
+        private static string guid_string = string.Join("|", elements_par);
+        private static Regex reg = new Regex(guid_string);
 
         /// <summary>
         /// delegate for creating new GUID
@@ -262,7 +262,7 @@ namespace CreateGUIDVSPlugin
             /// <summary>
             /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
             /// </summary>
-            static private MapFormat[] tableFormats = new MapFormat[] {
+            private static MapFormat[] tableFormats = new MapFormat[] {
                 new MapFormat("RawHyphenDigits", Format.RawHyphenDigits, delegate (Guid guid) { return guid.ToString("D"); }),
                 new MapFormat("Raw32Digits",     Format.Raw32Digits,     delegate (Guid guid) { return guid.ToString("N"); }),
                 new MapFormat("GuidVariable",    Format.GuidVariable,    delegate (Guid guid) { return guid.ToString("X"); }),
