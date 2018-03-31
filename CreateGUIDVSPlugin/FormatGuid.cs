@@ -7,7 +7,14 @@ namespace CreateGUIDVSPlugin
     /// </summary>
     public class FormatGuid
     {
+        /// <summary>
+        /// Offset to byte data part in GUID.
+        /// </summary>
         private const int Offset = 8;
+
+        /// <summary>
+        /// size of byte data part in GUID.
+        /// </summary>
         private const int ArraySize = 8;
 
         /// <summary>
