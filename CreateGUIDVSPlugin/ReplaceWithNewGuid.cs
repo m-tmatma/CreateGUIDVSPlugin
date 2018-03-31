@@ -333,7 +333,7 @@ namespace CreateGUIDVSPlugin
             /// </summary>
             /// <param name="guid"></param>
             /// <returns></returns>
-            delegate string ConvertGuid(Guid guid);
+            private delegate string ConvertGuid(Guid guid);
 
             /// <summary>
             /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
