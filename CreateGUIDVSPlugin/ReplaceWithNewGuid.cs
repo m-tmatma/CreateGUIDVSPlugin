@@ -193,7 +193,7 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
-        public string delegateReplaceNewGuid(Match m)
+        public string DelegateReplaceNewGuid(Match m)
         {
             var processGuid = new ProcessGuid(m);
             var newGuid = this.CallNewGuid();
@@ -207,7 +207,7 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
-        public string delegateReplaceSameGuidToSameGuid(Match m)
+        public string DelegateReplaceSameGuidToSameGuid(Match m)
         {
             var processGuid = new ProcessGuid(m);
             var key = processGuid.Key;
@@ -239,7 +239,7 @@ namespace CreateGUIDVSPlugin
         /// <returns></returns>
         public string ReplaceNewGuid(string input)
         {
-            var myEvaluator = new MatchEvaluator(this.delegateReplaceNewGuid);
+            var myEvaluator = new MatchEvaluator(this.DelegateReplaceNewGuid);
 
             // Replace matched characters using the delegate method.
             var output = reg.Replace(input, myEvaluator);
@@ -254,7 +254,7 @@ namespace CreateGUIDVSPlugin
         /// <returns></returns>
         public string ReplaceSameGuidToSameGuid(string input)
         {
-            var myEvaluator = new MatchEvaluator(this.delegateReplaceSameGuidToSameGuid);
+            var myEvaluator = new MatchEvaluator(this.DelegateReplaceSameGuidToSameGuid);
 
             // Replace matched characters using the delegate method.
             var output = reg.Replace(input, myEvaluator);
@@ -387,7 +387,7 @@ namespace CreateGUIDVSPlugin
             {
                 if (this.mapFormat != null)
                 {
-                    return this.mapFormat.delegateConvertGuid(guid);
+                    return this.mapFormat.DelegateConvertGuid(guid);
                 }
 
                 // return original string
@@ -447,10 +447,10 @@ namespace CreateGUIDVSPlugin
                 {
                     this.Key = Key;
                     this.GuidFormat = GuidFormat;
-                    this.delegateConvertGuid = delegateConvertGuid;
+                    this.DelegateConvertGuid = delegateConvertGuid;
                 }
 
-                public ConvertGuid delegateConvertGuid { get; private set; }
+                public ConvertGuid DelegateConvertGuid { get; private set; }
 
                 public Format GuidFormat { get; private set; }
 
