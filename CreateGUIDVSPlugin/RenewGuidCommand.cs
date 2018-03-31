@@ -53,6 +53,7 @@ namespace CreateGUIDVSPlugin
                 {
                     command.Text = DefaultCommandText + " (Select text that you want to replace with new GUIDs.)";
                 }
+
                 command.Enabled = enabled;
             }
         }
