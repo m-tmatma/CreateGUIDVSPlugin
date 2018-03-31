@@ -47,14 +47,6 @@ namespace CreateGUIDVSPlugin
     /// </summary>
     internal class Template
     {
-        internal enum Type
-        {
-            None,
-            NormalString,
-            TemplateNoIndex,
-            TemplateIndex,
-        };
-
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
@@ -326,6 +318,14 @@ namespace CreateGUIDVSPlugin
             { Template.VariableUpperCaseBytesPartByte6, Template.VariableLowerCaseBytesPartByte6 },
             { Template.VariableUpperCaseBytesPartByte7, Template.VariableLowerCaseBytesPartByte7 },
             { Template.VariableUpperCaseBytesPartByte8, Template.VariableLowerCaseBytesPartByte8 },
+        };
+
+        internal enum Type
+        {
+            None,
+            NormalString,
+            TemplateNoIndex,
+            TemplateIndex,
         };
 
         /// <summary>
