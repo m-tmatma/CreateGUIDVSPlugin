@@ -256,7 +256,7 @@ namespace CreateGUIDVSPlugin
                 for (i = 0; i < 8; i++)
                 {
                     builder.Append("0x");
-                    builder.Append(bytes[8+i].ToString("x2"));
+                    builder.Append(bytes[8 + i].ToString("x2"));
                     if (i != 7)
                     {
                         builder.Append(", ");
@@ -353,7 +353,7 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         public ReplaceWithNewGuid(NewGuid newGuid = null)
         {
-            if(newGuid != null)
+            if (newGuid != null)
             {
                 this.delegateNewGuid = newGuid;
             }
