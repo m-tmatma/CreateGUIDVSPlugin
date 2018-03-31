@@ -33,7 +33,6 @@ namespace CreateGUIDVSPlugin
         private static string guidString1 = wordSeparater + nameGuidString1 + wordSeparater;
 
         private static string guidString2 = wordSeparater + nameGuidString2 + wordSeparater;
-        //private static string guidString3 = wordSeparater + nameGuidString3 + wordSeparater;
 
         /// <summary>
         /// 0x00
@@ -127,8 +126,6 @@ namespace CreateGUIDVSPlugin
                                                + @"\)"
                                                + @")";
 
-        //private static string rawHeadSeparater = @"[{""]";
-        //private static string rawTailSeparater = @"[}""]";
         /// <summary>
         /// {0x00000000, 0x0000, 0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
         /// </summary>
@@ -157,8 +154,6 @@ namespace CreateGUIDVSPlugin
         // For reference
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/regular-expression-language-quick-reference#backreference_constructs
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
-        //private static string name_head_separater = @"(?:" + rawHeadSeparater + ")";
-        //private static string name_tail_separater = @"(?:" + rawTailSeparater + ")";
         private static string wordSeparater = @"\b";
 
         /// <summary>
@@ -244,7 +239,6 @@ namespace CreateGUIDVSPlugin
         /// <returns></returns>
         public string ReplaceNewGuid(string input)
         {
-            //Console.WriteLine(guidString);
             var myEvaluator = new MatchEvaluator(this.delegateReplaceNewGuid);
 
             // Replace matched characters using the delegate method.
@@ -260,7 +254,6 @@ namespace CreateGUIDVSPlugin
         /// <returns></returns>
         public string ReplaceSameGuidToSameGuid(string input)
         {
-            //Console.WriteLine(guidString);
             var myEvaluator = new MatchEvaluator(this.delegateReplaceSameGuidToSameGuid);
 
             // Replace matched characters using the delegate method.
