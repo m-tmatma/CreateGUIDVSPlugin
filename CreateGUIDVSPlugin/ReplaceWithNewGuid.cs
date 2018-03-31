@@ -177,7 +177,7 @@ namespace CreateGUIDVSPlugin
             }
             else
             {
-                this.delegateNewGuid = delegate () { return Guid.NewGuid(); };
+                this.delegateNewGuid = delegate { return Guid.NewGuid(); };
             }
         }
 
