@@ -1,8 +1,13 @@
-﻿using System;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="FormatGuid.cs" company="Masaru Tsuchiyama">
+//     Copyright (c) Masaru Tsuchiyama. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace CreateGUIDVSPlugin
 {
-    /// <summary>
+    using System;
+
+   /// <summary>
     /// GUID formatter
     /// </summary>
     public class FormatGuid
