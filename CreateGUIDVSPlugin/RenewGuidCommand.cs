@@ -102,7 +102,7 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         internal void OutputStringLine(string output)
         {
-            OutputString(output + Environment.NewLine);
+            this.OutputString(output + Environment.NewLine);
         }
 
         /// <summary>
