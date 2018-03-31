@@ -218,19 +218,9 @@ namespace CreateGUIDVSPlugin
         static internal string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
 
         /// <summary>
-        /// Template Name for Upper Case GUID with Hyphens
-        /// </summary>
-        static internal string VariableUpperCaseGuidWithHyphens = "UpperCaseGuidWithHyphens";
-
-        /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
         static internal string VariableLowerCaseGuidWithoutHyphens = "LowerCaseGuidWithoutHyphens";
-
-        /// <summary>
-        /// Template Name for Upper Case GUID with Hyphens
-        /// </summary>
-        static internal string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
 
         /// <summary>
         /// Template Name for 1st part of Upper Case of GUID
@@ -286,6 +276,16 @@ namespace CreateGUIDVSPlugin
         /// Template Name for Upper Case 8th byte of Bytes Part of GUID
         /// </summary>
         static internal string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
+
+        /// <summary>
+        /// Template Name for Upper Case GUID with Hyphens
+        /// </summary>
+        static internal string VariableUpperCaseGuidWithHyphens = "UpperCaseGuidWithHyphens";
+
+        /// <summary>
+        /// Template Name for Upper Case GUID with Hyphens
+        /// </summary>
+        static internal string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
 
         internal enum Type
         {
