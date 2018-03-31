@@ -31,7 +31,99 @@ namespace CreateGUIDVSPlugin
             { Template.VariableUpperCaseBytesPartByte7, Template.VariableLowerCaseBytesPartByte7 },
             { Template.VariableUpperCaseBytesPartByte8, Template.VariableLowerCaseBytesPartByte8 },
         };
-        
+
+        /// <summary>
+        /// Default Template String
+        /// </summary>
+#if ORIGINAL
+        internal readonly static string DefaultFormatString =
+              "// {" + "{" + VariableLowerCaseGuidWithHyphens + "}" + "}"
+            + Environment.NewLine
+            + "DEFINE_GUID(<<name>>, "
+            + "0x{" + VariableLowerCase1stPart + "},"
+            + "0x{" + VariableLowerCase2ndPart + "},"
+            + "0x{" + VariableLowerCase3rdPart + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte1 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte2 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte3 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte4 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte5 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte6 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte7 + "},"
+            + "0x{" + VariableLowerCaseBytesPartByte8 + "}"
+            + ");"
+            + Environment.NewLine
+            + Environment.NewLine
+            + "<Guid(\""
+            + "{" + VariableLowerCase1stPart + "}-"
+            + "{" + VariableLowerCase2ndPart + "}-"
+            + "{" + VariableLowerCase3rdPart + "}-"
+            + "{" + VariableLowerCaseBytesPartByte1 + "}"
+            + "{" + VariableLowerCaseBytesPartByte2 + "}-"
+            + "{" + VariableLowerCaseBytesPartByte2 + "}"
+            + "{" + VariableLowerCaseBytesPartByte3 + "}"
+            + "{" + VariableLowerCaseBytesPartByte4 + "}"
+            + "{" + VariableLowerCaseBytesPartByte5 + "}"
+            + "{" + VariableLowerCaseBytesPartByte6 + "}"
+            + "{" + VariableLowerCaseBytesPartByte7 + "}"
+            + "{" + VariableLowerCaseBytesPartByte8 + "}"
+            + "\")>"
+            + Environment.NewLine;
+#else
+        internal readonly static string DefaultFormatString =
+              "// {" + "{" + VariableLowerCaseGuidWithHyphens + "}" + "}"
+            + Environment.NewLine
+            + "DEFINE_GUID(<<name>>, "
+            + "0x{" + VariableLowerCase1stPart + "}," + " "
+            + "0x{" + VariableLowerCase2ndPart + "}," + " "
+            + "0x{" + VariableLowerCase3rdPart + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte1 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte2 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte3 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte4 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte5 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte6 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte7 + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte8 + "}"
+            + ");"
+            + Environment.NewLine
+            + Environment.NewLine
+            + "// {" + "{" + VariableLowerCaseGuidWithHyphens + "(1)" + "}" + "}"
+            + Environment.NewLine
+            + "DEFINE_GUID(<<name>>, "
+            + "0x{" + VariableLowerCase1stPart + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCase2ndPart + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCase3rdPart + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte1 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte2 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte3 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte4 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte5 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte6 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte7 + "(1)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte8 + "(1)" + "}"
+            + ");"
+            + Environment.NewLine
+            + Environment.NewLine
+            + "// {" + "{" + VariableLowerCaseGuidWithHyphens + "(2)" + "}" + "}"
+            + Environment.NewLine
+            + "DEFINE_GUID(<<name>>, "
+            + "0x{" + VariableLowerCase1stPart + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCase2ndPart + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCase3rdPart + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte1 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte2 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte3 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte4 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte5 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte6 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte7 + "(2)" + "}," + " "
+            + "0x{" + VariableLowerCaseBytesPartByte8 + "(2)" + "}"
+            + ");"
+            + Environment.NewLine
+            + Environment.NewLine;
+#endif
+
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
@@ -192,98 +284,7 @@ namespace CreateGUIDVSPlugin
             new VariableManager(VariableUpperCaseBytesPartByte7, "7th byte of Upper Case Bytes Part"),
             new VariableManager(VariableLowerCaseBytesPartByte8, "8th byte of Lower Case Bytes Part"),
             new VariableManager(VariableUpperCaseBytesPartByte8, "8th byte of Upper Case Bytes Part"),
-       };
-        /// <summary>
-        /// Default Template String
-        /// </summary>
-#if ORIGINAL
-        internal readonly static string DefaultFormatString =
-              "// {" + "{" + VariableLowerCaseGuidWithHyphens + "}" + "}"
-            + Environment.NewLine
-            + "DEFINE_GUID(<<name>>, "
-            + "0x{" + VariableLowerCase1stPart + "},"
-            + "0x{" + VariableLowerCase2ndPart + "},"
-            + "0x{" + VariableLowerCase3rdPart + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte1 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte2 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte3 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte4 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte5 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte6 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte7 + "},"
-            + "0x{" + VariableLowerCaseBytesPartByte8 + "}"
-            + ");"
-            + Environment.NewLine
-            + Environment.NewLine
-            + "<Guid(\""
-            + "{" + VariableLowerCase1stPart + "}-"
-            + "{" + VariableLowerCase2ndPart + "}-"
-            + "{" + VariableLowerCase3rdPart + "}-"
-            + "{" + VariableLowerCaseBytesPartByte1 + "}"
-            + "{" + VariableLowerCaseBytesPartByte2 + "}-"
-            + "{" + VariableLowerCaseBytesPartByte2 + "}"
-            + "{" + VariableLowerCaseBytesPartByte3 + "}"
-            + "{" + VariableLowerCaseBytesPartByte4 + "}"
-            + "{" + VariableLowerCaseBytesPartByte5 + "}"
-            + "{" + VariableLowerCaseBytesPartByte6 + "}"
-            + "{" + VariableLowerCaseBytesPartByte7 + "}"
-            + "{" + VariableLowerCaseBytesPartByte8 + "}"
-            + "\")>"
-            + Environment.NewLine;
-#else
-        internal readonly static string DefaultFormatString =
-              "// {" + "{" + VariableLowerCaseGuidWithHyphens + "}" + "}"
-            + Environment.NewLine
-            + "DEFINE_GUID(<<name>>, "
-            + "0x{" + VariableLowerCase1stPart + "}," + " "
-            + "0x{" + VariableLowerCase2ndPart + "}," + " "
-            + "0x{" + VariableLowerCase3rdPart + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte1 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte2 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte3 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte4 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte5 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte6 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte7 + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte8 + "}"
-            + ");"
-            + Environment.NewLine
-            + Environment.NewLine
-            + "// {" + "{" + VariableLowerCaseGuidWithHyphens + "(1)" + "}" + "}"
-            + Environment.NewLine
-            + "DEFINE_GUID(<<name>>, "
-            + "0x{" + VariableLowerCase1stPart + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCase2ndPart + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCase3rdPart + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte1 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte2 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte3 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte4 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte5 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte6 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte7 + "(1)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte8 + "(1)" + "}"
-            + ");"
-            + Environment.NewLine
-            + Environment.NewLine
-            + "// {" + "{" + VariableLowerCaseGuidWithHyphens + "(2)" + "}" + "}"
-            + Environment.NewLine
-            + "DEFINE_GUID(<<name>>, "
-            + "0x{" + VariableLowerCase1stPart + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCase2ndPart + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCase3rdPart + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte1 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte2 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte3 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte4 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte5 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte6 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte7 + "(2)" + "}," + " "
-            + "0x{" + VariableLowerCaseBytesPartByte8 + "(2)" + "}"
-            + ");"
-            + Environment.NewLine
-            + Environment.NewLine;
-#endif
+        };
 
         internal enum Type
         {
