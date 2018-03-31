@@ -35,7 +35,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// combination of 'elements'
         /// </summary>
-        private static string[] elementsPar = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
+        private static string[] elementsPar = Array.ConvertAll(elements, delegate(string elem) { return "(" + elem + ")"; });
 
         /// <summary>
         /// final regular expression
@@ -344,11 +344,11 @@ namespace CreateGUIDVSPlugin
             /// </summary>
             private static MapFormat[] tableFormats = new MapFormat[]
             {
-                new MapFormat("RawHyphenDigits", Format.RawHyphenDigits, delegate (Guid guid) { return guid.ToString("D"); }),
-                new MapFormat("Raw32Digits",     Format.Raw32Digits,     delegate (Guid guid) { return guid.ToString("N"); }),
-                new MapFormat("GuidVariable",    Format.GuidVariable,    delegate (Guid guid) { return guid.ToString("X"); }),
-                new MapFormat("RAW_GUID_DEF",    Format.DEFINE_GUID,     delegate (Guid guid) { return FormatGuidAsRawValues(guid); }),
-                new MapFormat("RAW_GUID_IMP",    Format.OLECREATE,       delegate (Guid guid) { return FormatGuidAsRawValues(guid); }),
+                new MapFormat("RawHyphenDigits", Format.RawHyphenDigits, delegate(Guid guid) { return guid.ToString("D"); }),
+                new MapFormat("Raw32Digits",     Format.Raw32Digits,     delegate(Guid guid) { return guid.ToString("N"); }),
+                new MapFormat("GuidVariable",    Format.GuidVariable,    delegate(Guid guid) { return guid.ToString("X"); }),
+                new MapFormat("RAW_GUID_DEF",    Format.DEFINE_GUID,     delegate(Guid guid) { return FormatGuidAsRawValues(guid); }),
+                new MapFormat("RAW_GUID_IMP",    Format.OLECREATE,       delegate(Guid guid) { return FormatGuidAsRawValues(guid); }),
             };
 
             /// <summary>
