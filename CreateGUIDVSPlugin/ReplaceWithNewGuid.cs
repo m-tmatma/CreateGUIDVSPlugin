@@ -33,7 +33,7 @@ namespace CreateGUIDVSPlugin
         };
 
         /// <summary>
-        /// conbination of 'elements'
+        /// combination of 'elements'
         /// </summary>
         private static string[] elementsPar = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
 
@@ -43,7 +43,7 @@ namespace CreateGUIDVSPlugin
         private static string guidString = string.Join("|", elementsPar);
 
         /// <summary>
-        /// regular expression for hyphen-separeted GUID
+        /// regular expression for hyphen separated GUID
         /// </summary>
         private static string guidString1 = wordSeparater + nameGuidString1 + wordSeparater;
 
@@ -71,7 +71,7 @@ namespace CreateGUIDVSPlugin
         private static string hex4ByteString = "(0[xX][0-9A-Fa-f]{1,8})";
 
         /// <summary>
-        /// 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+        /// for example: 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
         /// </summary>
         private static string hex8of1Byte = hex1ByteString
                                      + commaSpaces + hex1ByteString
@@ -83,7 +83,7 @@ namespace CreateGUIDVSPlugin
                                      + commaSpaces + hex1ByteString;
 
         /// <summary>
-        /// regular expression for hyphen-separeted GUID by name-capture
+        /// regular expression for hyphen separated GUID by name-capture
         /// </summary>
         private static string nameGuidString1 = @"(?<RawHyphenDigits>" + rawGuidString1 + ")";
 
@@ -135,12 +135,12 @@ namespace CreateGUIDVSPlugin
                                                + @")";
 
         /// <summary>
-        /// 00000000-0000-0000-0000-000000000000
+        /// for example: 00000000-0000-0000-0000-000000000000
         /// </summary>
         private static string rawGuidString1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
 
         /// <summary>
-        /// 00000000000000000000000000000000
+        /// for example: 00000000000000000000000000000000
         /// </summary>
         private static string rawGuidString2 = "([0-9A-Fa-f]{32})";
 
@@ -208,7 +208,7 @@ namespace CreateGUIDVSPlugin
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
 
         /// <summary>
-        /// regular expression for word separater
+        /// regular expression for word separator
         /// </summary>
         private static string wordSeparater = @"\b";
 
@@ -223,8 +223,9 @@ namespace CreateGUIDVSPlugin
         private Dictionary<string, Guid> dict = new Dictionary<string, Guid>();
 
         /// <summary>
-        /// constructor
+        /// Initializes a new instance of the <see cref="ReplaceWithNewGuid" /> class.
         /// </summary>
+        /// <param name="newGuid">delegate for creating new GUID</param>
         public ReplaceWithNewGuid(NewGuid newGuid = null)
         {
             if (newGuid != null)
@@ -240,8 +241,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// delegate for creating new GUID
         /// </summary>
-        /// <param name="guid"></param>
-        /// <returns></returns>
+        /// <returns>new GUID</returns>
         public delegate Guid NewGuid();
 
         /// <summary>
@@ -259,8 +259,8 @@ namespace CreateGUIDVSPlugin
         /// replace GUIDs to new GUIDs.
         /// all GUIDS will be replaced with the different GUIDs.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">source text whose GUIDs will be renewed</param>
+        /// <returns>converted text whose GUIDs were renewed</returns>
         public string ReplaceNewGuid(string input)
         {
             var myEvaluator = new MatchEvaluator(this.DelegateReplaceNewGuid);
@@ -274,8 +274,8 @@ namespace CreateGUIDVSPlugin
         /// replace GUIDs to new GUIDs.
         /// same GUIDS will be replaced with the same GUIDs.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">source text whose GUIDs will be renewed</param>
+        /// <returns>converted text whose GUIDs were renewed</returns>
         public string ReplaceSameGuidToSameGuid(string input)
         {
             var myEvaluator = new MatchEvaluator(this.DelegateReplaceSameGuidToSameGuid);
@@ -297,7 +297,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// delegate for ReplaceNewGuid
         /// </summary>
-        /// <param name="m"></param>
+        /// <param name="m">Matched information</param>
         /// <returns>return replaced GUID string</returns>
         private string DelegateReplaceNewGuid(Match m)
         {
@@ -311,7 +311,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// delegate for ReplaceSameGuidToSameGuid
         /// </summary>
-        /// <param name="m"></param>
+        /// <param name="m">Matched information</param>
         /// <returns>return replaced GUID string</returns>
         private string DelegateReplaceSameGuidToSameGuid(Match m)
         {
@@ -330,7 +330,7 @@ namespace CreateGUIDVSPlugin
         }
 
         /// <summary>
-        /// GUID parser and formater
+        /// GUID parser and formatter
         /// </summary>
         private class ProcessGuid
         {
@@ -356,9 +356,9 @@ namespace CreateGUIDVSPlugin
             private MapFormat mapFormat;
 
             /// <summary>
-            /// constructor
+            /// Initializes a new instance of the <see cref="ProcessGuid" /> class.
             /// </summary>
-            /// <param name="m"></param>
+            /// <param name="m">Matched information</param>
             public ProcessGuid(Match m)
             {
                 this.m = m;
@@ -399,7 +399,7 @@ namespace CreateGUIDVSPlugin
             /// <summary>
             /// delegate for converting a guid to a string
             /// </summary>
-            /// <param name="guid">GUID to be formated</param>
+            /// <param name="guid">GUID to be formatted</param>
             /// <returns>return replaced GUID string</returns>
             private delegate string ConvertGuid(Guid guid);
 
@@ -452,7 +452,7 @@ namespace CreateGUIDVSPlugin
             /// <summary>
             /// Format the guid in the original format
             /// </summary>
-            /// <param name="guid">GUID to be formated</param>
+            /// <param name="guid">GUID to be formatted</param>
             /// <returns>return replaced GUID string</returns>
             public string Convert(Guid guid)
             {
@@ -468,7 +468,7 @@ namespace CreateGUIDVSPlugin
             /// <summary>
             /// 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
             /// </summary>
-            /// <param name="guid">GUID to be formated</param>
+            /// <param name="guid">GUID to be formatted</param>
             /// <returns>return replaced GUID string</returns>
             static string FormatGuidAsRawValues(Guid guid)
             {
@@ -522,7 +522,7 @@ namespace CreateGUIDVSPlugin
                 }
 
                 /// <summary>
-                /// Gets delegate for Guid formater
+                /// Gets delegate for Guid formatter
                 /// </summary>
                 public ConvertGuid DelegateConvertGuid { get; private set; }
 
