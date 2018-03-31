@@ -94,7 +94,7 @@ namespace CreateGUIDVSPlugin
         private static string nameGuidString2 = @"(?<Raw32Digits>" + rawGuidString2 + ")";
 
         /// <summary>
-        /// regular expression for definition of GUID struct
+        /// regular expression for definition of GUID structure
         /// </summary>
         private static string nameGuidString3 = @"(?<GuidVariable>" + rawStringArray + ")";
 
@@ -119,7 +119,8 @@ namespace CreateGUIDVSPlugin
         private static string nameGuidValueImp = @"(?<RAW_GUID_IMP>" + rawGuidValue + ")";
 
         /// <summary>
-        /// DEFINE_GUID(<<name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
+        /// regular expression for DEFINE_GUID
+        /// DEFINE_GUID(&lt;&lt;name&gt;&gt;, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
         /// </summary>
         private static string rawDefineGuid = @"(?<="
                                                + @"DEFINE_GUID"
@@ -142,7 +143,7 @@ namespace CreateGUIDVSPlugin
         private static string rawGuidString1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
 
         /// <summary>
-        /// raw 32-digit GUID
+        /// regular expression for raw 32-digit GUID
         /// for example: 00000000000000000000000000000000
         /// </summary>
         private static string rawGuidString2 = "([0-9A-Fa-f]{32})";
@@ -156,7 +157,7 @@ namespace CreateGUIDVSPlugin
                                                        + hex8of1Byte;
 
         /// <summary>
-        /// IMPLEMENT_OLECREATE(<<class>>, <<external_name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
+        /// IMPLEMENT_OLECREATE(&lt;&lt;class&gt;&gt;, &lt;&lt;external_name&gt;&gt;, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
         /// </summary>
         private static string rawImpOlecreate = @"(?<="
                                                + @"IMPLEMENT_OLECREATE"
@@ -175,7 +176,7 @@ namespace CreateGUIDVSPlugin
                                                + @")";
 
         /// <summary>
-        /// regular expression for definition of GUID struct
+        /// regular expression for definition of GUID structure
         /// {0x00000000, 0x0000, 0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
         /// </summary>
         private static string rawStringArray = "{"
@@ -420,27 +421,32 @@ namespace CreateGUIDVSPlugin
                 Unknown,
 
                 /// <summary>
+                /// enum definition for hyphen separated GUID
                 /// "D": 00000000-0000-0000-0000-000000000000
                 /// </summary>
                 RawHyphenDigits,
 
                 /// <summary>
+                /// enum definition for raw 32-digit GUID
                 /// "N": 00000000000000000000000000000000
                 /// </summary>
                 Raw32Digits,
 
                 /// <summary>
+                /// enum definition for GUID structure
                 /// "X": {0x00000000, 0x0000, 0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
                 /// </summary>
                 GuidVariable,
 
                 /// <summary>
-                /// DEFINE_GUID(<<name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
+                /// enum definition for DEFINE_GUID
+                /// DEFINE_GUID(&lt;&lt;name&gt;&gt;, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
                 /// </summary>
                 DEFINE_GUID,
 
                 /// <summary>
-                /// IMPLEMENT_OLECREATE(<<class>>, <<external_name>>, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
+                /// enum definition for IMPLEMENT_OLECREATE
+                /// IMPLEMENT_OLECREATE(&lt;&lt;class&gt;&gt;, &lt;&lt;external_name&gt;&gt;, 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
                 /// </summary>
                 OLECREATE,
             }
@@ -472,6 +478,7 @@ namespace CreateGUIDVSPlugin
             }
 
             /// <summary>
+            /// format a GUID to GUID definition string for DEFINE_GUID or IMPLEMENT_OLECREATE
             /// 0x00000000,0x0000,0x0000, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
             /// </summary>
             /// <param name="guid">GUID to be formatted</param>
