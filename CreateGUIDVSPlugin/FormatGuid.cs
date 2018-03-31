@@ -33,7 +33,7 @@ namespace CreateGUIDVSPlugin
         }
 
         /// <summary>
-        /// GUID
+        /// Gets GUID
         /// </summary>
         public Guid OrgData { get; }
 
@@ -43,17 +43,17 @@ namespace CreateGUIDVSPlugin
         public int Data1 { get; }
 
         /// <summary>
-        /// GUID (second part)
+        /// Gets GUID (second part)
         /// </summary>
         public short Data2 { get; }
 
         /// <summary>
-        /// GUID (third part)
+        /// Gets GUID (third part)
         /// </summary>
         public short Data3 { get; }
 
         /// <summary>
-        /// GUID (Bytes part)
+        /// Gets GUID (Bytes part)
         /// </summary>
         public byte[] Bytes { get; }
     }
