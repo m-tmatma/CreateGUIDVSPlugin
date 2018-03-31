@@ -192,7 +192,7 @@ namespace CreateGUIDVSPlugin
                                                + "}";
 
         /// <summary>
-        /// Variable
+        /// regular expression for Variable 
         /// </summary>
         private static string rawVariable = @"(<*)\w+(>*)";
 
@@ -291,7 +291,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// utility function to create GUID.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>new GUID</returns>
         private Guid CallNewGuid()
         {
             return this.delegateNewGuid();
@@ -337,10 +337,12 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         private class ProcessGuid
         {
-            /// <summary>
             /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
+            /// <summary>
+            /// table for GUID formatters
             /// </summary>
-            private static MapFormat[] tableFormats = new MapFormat[] {
+            private static MapFormat[] tableFormats = new MapFormat[]
+            {
                 new MapFormat("RawHyphenDigits", Format.RawHyphenDigits, delegate (Guid guid) { return guid.ToString("D"); }),
                 new MapFormat("Raw32Digits",     Format.Raw32Digits,     delegate (Guid guid) { return guid.ToString("N"); }),
                 new MapFormat("GuidVariable",    Format.GuidVariable,    delegate (Guid guid) { return guid.ToString("X"); }),
@@ -406,8 +408,9 @@ namespace CreateGUIDVSPlugin
             /// <returns>return replaced GUID string</returns>
             private delegate string ConvertGuid(Guid guid);
 
-            /// <summary>
             /// https://msdn.microsoft.com/ja-jp/library/97af8hh4(v=vs.110).aspx
+            /// <summary>
+            /// enum of GUID Format
             /// </summary>
             public enum Format
             {
@@ -535,7 +538,7 @@ namespace CreateGUIDVSPlugin
                 public Format GuidFormat { get; private set; }
 
                 /// <summary>
-                /// Key Name for Regular expression
+                /// Gets Key Name for Regular expression
                 /// </summary>
                 public string Key { get; private set; }
             }
