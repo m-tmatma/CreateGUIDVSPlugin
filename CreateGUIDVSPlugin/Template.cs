@@ -423,7 +423,7 @@ namespace CreateGUIDVSPlugin
             return builder.ToString();
         }
     }
-    
+
     /// <summary>
     /// Manager for Variable Name, Description, and Regular Expressioin
     /// </summary>
@@ -450,7 +450,6 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         internal string Keyword { get; set; }
 
-
         internal string GetVariable()
         {
             return "{" + this.Keyword + "}";
@@ -460,5 +459,4 @@ namespace CreateGUIDVSPlugin
             return string.Format("{{{0}({1})}}", this.Keyword, index);
         }
     }
-
 }
