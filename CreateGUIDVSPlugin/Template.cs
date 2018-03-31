@@ -441,14 +441,15 @@ namespace CreateGUIDVSPlugin
         }
 
         /// <summary>
+        /// Description for Variable
+        /// </summary>
+        internal string Description { get; set; }
+
+        /// <summary>
         /// Keyword
         /// </summary>
         internal string Keyword { get; set; }
 
-        /// <summary>
-        /// Description for Variable
-        /// </summary>
-        internal string Description { get; set; }
 
         internal string GetVariable()
         {
