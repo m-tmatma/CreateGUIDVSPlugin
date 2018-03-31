@@ -239,6 +239,7 @@ namespace CreateGUIDVSPlugin
 
         /// <summary>
         /// Template Name for 2nd part of Upper Case of GUID
+        /// </summary>
         static internal string VariableUpperCase2ndPart = "UpperCase2ndPart";
 
         /// <summary>
