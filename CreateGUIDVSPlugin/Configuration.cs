@@ -29,6 +29,7 @@
         public string FormatString { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Configuration" /> class.
         /// Property for getting singleton instance
         /// </summary>
         /// <param name="userRegistryRoot">root Registry for User setting</param>
