@@ -91,6 +91,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Print to Output Window
         /// </summary>
+        /// <param name="output">data to be written</param>
         internal void OutputString(string output)
         {
             var outPutPane = this.package.OutputPane;
@@ -100,6 +101,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Print to Output Window with Line Ending
         /// </summary>
+        /// <param name="output">data to be written</param>
         internal void OutputStringLine(string output)
         {
             this.OutputString(output + Environment.NewLine);
@@ -160,6 +162,8 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// control whether an menu item is displayed or not.
         /// </summary>
+        /// <param name="sender">event sender</param>
+        /// <param name="e">event data</param>
         private void BeforeQueryStatus(object sender, EventArgs e)
         {
             bool enabled = false;
