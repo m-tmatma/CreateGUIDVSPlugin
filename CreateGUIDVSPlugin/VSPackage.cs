@@ -136,9 +136,7 @@ namespace CreateGUIDVSPlugin
             RenewGuidCommand.Initialize(this);
 
 #if DEBUG
-            AddOutputWindow("Copy GUID");
-            AddOutputWindow("Insert GUID");
-            AddOutputWindow("Renew GUID");
+            AddOutputWindow("Create GUID");
 #endif
 
             this.configuration = new Configuration(this.UserRegistryRoot);
