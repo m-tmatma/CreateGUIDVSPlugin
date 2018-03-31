@@ -29,11 +29,6 @@ namespace CreateGUIDVSPlugin
         private const string ValueNameFormatString = "FormatString";
 
         /// <summary>
-        /// Property for Template
-        /// </summary>
-        public string FormatString { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Configuration" /> class.
         /// Property for getting singleton instance
         /// </summary>
@@ -42,7 +37,12 @@ namespace CreateGUIDVSPlugin
         {
             this.UserRegistryRoot = userRegistryRoot;
         }
- 
+
+        /// <summary>
+        /// Property for Template
+        /// </summary>
+        public string FormatString { get; set; }
+
         /// <summary>
         /// Load setting from registry
         /// </summary>
