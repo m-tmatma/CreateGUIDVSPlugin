@@ -10,23 +10,6 @@ namespace CreateGUIDVSPlugin
     public class ReplaceWithNewGuid
     {
         /// <summary>
-        /// delegate for creating new GUID
-        /// </summary>
-        /// <param name="guid"></param>
-        /// <returns></returns>
-        public delegate Guid NewGuid();
-
-        /// <summary>
-        /// hold delegate NewGuid
-        /// </summary>
-        private NewGuid delegateNewGuid;
-
-        /// <summary>
-        /// dictionary for storing previous translation of GUIDs.
-        /// </summary>
-        private Dictionary<string, Guid> dict = new Dictionary<string, Guid>();
-
-        /// <summary>
         /// Variable
         /// </summary>
         static private string raw_variable = @"(<*)\w+(>*)";
@@ -138,10 +121,10 @@ namespace CreateGUIDVSPlugin
         //static private string name_tail_separater = @"(?:" + raw_tail_separater + ")";
         static private string word_separater = @"\b";
         static private string name_guid_string1 = @"(?<RawHyphenDigits>" + raw_guid_string1 + ")";
-        static private string name_guid_string2 = @"(?<Raw32Digits>"     + raw_guid_string2 + ")";
+        static private string name_guid_string2 = @"(?<Raw32Digits>" + raw_guid_string2 + ")";
         static private string name_guid_string3 = @"(?<GuidVariable>" + raw_string_array + ")";
-        static private string name_guid_string4 = @"(?<DEFINE_GUID>"  + raw_define_guid    + ")";
-        static private string name_guid_string5 = @"(?<OLECREATE>"    + raw_impl_olecreate + ")";
+        static private string name_guid_string4 = @"(?<DEFINE_GUID>" + raw_define_guid + ")";
+        static private string name_guid_string5 = @"(?<OLECREATE>" + raw_impl_olecreate + ")";
         static private string guid_string1 = word_separater + name_guid_string1 + word_separater;
         static private string guid_string2 = word_separater + name_guid_string2 + word_separater;
         //static private string guid_string3 = word_separater + name_guid_string3 + word_separater;
@@ -156,6 +139,23 @@ namespace CreateGUIDVSPlugin
         static private string[] elements_par = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
         static private string guid_string = string.Join("|", elements_par);
         static private Regex reg = new Regex(guid_string);
+
+        /// <summary>
+        /// delegate for creating new GUID
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public delegate Guid NewGuid();
+
+        /// <summary>
+        /// hold delegate NewGuid
+        /// </summary>
+        private NewGuid delegateNewGuid;
+
+        /// <summary>
+        /// dictionary for storing previous translation of GUIDs.
+        /// </summary>
+        private Dictionary<string, Guid> dict = new Dictionary<string, Guid>();
 
         private class ProcessGuid
         {
