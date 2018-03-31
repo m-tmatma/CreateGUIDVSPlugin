@@ -211,7 +211,9 @@ namespace CreateGUIDVSPlugin
             private class MapFormat
             {
                 public string Key { get; private set; }
+
                 public Format GuidFormat { get; private set; }
+
                 public ConvertGuid delegateConvertGuid { get; private set; }
 
                 public MapFormat(string Key, Format GuidFormat, ConvertGuid delegateConvertGuid)
