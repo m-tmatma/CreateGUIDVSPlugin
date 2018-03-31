@@ -125,6 +125,39 @@ namespace CreateGUIDVSPlugin
 #endif
 
         /// <summary>
+        /// Template Variables
+        /// </summary>
+        internal readonly static VariableManager[] Variables = new VariableManager[]
+        {
+            new VariableManager(VariableLowerCaseGuidWithHyphens, "Lower-case Full GUID with hypens"),
+            new VariableManager(VariableUpperCaseGuidWithHyphens, "Upper-case Full GUID with hypens"),
+            new VariableManager(VariableLowerCaseGuidWithoutHyphens, "Lower-case Full GUID without hypens"),
+            new VariableManager(VariableUpperCaseGuidWithoutHyphens, "Upper-case Full GUID without hypens"),
+            new VariableManager(VariableLowerCase1stPart, "Lower Case 1st Part"),
+            new VariableManager(VariableUpperCase1stPart, "Upper Case 1st Part"),
+            new VariableManager(VariableLowerCase2ndPart, "Lower Case 2nd Part"),
+            new VariableManager(VariableUpperCase2ndPart, "Upper Case 2nd Part"),
+            new VariableManager(VariableLowerCase3rdPart, "Lower Case 3rd Part"),
+            new VariableManager(VariableUpperCase3rdPart, "Upper Case 3rd Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte1, "1st byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte1, "1st byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte2, "2nd byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte2, "2nd byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte3, "3rd byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte3, "3rd byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte4, "4th byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte4, "4th byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte5, "5th byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte5, "5th byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte6, "6th byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte6, "6th byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte7, "7th byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte7, "7th byte of Upper Case Bytes Part"),
+            new VariableManager(VariableLowerCaseBytesPartByte8, "8th byte of Lower Case Bytes Part"),
+            new VariableManager(VariableUpperCaseBytesPartByte8, "8th byte of Upper Case Bytes Part"),
+        };
+
+        /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
         static internal string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
@@ -252,39 +285,6 @@ namespace CreateGUIDVSPlugin
         /// Template Name for Upper Case 8th byte of Bytes Part of GUID
         /// </summary>
         static internal string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
-
-        /// <summary>
-        /// Template Variables
-        /// </summary>
-        internal readonly static VariableManager[] Variables = new VariableManager[]
-        {
-            new VariableManager(VariableLowerCaseGuidWithHyphens, "Lower-case Full GUID with hypens"),
-            new VariableManager(VariableUpperCaseGuidWithHyphens, "Upper-case Full GUID with hypens"),
-            new VariableManager(VariableLowerCaseGuidWithoutHyphens, "Lower-case Full GUID without hypens"),
-            new VariableManager(VariableUpperCaseGuidWithoutHyphens, "Upper-case Full GUID without hypens"),
-            new VariableManager(VariableLowerCase1stPart, "Lower Case 1st Part"),
-            new VariableManager(VariableUpperCase1stPart, "Upper Case 1st Part"),
-            new VariableManager(VariableLowerCase2ndPart, "Lower Case 2nd Part"),
-            new VariableManager(VariableUpperCase2ndPart, "Upper Case 2nd Part"),
-            new VariableManager(VariableLowerCase3rdPart, "Lower Case 3rd Part"),
-            new VariableManager(VariableUpperCase3rdPart, "Upper Case 3rd Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte1, "1st byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte1, "1st byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte2, "2nd byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte2, "2nd byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte3, "3rd byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte3, "3rd byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte4, "4th byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte4, "4th byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte5, "5th byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte5, "5th byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte6, "6th byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte6, "6th byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte7, "7th byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte7, "7th byte of Upper Case Bytes Part"),
-            new VariableManager(VariableLowerCaseBytesPartByte8, "8th byte of Lower Case Bytes Part"),
-            new VariableManager(VariableUpperCaseBytesPartByte8, "8th byte of Upper Case Bytes Part"),
-        };
 
         internal enum Type
         {
