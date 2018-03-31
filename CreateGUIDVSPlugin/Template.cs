@@ -8,41 +8,6 @@ using System.Threading.Tasks;
 namespace CreateGUIDVSPlugin
 {
     /// <summary>
-    /// Manager for Variable Name, Description, and Regular Expressioin
-    /// </summary>
-    internal class VariableManager
-    {
-        /// <summary>
-        /// Keyword
-        /// </summary>
-        internal string Keyword { get; set; }
-
-        /// <summary>
-        /// Description for Variable
-        /// </summary>
-        internal string Description { get; set; }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="Keyword">Variable</param>
-        /// <param name="Description">Variable Descriotion</param>
-        internal VariableManager(string Keyword, string Description)
-        {
-            this.Keyword = Keyword;
-            this.Description = this.GetVariable() + ": " + Description;
-        }
-        internal string GetVariable()
-        {
-            return "{" + this.Keyword + "}";
-        }
-        internal string GetVariable(int index)
-        {
-            return string.Format("{{{0}({1})}}", this.Keyword, index);
-        }
-    }
-
-    /// <summary>
     /// Template Processing Class
     /// </summary>
     internal class Template
@@ -456,4 +421,40 @@ namespace CreateGUIDVSPlugin
             return builder.ToString();
         }
     }
+    
+    /// <summary>
+    /// Manager for Variable Name, Description, and Regular Expressioin
+    /// </summary>
+    internal class VariableManager
+    {
+        /// <summary>
+        /// Keyword
+        /// </summary>
+        internal string Keyword { get; set; }
+
+        /// <summary>
+        /// Description for Variable
+        /// </summary>
+        internal string Description { get; set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="Keyword">Variable</param>
+        /// <param name="Description">Variable Descriotion</param>
+        internal VariableManager(string Keyword, string Description)
+        {
+            this.Keyword = Keyword;
+            this.Description = this.GetVariable() + ": " + Description;
+        }
+        internal string GetVariable()
+        {
+            return "{" + this.Keyword + "}";
+        }
+        internal string GetVariable(int index)
+        {
+            return string.Format("{{{0}({1})}}", this.Keyword, index);
+        }
+    }
+
 }
