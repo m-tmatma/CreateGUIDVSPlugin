@@ -45,12 +45,12 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// regular expression for hyphen separated GUID
         /// </summary>
-        private static string guidString1 = wordSeparater + nameGuidString1 + wordSeparater;
+        private static string guidString1 = wordSeparator + nameGuidString1 + wordSeparator;
 
         /// <summary>
         /// regular expression for raw 32-digit GUID
         /// </summary>
-        private static string guidString2 = wordSeparater + nameGuidString2 + wordSeparater;
+        private static string guidString2 = wordSeparator + nameGuidString2 + wordSeparator;
 
         /// <summary>
         /// regular expression of 1 Byte hex string
@@ -210,7 +210,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// regular expression for word separator
         /// </summary>
-        private static string wordSeparater = @"\b";
+        private static string wordSeparator = @"\b";
 
         /// <summary>
         /// hold delegate NewGuid
