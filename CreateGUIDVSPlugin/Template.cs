@@ -158,132 +158,132 @@
         /// <summary>
         /// Template Name for 1st part of Lower Case of GUID
         /// </summary>
-        internal static string VariableLowerCase1stPart = "LowerCase1stPart";
+        private static string VariableLowerCase1stPart = "LowerCase1stPart";
 
         /// <summary>
         /// Template Name for 2nd part of Lower Case of GUID
         /// </summary>
-        internal static string VariableLowerCase2ndPart = "LowerCase2ndPart";
+        private static string VariableLowerCase2ndPart = "LowerCase2ndPart";
 
         /// <summary>
         /// Template Name for 3rd part of Lower Case of GUID
         /// </summary>
-        internal static string VariableLowerCase3rdPart = "LowerCase3rdPart";
+        private static string VariableLowerCase3rdPart = "LowerCase3rdPart";
 
         /// <summary>
         /// Template Name for Lower Case 1st byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte1 = "LowerCaseBytesPartByte1";
+        private static string VariableLowerCaseBytesPartByte1 = "LowerCaseBytesPartByte1";
 
         /// <summary>
         /// Template Name for Lower Case 2nd byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte2 = "LowerCaseBytesPartByte2";
+        private static string VariableLowerCaseBytesPartByte2 = "LowerCaseBytesPartByte2";
 
         /// <summary>
         /// Template Name for Lower Case 3rd byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte3 = "LowerCaseBytesPartByte3";
+        private static string VariableLowerCaseBytesPartByte3 = "LowerCaseBytesPartByte3";
 
         /// <summary>
         /// Template Name for Lower Case 4th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte4 = "LowerCaseBytesPartByte4";
+        private static string VariableLowerCaseBytesPartByte4 = "LowerCaseBytesPartByte4";
 
         /// <summary>
         /// Template Name for Lower Case 5th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte5 = "LowerCaseBytesPartByte5";
+        private static string VariableLowerCaseBytesPartByte5 = "LowerCaseBytesPartByte5";
 
         /// <summary>
         /// Template Name for Lower Case 6th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte6 = "LowerCaseBytesPartByte6";
+        private static string VariableLowerCaseBytesPartByte6 = "LowerCaseBytesPartByte6";
 
         /// <summary>
         /// Template Name for Lower Case 7th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte7 = "LowerCaseBytesPartByte7";
+        private static string VariableLowerCaseBytesPartByte7 = "LowerCaseBytesPartByte7";
 
         /// <summary>
         /// Template Name for Lower Case 8th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableLowerCaseBytesPartByte8 = "LowerCaseBytesPartByte8";
+        private static string VariableLowerCaseBytesPartByte8 = "LowerCaseBytesPartByte8";
 
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
-        internal static string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
+        private static string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
 
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
-        internal static string VariableLowerCaseGuidWithoutHyphens = "LowerCaseGuidWithoutHyphens";
+        private static string VariableLowerCaseGuidWithoutHyphens = "LowerCaseGuidWithoutHyphens";
 
         /// <summary>
         /// Template Name for 1st part of Upper Case of GUID
         /// </summary>
-        internal static string VariableUpperCase1stPart = "UpperCase1stPart";
+        private static string VariableUpperCase1stPart = "UpperCase1stPart";
 
         /// <summary>
         /// Template Name for 2nd part of Upper Case of GUID
         /// </summary>
-        internal static string VariableUpperCase2ndPart = "UpperCase2ndPart";
+        private static string VariableUpperCase2ndPart = "UpperCase2ndPart";
 
         /// <summary>
         /// Template Name for 3rd part of Upper Case of GUID
         /// </summary>
-        internal static string VariableUpperCase3rdPart = "UpperCase3rdPart";
+        private static string VariableUpperCase3rdPart = "UpperCase3rdPart";
 
         /// <summary>
         /// Template Name for Upper Case 1st byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte1 = "UpperCaseBytesPartByte1";
+        private static string VariableUpperCaseBytesPartByte1 = "UpperCaseBytesPartByte1";
 
         /// <summary>
         /// Template Name for Upper Case 2nd byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte2 = "UpperCaseBytesPartByte2";
+        private static string VariableUpperCaseBytesPartByte2 = "UpperCaseBytesPartByte2";
 
         /// <summary>
         /// Template Name for Upper Case 3rd byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte3 = "UpperCaseBytesPartByte3";
+        private static string VariableUpperCaseBytesPartByte3 = "UpperCaseBytesPartByte3";
 
         /// <summary>
         /// Template Name for Upper Case 4th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte4 = "UpperCaseBytesPartByte4";
+        private static string VariableUpperCaseBytesPartByte4 = "UpperCaseBytesPartByte4";
 
         /// <summary>
         /// Template Name for Upper Case 5th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte5 = "UpperCaseBytesPartByte5";
+        private static string VariableUpperCaseBytesPartByte5 = "UpperCaseBytesPartByte5";
 
         /// <summary>
         /// Template Name for Upper Case 6th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte6 = "UpperCaseBytesPartByte6";
+        private static string VariableUpperCaseBytesPartByte6 = "UpperCaseBytesPartByte6";
 
         /// <summary>
         /// Template Name for Upper Case 7th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte7 = "UpperCaseBytesPartByte7";
+        private static string VariableUpperCaseBytesPartByte7 = "UpperCaseBytesPartByte7";
 
         /// <summary>
         /// Template Name for Upper Case 8th byte of Bytes Part of GUID
         /// </summary>
-        internal static string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
+        private static string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
 
         /// <summary>
         /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
-        internal static string VariableUpperCaseGuidWithHyphens = "UpperCaseGuidWithHyphens";
+        private static string VariableUpperCaseGuidWithHyphens = "UpperCaseGuidWithHyphens";
 
         /// <summary>
         /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
-        internal static string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
+        private static string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
 
         internal enum Type
         {
