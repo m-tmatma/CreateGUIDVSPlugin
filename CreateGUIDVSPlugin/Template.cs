@@ -16,26 +16,6 @@ namespace CreateGUIDVSPlugin
     internal class Template
     {
         /// <summary>
-        /// Table between variables of Upper Case and variables of Lower Case
-        /// </summary>
-        internal static readonly Dictionary<string, string> CaseMap = new Dictionary<string, string>
-        {
-            { Template.variableUpperCaseGuidWithHyphens,    Template.variableLowerCaseGuidWithHyphens },
-            { Template.variableUpperCaseGuidWithoutHyphens, Template.variableLowerCaseGuidWithoutHyphens },
-            { Template.variableUpperCase1stPart, Template.variableLowerCase1stPart },
-            { Template.variableUpperCase2ndPart, Template.variableLowerCase2ndPart },
-            { Template.variableUpperCase3rdPart, Template.variableLowerCase3rdPart },
-            { Template.variableUpperCaseBytesPartByte1, Template.variableLowerCaseBytesPartByte1 },
-            { Template.variableUpperCaseBytesPartByte2, Template.variableLowerCaseBytesPartByte2 },
-            { Template.variableUpperCaseBytesPartByte3, Template.variableLowerCaseBytesPartByte3 },
-            { Template.variableUpperCaseBytesPartByte4, Template.variableLowerCaseBytesPartByte4 },
-            { Template.variableUpperCaseBytesPartByte5, Template.variableLowerCaseBytesPartByte5 },
-            { Template.variableUpperCaseBytesPartByte6, Template.variableLowerCaseBytesPartByte6 },
-            { Template.variableUpperCaseBytesPartByte7, Template.variableLowerCaseBytesPartByte7 },
-            { Template.variableUpperCaseBytesPartByte8, Template.variableLowerCaseBytesPartByte8 },
-        };
-
-        /// <summary>
         /// Default Template String
         /// </summary>
 #if ORIGINAL
@@ -289,6 +269,26 @@ namespace CreateGUIDVSPlugin
         /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
         private static string variableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
+
+        /// <summary>
+        /// Table between variables of Upper Case and variables of Lower Case
+        /// </summary>
+        internal static readonly Dictionary<string, string> CaseMap = new Dictionary<string, string>
+        {
+            { Template.variableUpperCaseGuidWithHyphens,    Template.variableLowerCaseGuidWithHyphens },
+            { Template.variableUpperCaseGuidWithoutHyphens, Template.variableLowerCaseGuidWithoutHyphens },
+            { Template.variableUpperCase1stPart, Template.variableLowerCase1stPart },
+            { Template.variableUpperCase2ndPart, Template.variableLowerCase2ndPart },
+            { Template.variableUpperCase3rdPart, Template.variableLowerCase3rdPart },
+            { Template.variableUpperCaseBytesPartByte1, Template.variableLowerCaseBytesPartByte1 },
+            { Template.variableUpperCaseBytesPartByte2, Template.variableLowerCaseBytesPartByte2 },
+            { Template.variableUpperCaseBytesPartByte3, Template.variableLowerCaseBytesPartByte3 },
+            { Template.variableUpperCaseBytesPartByte4, Template.variableLowerCaseBytesPartByte4 },
+            { Template.variableUpperCaseBytesPartByte5, Template.variableLowerCaseBytesPartByte5 },
+            { Template.variableUpperCaseBytesPartByte6, Template.variableLowerCaseBytesPartByte6 },
+            { Template.variableUpperCaseBytesPartByte7, Template.variableLowerCaseBytesPartByte7 },
+            { Template.variableUpperCaseBytesPartByte8, Template.variableLowerCaseBytesPartByte8 },
+        };
 
         /// <summary>
         /// divided element type
