@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CreateGUIDVSPlugin
+﻿namespace CreateGUIDVSPlugin
 {
+    using System;
+    using System.Windows.Forms;
+
     public partial class OptionsControl : UserControl
     {
         private OptionsPageSetting settingOptionsPage;
