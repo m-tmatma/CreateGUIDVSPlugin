@@ -127,7 +127,7 @@ namespace CreateGUIDVSPlugin
         /// See the constructor to see how the menu item is associated with this function using
         /// OleMenuCommandService service and MenuCommand class.
         /// </summary>
-        /// <param name="sender">Event sender.</param>
+        /// <param name="sender">Event sender</param>
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {

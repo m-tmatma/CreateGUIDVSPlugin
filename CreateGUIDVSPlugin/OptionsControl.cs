@@ -8,10 +8,20 @@ namespace CreateGUIDVSPlugin
     using System;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// class for Control of user settings
+    /// </summary>
     public partial class OptionsControl : UserControl
     {
+        /// <summary>
+        /// instance of dialog page
+        /// </summary>
         private OptionsPageSetting settingOptionsPage;
- 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsControl" /> class.
+        /// Control for user settings.
+        /// </summary>
         public OptionsControl()
         {
             this.InitializeComponent();
@@ -59,6 +69,11 @@ namespace CreateGUIDVSPlugin
             this.textBoxTemplate.Text = configuration.FormatString;
         }
 
+        /// <summary>
+        /// handler for clicking 'Insert' Button
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args.</param>
         private void ButtonInsert_Click(object sender, EventArgs e)
         {
             var guidIndex = decimal.ToInt32(this.numericUpDownGUID.Value);
@@ -68,12 +83,22 @@ namespace CreateGUIDVSPlugin
             textBox.Text = textBox.Text.Insert(textBox.SelectionStart, variable);
         }
 
+        /// <summary>
+        /// handler for clicking 'End Of line' Button
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args.</param>
         private void ButtonInsertLineEnding_Click(object sender, EventArgs e)
         {
             var textBox = this.textBoxTemplate;
             textBox.Text = textBox.Text.Insert(textBox.SelectionStart, Environment.NewLine);
         }
 
+        /// <summary>
+        /// handler for clicking 'Set Default' Button
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args.</param>
         private void ButtonSetDefault_Click(object sender, EventArgs e)
         {
             var textBox = this.textBoxTemplate;
