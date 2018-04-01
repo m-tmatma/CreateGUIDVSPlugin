@@ -43,7 +43,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Save the setting to the registry
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="configuration">instance of Configuration</param>
         public void SaveSetting(Configuration configuration)
         {
             configuration.FormatString = this.textBoxTemplate.Text;
@@ -53,7 +53,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Load the setting from the registry
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="configuration">instance of Configuration</param>
         public void LoadSetting(Configuration configuration)
         {
             this.textBoxTemplate.Text = configuration.FormatString;
