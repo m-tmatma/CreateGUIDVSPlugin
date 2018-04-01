@@ -20,6 +20,7 @@ namespace CreateGUIDVSPlugin
             {
                 this.comboBoxVariable.Items.Add(variableName.Description);
             }
+
             this.comboBoxVariable.SelectedIndex = 0;
         }
 
@@ -32,6 +33,7 @@ namespace CreateGUIDVSPlugin
             {
                 return settingOptionsPage;
             }
+
             set
             {
                 settingOptionsPage = value;
