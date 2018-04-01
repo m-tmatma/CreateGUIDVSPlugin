@@ -446,51 +446,51 @@ namespace CreateGUIDVSPlugin
 
             return builder.ToString();
         }
-    }
 
-    /// <summary>
-    /// Manager for Variable Name, Description, and Regular expression
-    /// </summary>
-    internal class VariableManager
-    {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VariableManager" /> class.
+        /// Manager for Variable Name, Description, and Regular expression
         /// </summary>
-        /// <param name="keyword">Variable name</param>
-        /// <param name="description">Variable description</param>
-        internal VariableManager(string keyword, string description)
+        internal class VariableManager
         {
-            this.Keyword = keyword;
-            this.Description = this.GetVariable() + ": " + description;
-        }
+            /// <summary>
+            /// Initializes a new instance of the <see cref="VariableManager" /> class.
+            /// </summary>
+            /// <param name="keyword">Variable name</param>
+            /// <param name="description">Variable description</param>
+            internal VariableManager(string keyword, string description)
+            {
+                this.Keyword = keyword;
+                this.Description = this.GetVariable() + ": " + description;
+            }
 
-        /// <summary>
-        /// Gets or sets description for Variable
-        /// </summary>
-        internal string Description { get; set; }
+            /// <summary>
+            /// Gets or sets description for Variable
+            /// </summary>
+            internal string Description { get; set; }
 
-        /// <summary>
-        /// Gets or sets variable keyword
-        /// </summary>
-        internal string Keyword { get; set; }
+            /// <summary>
+            /// Gets or sets variable keyword
+            /// </summary>
+            internal string Keyword { get; set; }
 
-        /// <summary>
-        /// Get Template variable
-        /// </summary>
-        /// <returns>Template variable</returns>
-        internal string GetVariable()
-        {
-            return "{" + this.Keyword + "}";
-        }
+            /// <summary>
+            /// Get Template variable
+            /// </summary>
+            /// <returns>Template variable</returns>
+            internal string GetVariable()
+            {
+                return "{" + this.Keyword + "}";
+            }
 
-        /// <summary>
-        /// Get Template variable with index
-        /// </summary>
-        /// <param name="index">variable index</param>
-        /// <returns>Template variable with index</returns>
-        internal string GetVariable(int index)
-        {
-            return string.Format("{{{0}({1})}}", this.Keyword, index);
+            /// <summary>
+            /// Get Template variable with index
+            /// </summary>
+            /// <param name="index">variable index</param>
+            /// <returns>Template variable with index</returns>
+            internal string GetVariable(int index)
+            {
+                return string.Format("{{{0}({1})}}", this.Keyword, index);
+            }
         }
     }
 }

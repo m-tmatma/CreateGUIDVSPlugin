@@ -18,7 +18,7 @@ namespace CreateGUIDVSPlugin
         {
             InitializeComponent();
 
-            foreach(VariableManager variableName in Template.Variables)
+            foreach(Template.VariableManager variableName in Template.Variables)
             {
                 this.comboBoxVariable.Items.Add(variableName.Description);
             }
