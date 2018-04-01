@@ -285,6 +285,9 @@
         /// </summary>
         private static string variableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
 
+        /// <summary>
+        /// divided element type
+        /// </summary>
         internal enum Type
         {
             None,
@@ -296,7 +299,8 @@
         /// <summary>
         /// Create a dictionary for the template values
         /// </summary>
-        /// <returns></returns>
+        /// <param name="guid">source GUID</param>
+        /// <returns>dictionary of formatted GUID strings.</returns>
         internal static Dictionary<string, string> CreateValuesDictionary(Guid guid)
         {
             var values = new Dictionary<string, string>();
@@ -346,9 +350,8 @@
         /// <summary>
         /// Replace the template variable to the values defined by dictionary
         /// </summary>
-        /// <param name="template">template string to be replace</param>
-        /// <param name="values">the values to replace</param>
-        /// <returns></returns>
+        /// <param name="template">template string to be replaced</param>
+        /// <returns>formatted string</returns>
         internal static string ProcessTemplate(string template)
         {
             const int NoIndex = -1;
@@ -434,7 +437,7 @@
         /// Initializes a new instance of the <see cref="VariableManager" /> class.
         /// </summary>
         /// <param name="keyword">Variable name</param>
-        /// <param name="description">Variable Descriotion</param>
+        /// <param name="description">Variable description</param>
         internal VariableManager(string keyword, string description)
         {
             this.Keyword = keyword;
@@ -442,20 +445,29 @@
         }
 
         /// <summary>
-        /// Description for Variable
+        /// Gets or sets description for Variable
         /// </summary>
         internal string Description { get; set; }
 
         /// <summary>
-        /// Keyword
+        /// Gets or sets variable keyword
         /// </summary>
         internal string Keyword { get; set; }
 
+        /// <summary>
+        /// Get Template variable
+        /// </summary>
+        /// <returns>Template variable</returns>
         internal string GetVariable()
         {
             return "{" + this.Keyword + "}";
         }
 
+        /// <summary>
+        /// Get Template variable with index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Template variable with index</returns>
         internal string GetVariable(int index)
         {
             return string.Format("{{{0}({1})}}", this.Keyword, index);
