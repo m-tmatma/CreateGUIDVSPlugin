@@ -295,9 +295,24 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         internal enum Type
         {
+            /// <summary>
+            /// invalid value
+            /// </summary>
             None,
+
+            /// <summary>
+            /// normal string to have nothing to do with template variable.
+            /// </summary>
             NormalString,
+
+            /// <summary>
+            /// template variable without index
+            /// </summary>
             TemplateNoIndex,
+
+            /// <summary>
+            /// template variable with index
+            /// </summary>
             TemplateIndex,
         }
 
