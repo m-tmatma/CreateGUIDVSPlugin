@@ -64,6 +64,11 @@ namespace CreateGUIDVSPlugin
         }
 
         /// <summary>
+        /// Gets instance of OutputWindow
+        /// </summary>
+        public EnvDTE.OutputWindowPane OutputPane { get; private set; }
+
+        /// <summary>
         /// Get DTE Object
         /// </summary>
         /// <returns>DTE Object</returns>
@@ -117,11 +122,6 @@ namespace CreateGUIDVSPlugin
         {
             return configuration;
         }
-
-        /// <summary>
-        /// Gets instance of OutputWindow
-        /// </summary>
-        public EnvDTE.OutputWindowPane OutputPane { get; private set; }
 
         #region Package Members
 
