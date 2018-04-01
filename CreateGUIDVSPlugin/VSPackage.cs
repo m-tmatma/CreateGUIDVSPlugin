@@ -43,14 +43,14 @@ namespace CreateGUIDVSPlugin
     public sealed class VSPackage : Package
     {
         /// <summary>
-        /// configuration class
-        /// </summary>
-        private Configuration configuration;
-
-        /// <summary>
         /// VSPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "bf2a5c33-ab8b-45f6-9ab0-1e3288dd0fe5";
+
+        /// <summary>
+        /// configuration class
+        /// </summary>
+        private Configuration configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VSPackage"/> class.
