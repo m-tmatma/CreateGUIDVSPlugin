@@ -65,7 +65,6 @@ namespace CreateGUIDVSPlugin
             // initialization is the Initialize method.
         }
 
-
         /// <summary>
         /// Get DTE Object
         /// </summary>
