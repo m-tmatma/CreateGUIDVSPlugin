@@ -434,7 +434,7 @@ namespace CreateGUIDVSPlugin
     }
 
     /// <summary>
-    /// Manager for Variable Name, Description, and Regular Expressioin
+    /// Manager for Variable Name, Description, and Regular expression
     /// </summary>
     internal class VariableManager
     {
@@ -471,7 +471,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Get Template variable with index
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">variable index</param>
         /// <returns>Template variable with index</returns>
         internal string GetVariable(int index)
         {
