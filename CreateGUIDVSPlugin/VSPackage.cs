@@ -66,6 +66,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Get DTE Object
         /// </summary>
+        /// <returns>DTE Object</returns>
         public EnvDTE.DTE GetDTE()
         {
             return (EnvDTE.DTE)GetService(typeof(SDTE));
@@ -90,6 +91,8 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Get OutputWindow
         /// </summary>
+        /// <param name="dte">DTE object</param>
+        /// <returns>instance of OutputWindow</returns>
         public EnvDTE.Window GetOutputWindow(EnvDTE.DTE dte)
         {
             return dte.Windows.Item(EnvDTE.Constants.vsWindowKindOutput);
@@ -98,6 +101,7 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Add an item to OutputWindow
         /// </summary>
+        /// <param name="paneName">window pane name</param>
         public void AddOutputWindow(string paneName)
         {
             var outputWindow = (EnvDTE.OutputWindow)GetOutputWindow(GetDTE()).Object;
@@ -108,14 +112,14 @@ namespace CreateGUIDVSPlugin
         /// <summary>
         /// Get Instance of Configuration
         /// </summary>
-        /// <returns></returns>
+        /// <returns>instance of Configuration</returns>
         public Configuration GetConfiguration()
         {
             return configuration;
         }
 
         /// <summary>
-        /// Property For OutputWindow
+        /// Gets instance of OutputWindow
         /// </summary>
         public EnvDTE.OutputWindowPane OutputPane { get; private set; }
 
