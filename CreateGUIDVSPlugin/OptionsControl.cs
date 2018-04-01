@@ -14,7 +14,7 @@ namespace CreateGUIDVSPlugin
  
         public OptionsControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             foreach (Template.VariableManager variableName in Template.Variables)
             {
@@ -31,12 +31,12 @@ namespace CreateGUIDVSPlugin
         {
             get
             {
-                return settingOptionsPage;
+                return this.settingOptionsPage;
             }
 
             set
             {
-                settingOptionsPage = value;
+                this.settingOptionsPage = value;
             }
         }
 
