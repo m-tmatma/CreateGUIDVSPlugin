@@ -379,6 +379,7 @@
                     {
                         keywordOrData = string.Empty;
                     }
+
                     if (groupIndex.Success)
                     {
                         elementType = Type.TemplateIndex;
@@ -395,6 +396,7 @@
                         var guid = Guid.NewGuid();
                         dataBase[guidIndex] = CreateValuesDictionary(guid);
                     }
+
                     values = dataBase[guidIndex];
                 }
                 else
@@ -402,6 +404,7 @@
                     elementType = Type.NormalString;
                     keywordOrData = str;
                 }
+
                 switch (elementType)
                 {
                     case Type.None:
@@ -452,6 +455,7 @@
         {
             return "{" + this.Keyword + "}";
         }
+
         internal string GetVariable(int index)
         {
             return string.Format("{{{0}({1})}}", this.Keyword, index);
