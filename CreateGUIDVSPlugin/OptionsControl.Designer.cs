@@ -74,7 +74,7 @@
             this.buttonInsert.TabIndex = 3;
             this.buttonInsert.Text = "Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
-            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
+            this.buttonInsert.Click += new System.EventHandler(this.ButtonInsert_Click);
             // 
             // buttonInsertLineEnding
             // 
@@ -84,7 +84,7 @@
             this.buttonInsertLineEnding.TabIndex = 4;
             this.buttonInsertLineEnding.Text = "EOL";
             this.buttonInsertLineEnding.UseVisualStyleBackColor = true;
-            this.buttonInsertLineEnding.Click += new System.EventHandler(this.buttonInsertLineEnding_Click);
+            this.buttonInsertLineEnding.Click += new System.EventHandler(this.ButtonInsertLineEnding_Click);
             // 
             // buttonSetDefault
             // 
@@ -94,7 +94,7 @@
             this.buttonSetDefault.TabIndex = 5;
             this.buttonSetDefault.Text = "Default";
             this.buttonSetDefault.UseVisualStyleBackColor = true;
-            this.buttonSetDefault.Click += new System.EventHandler(this.buttonSetDefault_Click);
+            this.buttonSetDefault.Click += new System.EventHandler(this.ButtonSetDefault_Click);
             // 
             // numericUpDownGUID
             // 

@@ -59,7 +59,7 @@ namespace CreateGUIDVSPlugin
             this.textBoxTemplate.Text = configuration.FormatString;
         }
 
-        private void buttonInsert_Click(object sender, EventArgs e)
+        private void ButtonInsert_Click(object sender, EventArgs e)
         {
             var guidIndex = decimal.ToInt32(this.numericUpDownGUID.Value);
             var keyname = Template.Variables[this.comboBoxVariable.SelectedIndex];
@@ -68,13 +68,13 @@ namespace CreateGUIDVSPlugin
             textBox.Text = textBox.Text.Insert(textBox.SelectionStart, variable);
         }
 
-        private void buttonInsertLineEnding_Click(object sender, EventArgs e)
+        private void ButtonInsertLineEnding_Click(object sender, EventArgs e)
         {
             var textBox = this.textBoxTemplate;
             textBox.Text = textBox.Text.Insert(textBox.SelectionStart, Environment.NewLine);
         }
 
-        private void buttonSetDefault_Click(object sender, EventArgs e)
+        private void ButtonSetDefault_Click(object sender, EventArgs e)
         {
             var textBox = this.textBoxTemplate;
             textBox.Text = Template.DefaultFormatString;
