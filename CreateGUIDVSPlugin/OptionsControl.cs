@@ -1,4 +1,9 @@
-﻿namespace CreateGUIDVSPlugin
+﻿//-----------------------------------------------------------------------
+// <copyright file="OptionsControl.cs" company="Masaru Tsuchiyama">
+//     Copyright (c) Masaru Tsuchiyama. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
+namespace CreateGUIDVSPlugin
 {
     using System;
     using System.Windows.Forms;
