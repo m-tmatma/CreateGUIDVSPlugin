@@ -18,7 +18,7 @@ namespace CreateGUIDVSPlugin
         {
             InitializeComponent();
 
-            foreach(Template.VariableManager variableName in Template.Variables)
+            foreach (Template.VariableManager variableName in Template.Variables)
             {
                 this.comboBoxVariable.Items.Add(variableName.Description);
             }
@@ -63,7 +63,7 @@ namespace CreateGUIDVSPlugin
         {
             var guidIndex = decimal.ToInt32(this.numericUpDownGUID.Value);
             var keyname = Template.Variables[this.comboBoxVariable.SelectedIndex];
-            var variable = (guidIndex > 0 )? keyname.GetVariable(guidIndex) : keyname.GetVariable();
+            var variable = (guidIndex > 0) ? keyname.GetVariable(guidIndex) : keyname.GetVariable();
             var textBox = this.textBoxTemplate;
             textBox.Text = textBox.Text.Insert(textBox.SelectionStart, variable);
         }
