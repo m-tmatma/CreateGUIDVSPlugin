@@ -78,14 +78,7 @@ namespace Unittest
         [SetUp]
         public void SetUp()
         {
-            var tempKey = Registry.CurrentUser.OpenSubKey(topSubKey);
-            if (tempKey != null)
-            {
-                tempKey.Close();
-                Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
-            }
-            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true);
-            this.configuration = new Configuration(userRegistryRoot);
+            Init();
         }
 
         /// <summary>
@@ -94,10 +87,7 @@ namespace Unittest
         [TearDown]
         public void TearDown()
         {
-            this.userRegistryRoot.Close();
-            this.configuration = null;
-
-            Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
+            Cleanup();
         }
 
         /// <summary>
@@ -159,5 +149,31 @@ namespace Unittest
             Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
         }
+
+        /// <summary>
+        /// Initialize this class
+        /// </summary>
+        private void Init()
+        {
+            var tempKey = Registry.CurrentUser.OpenSubKey(topSubKey);
+            if (tempKey != null)
+            {
+                tempKey.Close();
+                Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
+            }
+            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true);
+            this.configuration = new Configuration(userRegistryRoot);
+        }
+
+        /// <summary>
+        /// cleanup this class
+        /// </summary>
+        private void Cleanup()
+        {
+            this.userRegistryRoot.Close();
+            this.configuration = null;
+
+            Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
+         }
     }
 }
