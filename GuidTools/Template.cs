@@ -213,7 +213,7 @@ namespace GuidTools
             new VariableManager(VariableUpperCaseBytesPartByte7, "7th byte of Upper Case Bytes Part"),
             new VariableManager(VariableLowerCaseBytesPartByte8, "8th byte of Lower Case Bytes Part"),
             new VariableManager(VariableUpperCaseBytesPartByte8, "8th byte of Upper Case Bytes Part"),
-       };
+        };
         /// <summary>
         /// Default Template String
         /// </summary>
