@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		GuidTools\GuidTools.projitems*{254e10b0-3326-4ddc-9974-b11c75809641}*SharedItemsImports = 4
 		GuidTools\GuidTools.projitems*{28706d78-2119-43c4-b127-fe223516b8f8}*SharedItemsImports = 13
 		GuidTools\GuidTools.projitems*{94c76b70-7128-482c-a28a-5d08dd03ec03}*SharedItemsImports = 4
 	EndGlobalSection
