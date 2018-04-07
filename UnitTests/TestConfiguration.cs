@@ -68,7 +68,7 @@ namespace Unittest
         [SetUp]
         public void SetUp()
         {
-            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true, RegistryOptions.Volatile);
+            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true);
             this.configuration = new Configuration(userRegistryRoot);
         }
 
@@ -98,6 +98,40 @@ namespace Unittest
         {
             var output = this.configuration.GetSubKeyName(input);
             Console.WriteLine("input   : " + input);
+            Console.WriteLine("output  : " + output);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// Get Default Value
+        /// </summary>
+        [Test]
+        public void Test_DefaultValue()
+        {
+            this.configuration.Load();
+            var expected = Template.DefaultFormatString;
+            var output = this.configuration.FormatString;
+
+            Console.WriteLine("output  : " + output);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// Set and Get Value
+        /// </summary>
+        [Test]
+        public void Test_SetAndGetValue()
+        {
+            var input = "// {" + "{" + Template.VariableLowerCaseGuidWithHyphens + "}" + "}";
+
+            this.configuration.FormatString = input;
+            this.configuration.Save();
+            this.configuration.Load();
+            var expected = input;
+            var output = this.configuration.FormatString;
+
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
