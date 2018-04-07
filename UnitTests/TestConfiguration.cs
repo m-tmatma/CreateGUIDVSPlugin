@@ -53,12 +53,17 @@ namespace Unittest
         private Configuration configuration;
 
         /// <summary>
+        /// User registroy key
+        /// </summary>
+        private RegistryKey userRegistryRoot;
+
+        /// <summary>
         /// setup method to be called to initialize unit tests
         /// </summary>
         [SetUp]
         public void SetUp()
         {
-            var userRegistryRoot = Registry.CurrentUser.CreateSubKey("Test9999");
+            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey("Test9999", true, RegistryOptions.Volatile);
             this.configuration = new Configuration(userRegistryRoot);
         }
 
@@ -68,6 +73,7 @@ namespace Unittest
         [TearDown]
         public void TearDown()
         {
+            this.userRegistryRoot.Close();
             this.configuration = null;
         }
 
