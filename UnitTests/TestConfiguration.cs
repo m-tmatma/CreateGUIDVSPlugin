@@ -53,6 +53,16 @@ namespace Unittest
         private const string Result3 = "CreateGUIDVSPlugin";
 
         /// <summary>
+        /// Format String1
+        /// </summary>
+        private const string FormatString1 = "// {" + "{" + Template.VariableLowerCaseGuidWithHyphens + "}" + "}";
+
+        /// <summary>
+        /// Format String1
+        /// </summary>
+        private const string FormatString2 = "// {" + "{" + Template.VariableLowerCaseGuidWithoutHyphens + "}" + "}";
+
+        /// <summary>
         /// Configuration class
         /// </summary>
         private Configuration configuration;
@@ -127,11 +137,10 @@ namespace Unittest
         /// <summary>
         /// Set and Get Value
         /// </summary>
-        [Test]
-        public void Test_SetAndGetValue()
+        [TestCase(FormatString1)]
+        [TestCase(FormatString2)]
+        public void Test_SetAndGetValue(string input)
         {
-            var input = "// {" + "{" + Template.VariableLowerCaseGuidWithHyphens + "}" + "}";
-
             // save
             this.configuration.FormatString = input;
             this.configuration.Save();

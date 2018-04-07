@@ -56,131 +56,131 @@ namespace GuidTools
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
-        static internal string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
+        internal const string VariableLowerCaseGuidWithHyphens = "LowerCaseGuidWithHyphens";
 
         /// <summary>
         /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
-        static internal string VariableUpperCaseGuidWithHyphens = "UpperCaseGuidWithHyphens";
+        internal const string VariableUpperCaseGuidWithHyphens = "UpperCaseGuidWithHyphens";
 
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
-        static internal string VariableLowerCaseGuidWithoutHyphens = "LowerCaseGuidWithoutHyphens";
+        internal const string VariableLowerCaseGuidWithoutHyphens = "LowerCaseGuidWithoutHyphens";
 
         /// <summary>
         /// Template Name for Upper Case GUID with Hyphens
         /// </summary>
-        static internal string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
+        internal const string VariableUpperCaseGuidWithoutHyphens = "UpperCaseGuidWithoutHyphens";
         /// <summary>
         /// Template Name for 1st part of Lower Case of GUID
         /// </summary>
-        static internal string VariableLowerCase1stPart = "LowerCase1stPart";
+        internal const string VariableLowerCase1stPart = "LowerCase1stPart";
 
         /// <summary>
         /// Template Name for 1st part of Upper Case of GUID
         /// </summary>
-        static internal string VariableUpperCase1stPart = "UpperCase1stPart";
+        internal const string VariableUpperCase1stPart = "UpperCase1stPart";
 
         /// <summary>
         /// Template Name for 2nd part of Lower Case of GUID
         /// </summary>
-        static internal string VariableLowerCase2ndPart = "LowerCase2ndPart";
+        internal const string VariableLowerCase2ndPart = "LowerCase2ndPart";
 
         /// <summary>
         /// Template Name for 2nd part of Upper Case of GUID
         /// </summary>
-        static internal string VariableUpperCase2ndPart = "UpperCase2ndPart";
+        internal const string VariableUpperCase2ndPart = "UpperCase2ndPart";
 
         /// <summary>
         /// Template Name for 3rd part of Lower Case of GUID
         /// </summary>
-        static internal string VariableLowerCase3rdPart = "LowerCase3rdPart";
+        internal const string VariableLowerCase3rdPart = "LowerCase3rdPart";
 
         /// <summary>
         /// Template Name for 3rd part of Upper Case of GUID
         /// </summary>
-        static internal string VariableUpperCase3rdPart = "UpperCase3rdPart";
+        internal const string VariableUpperCase3rdPart = "UpperCase3rdPart";
 
         /// <summary>
         /// Template Name for Lower Case 1st byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte1 = "LowerCaseBytesPartByte1";
+        internal const string VariableLowerCaseBytesPartByte1 = "LowerCaseBytesPartByte1";
 
         /// <summary>
         /// Template Name for Upper Case 1st byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte1 = "UpperCaseBytesPartByte1";
+        internal const string VariableUpperCaseBytesPartByte1 = "UpperCaseBytesPartByte1";
 
         /// <summary>
         /// Template Name for Lower Case 2nd byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte2 = "LowerCaseBytesPartByte2";
+        internal const string VariableLowerCaseBytesPartByte2 = "LowerCaseBytesPartByte2";
 
         /// <summary>
         /// Template Name for Upper Case 2nd byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte2 = "UpperCaseBytesPartByte2";
+        internal const string VariableUpperCaseBytesPartByte2 = "UpperCaseBytesPartByte2";
 
         /// <summary>
         /// Template Name for Lower Case 3rd byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte3 = "LowerCaseBytesPartByte3";
+        internal const string VariableLowerCaseBytesPartByte3 = "LowerCaseBytesPartByte3";
 
         /// <summary>
         /// Template Name for Upper Case 3rd byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte3 = "UpperCaseBytesPartByte3";
+        internal const string VariableUpperCaseBytesPartByte3 = "UpperCaseBytesPartByte3";
 
         /// <summary>
         /// Template Name for Lower Case 4th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte4 = "LowerCaseBytesPartByte4";
+        internal const string VariableLowerCaseBytesPartByte4 = "LowerCaseBytesPartByte4";
 
         /// <summary>
         /// Template Name for Upper Case 4th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte4 = "UpperCaseBytesPartByte4";
+        internal const string VariableUpperCaseBytesPartByte4 = "UpperCaseBytesPartByte4";
 
         /// <summary>
         /// Template Name for Lower Case 5th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte5 = "LowerCaseBytesPartByte5";
+        internal const string VariableLowerCaseBytesPartByte5 = "LowerCaseBytesPartByte5";
 
         /// <summary>
         /// Template Name for Upper Case 5th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte5 = "UpperCaseBytesPartByte5";
+        internal const string VariableUpperCaseBytesPartByte5 = "UpperCaseBytesPartByte5";
 
         /// <summary>
         /// Template Name for Lower Case 6th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte6 = "LowerCaseBytesPartByte6";
+        internal const string VariableLowerCaseBytesPartByte6 = "LowerCaseBytesPartByte6";
 
         /// <summary>
         /// Template Name for Upper Case 6th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte6 = "UpperCaseBytesPartByte6";
+        internal const string VariableUpperCaseBytesPartByte6 = "UpperCaseBytesPartByte6";
 
         /// <summary>
         /// Template Name for Lower Case 7th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte7 = "LowerCaseBytesPartByte7";
+        internal const string VariableLowerCaseBytesPartByte7 = "LowerCaseBytesPartByte7";
 
         /// <summary>
         /// Template Name for Upper Case 7th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte7 = "UpperCaseBytesPartByte7";
+        internal const string VariableUpperCaseBytesPartByte7 = "UpperCaseBytesPartByte7";
 
         /// <summary>
         /// Template Name for Lower Case 8th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableLowerCaseBytesPartByte8 = "LowerCaseBytesPartByte8";
+        internal const string VariableLowerCaseBytesPartByte8 = "LowerCaseBytesPartByte8";
 
         /// <summary>
         /// Template Name for Upper Case 8th byte of Bytes Part of GUID
         /// </summary>
-        static internal string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
+        internal const string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
 
         /// <summary>
         /// Template Variables
