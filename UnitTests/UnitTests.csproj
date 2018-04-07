@@ -51,6 +51,7 @@
     <Compile Include="MultipleFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticPattern.cs" />
+    <Compile Include="TestConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

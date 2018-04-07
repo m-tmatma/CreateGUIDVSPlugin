@@ -88,8 +88,16 @@ namespace GuidTools
         /// <returns>subKey Name</returns>
         internal string GetSubKeyName(string manifestModule)
         {
-            var subKeyName = manifestModule.Substring(0, manifestModule.LastIndexOf('.'));
-            return subKeyName;
+            var index = manifestModule.LastIndexOf('.');
+            if (index >= 0)
+            {
+                var subKeyName = manifestModule.Substring(0, index);
+                return subKeyName;
+            }
+            else
+            {
+                return manifestModule;
+            }
         }
     }
 }
