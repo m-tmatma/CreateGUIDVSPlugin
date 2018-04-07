@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Microsoft.Win32;
 
 namespace GuidTools
@@ -16,7 +17,7 @@ namespace GuidTools
         /// <summary>
         /// Registry SubKey for the setting
         /// </summary>
-        private const string SubKeyName = @"CreateGUIDVSPlugin";
+        private string subKeyName;
 
         /// <summary>
         /// Registry Value Name for FormatString setting
@@ -34,6 +35,10 @@ namespace GuidTools
         /// <param name="userRegistryRoot">root Registry for User setting</param>
         public Configuration(RegistryKey userRegistryRoot)
         {
+            var assembly = Assembly.GetAssembly(typeof(Configuration));
+            var manifestModule = assembly.ManifestModule.Name;
+            var subKeyName = GetSubKeyName(manifestModule);
+            this.subKeyName = subKeyName;
             this.UserRegistryRoot = userRegistryRoot;
         }
  
@@ -46,7 +51,7 @@ namespace GuidTools
             this.FormatString = DefaultFormatString;
             try
             {
-                using (RegistryKey subKey = this.UserRegistryRoot.OpenSubKey(SubKeyName))
+                using (RegistryKey subKey = this.UserRegistryRoot.OpenSubKey(this.subKeyName))
                 {
                     var value = (string)subKey.GetValue(ValueNameFormatString, DefaultFormatString);
                     this.FormatString = value;
@@ -65,7 +70,7 @@ namespace GuidTools
         {
             try
             {
-                using (RegistryKey subKey = this.UserRegistryRoot.CreateSubKey(SubKeyName))
+                using (RegistryKey subKey = this.UserRegistryRoot.CreateSubKey(this.subKeyName))
                 {
                     subKey.SetValue(ValueNameFormatString, this.FormatString);
                 }
@@ -74,6 +79,17 @@ namespace GuidTools
             {
                 ;
             }
+        }
+
+        /// <summary>
+        /// Get SubKeyName from Assembly Path name
+        /// </summary>
+        /// <param name="manifestModule"></param>
+        /// <returns>subKey Name</returns>
+        internal string GetSubKeyName(string manifestModule)
+        {
+            var subKeyName = manifestModule.Substring(0, manifestModule.LastIndexOf('.'));
+            return subKeyName;
         }
     }
 }
