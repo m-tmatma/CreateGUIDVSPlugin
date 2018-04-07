@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace CreateGUIDVSPlugin
+namespace GuidTools
 {
     /// <summary>
     /// Manager for Variable Name, Description, and Regular Expressioin
@@ -215,7 +213,7 @@ namespace CreateGUIDVSPlugin
             new VariableManager(VariableUpperCaseBytesPartByte7, "7th byte of Upper Case Bytes Part"),
             new VariableManager(VariableLowerCaseBytesPartByte8, "8th byte of Lower Case Bytes Part"),
             new VariableManager(VariableUpperCaseBytesPartByte8, "8th byte of Upper Case Bytes Part"),
-       };
+        };
         /// <summary>
         /// Default Template String
         /// </summary>
