@@ -68,6 +68,12 @@ namespace Unittest
         [SetUp]
         public void SetUp()
         {
+            var tempKey = Registry.CurrentUser.OpenSubKey(topSubKey);
+            if (tempKey != null)
+            {
+                tempKey.Close();
+                Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
+            }
             this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true);
             this.configuration = new Configuration(userRegistryRoot);
         }
