@@ -9,5 +9,9 @@
     <Import_RootNamespace>GuidTools</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormatGuid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReplaceWithNewGuid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Template.cs" />
   </ItemGroup>
 </Project>
