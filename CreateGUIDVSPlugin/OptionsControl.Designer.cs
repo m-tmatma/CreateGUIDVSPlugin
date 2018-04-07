@@ -51,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 77);
+            this.label1.Location = new System.Drawing.Point(40, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 21);
             this.label1.TabIndex = 1;
@@ -63,12 +63,12 @@
             this.comboBoxVariable.FormattingEnabled = true;
             this.comboBoxVariable.Location = new System.Drawing.Point(40, 26);
             this.comboBoxVariable.Name = "comboBoxVariable";
-            this.comboBoxVariable.Size = new System.Drawing.Size(530, 29);
+            this.comboBoxVariable.Size = new System.Drawing.Size(425, 29);
             this.comboBoxVariable.TabIndex = 2;
             // 
             // buttonInsert
             // 
-            this.buttonInsert.Location = new System.Drawing.Point(576, 25);
+            this.buttonInsert.Location = new System.Drawing.Point(576, 26);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(75, 29);
             this.buttonInsert.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             // buttonInsertLineEnding
             // 
-            this.buttonInsertLineEnding.Location = new System.Drawing.Point(425, 77);
+            this.buttonInsertLineEnding.Location = new System.Drawing.Point(551, 77);
             this.buttonInsertLineEnding.Name = "buttonInsertLineEnding";
             this.buttonInsertLineEnding.Size = new System.Drawing.Size(100, 29);
             this.buttonInsertLineEnding.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             // buttonSetDefault
             // 
-            this.buttonSetDefault.Location = new System.Drawing.Point(302, 77);
+            this.buttonSetDefault.Location = new System.Drawing.Point(433, 77);
             this.buttonSetDefault.Name = "buttonSetDefault";
             this.buttonSetDefault.Size = new System.Drawing.Size(100, 29);
             this.buttonSetDefault.TabIndex = 5;
@@ -98,9 +98,9 @@
             // 
             // numericUpDownGUID
             // 
-            this.numericUpDownGUID.Location = new System.Drawing.Point(531, 79);
+            this.numericUpDownGUID.Location = new System.Drawing.Point(471, 26);
             this.numericUpDownGUID.Name = "numericUpDownGUID";
-            this.numericUpDownGUID.Size = new System.Drawing.Size(120, 28);
+            this.numericUpDownGUID.Size = new System.Drawing.Size(99, 29);
             this.numericUpDownGUID.TabIndex = 6;
             // 
             // OptionsControl
