@@ -132,9 +132,17 @@ namespace Unittest
         {
             var input = "// {" + "{" + Template.VariableLowerCaseGuidWithHyphens + "}" + "}";
 
+            // save
             this.configuration.FormatString = input;
             this.configuration.Save();
+
+            // clear
+            this.configuration.FormatString = string.Empty;
+
+            // load
             this.configuration.Load();
+
+            // check the result
             var expected = input;
             var output = this.configuration.FormatString;
 
