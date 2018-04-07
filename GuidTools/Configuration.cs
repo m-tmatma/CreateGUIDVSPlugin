@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using Microsoft.Win32;
 
@@ -88,15 +89,16 @@ namespace GuidTools
         /// <returns>subKey Name</returns>
         internal string GetSubKeyName(string manifestModule)
         {
-            var index = manifestModule.LastIndexOf('.');
+            var baseName = Path.GetFileName(manifestModule);
+            var index = baseName.LastIndexOf('.');
             if (index >= 0)
             {
-                var subKeyName = manifestModule.Substring(0, index);
+                var subKeyName = baseName.Substring(0, index);
                 return subKeyName;
             }
             else
             {
-                return manifestModule;
+                return baseName;
             }
         }
     }

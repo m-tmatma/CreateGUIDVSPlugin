@@ -38,6 +38,16 @@ namespace Unittest
         private const string Result2 = "CreateGUIDVSPlugin";
 
         /// <summary>
+        /// input data for test1
+        /// </summary>
+        private const string Input3 = @"C:\path\to\CreateGUIDVSPlugin.dll";
+
+        /// <summary>
+        /// expected output data for test1
+        /// </summary>
+        private const string Result3 = "CreateGUIDVSPlugin";
+
+        /// <summary>
         /// Configuration class
         /// </summary>
         private Configuration configuration;
@@ -69,6 +79,7 @@ namespace Unittest
         /// <see href="https://github.com/nunit/docs/wiki/TestCaseData">TestCaseData</see>
         [TestCase(Input1, Result1)]
         [TestCase(Input2, Result2)]
+        [TestCase(Input3, Result3)]
         [Category("GetSubKeyName")]
         public void Test_GetSubKeyName(string input, string expected)
         {
