@@ -18,6 +18,11 @@ namespace Unittest
     public class TestConfiguration
     {
         /// <summary>
+        /// top Sub Key
+        /// </summary>
+        private const string topSubKey = "Software\\CreateGUIDVSPlugin";
+
+        /// <summary>
         /// input data for test1
         /// </summary>
         private const string Input1 = "CreateGUIDVSPlugin.dll";
@@ -63,7 +68,7 @@ namespace Unittest
         [SetUp]
         public void SetUp()
         {
-            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey("Test9999", true, RegistryOptions.Volatile);
+            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true, RegistryOptions.Volatile);
             this.configuration = new Configuration(userRegistryRoot);
         }
 
@@ -75,6 +80,8 @@ namespace Unittest
         {
             this.userRegistryRoot.Close();
             this.configuration = null;
+
+            Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
         }
 
         /// <summary>
