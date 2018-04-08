@@ -129,45 +129,51 @@ namespace Unittest
         /// <summary>
         /// Set and Get Value
         /// </summary>
+        /// <param name="input">input data</param>
         [TestCase(FormatString1)]
         [TestCase(FormatString2)]
         public void Test_SetAndGetValue(string input)
         {
-            // save
-            this.configuration.FormatString = input;
-            this.configuration.Save();
-
-            // clear
-            this.configuration.FormatString = string.Empty;
-
-            // load
-            this.configuration.Load();
-
-            // check the result
-            var expected = input;
-            var output = this.configuration.FormatString;
-
-            Console.WriteLine("output  : " + output);
-            Console.WriteLine("expected: " + expected);
-            Assert.That(output, Is.EqualTo(expected));
+            SetAndGetValue(input, false);
         }
 
         /// <summary>
         /// Set and Get Value (Re-Initialize Class)
         /// </summary>
+        /// <param name="input">input data</param>
         [TestCase(FormatString1)]
         [TestCase(FormatString2)]
         public void Test_SetAndGetValue_ReInit(string input)
+        {
+            SetAndGetValue(input, true);
+        }
+
+        /// <summary>
+        /// Set and Get Value Test function
+        /// </summary>
+        /// <param name="input">input data</param>
+        /// <param name="isRecreate">whether to re-create the instance of Configuration class</param>
+        private void SetAndGetValue(string input, bool isRecreate)
         {
             // save
             this.configuration.FormatString = input;
             this.configuration.Save();
 
-            // release Configuration Class
-            CleanupTargetClass();
+            if (isRecreate)
+            {
+                // Re-create the instance of Configuration class
 
-            // re-create Configuration Class
-            InitTargetClass();
+                // release Configuration Class
+                CleanupTargetClass();
+
+                // re-create Configuration Class
+                InitTargetClass();
+            }
+            else
+            {
+                // clear value of Configuration.FormatString
+                this.configuration.FormatString = string.Empty;
+            }
 
             // load
             this.configuration.Load();
