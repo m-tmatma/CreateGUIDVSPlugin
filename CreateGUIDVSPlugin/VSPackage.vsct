@@ -107,17 +107,17 @@
 
     <!-- for css file -->
     <CommandPlacement guid="guidVSPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-      <Parent guid="guidCSSDocumentContextMenu" id="idCSSContextMenu" />
+      <Parent guid="GuidVisualStudioCSSDocumentContextMenu" id="idCSSContextMenu" />
     </CommandPlacement>
 
     <!-- for HTML file -->
     <CommandPlacement guid="guidVSPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-      <Parent guid="guidHTMLDocumentContextMenu" id="idHTMLContextMenu" />
+      <Parent guid="GuidVisualStudioHTMLDocumentContextMenu" id="idHTMLContextMenu" />
     </CommandPlacement>
 
     <!-- for json file -->
     <CommandPlacement guid="guidVSPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-      <Parent guid="guidJSONDocumentContextMenu" id="idJSONContextMenu" />
+      <Parent guid="GuidVisualStudioJSONDocumentContextMenu" id="idJSONContextMenu" />
     </CommandPlacement>
   </CommandPlacements>
 
@@ -154,17 +154,17 @@
     <!-- GUID and ID for not defined Visual Studio SDK -->
     
     <!-- for css file -->
-    <GuidSymbol name="guidCSSDocumentContextMenu" value="{64da400e-b4ad-4d67-aa92-4b7acb01ecd5}">
+    <GuidSymbol name="GuidVisualStudioCSSDocumentContextMenu" value="{64da400e-b4ad-4d67-aa92-4b7acb01ecd5}">
       <IDSymbol name="idCSSContextMenu" value="0x2" />
     </GuidSymbol>
 
     <!-- for html file -->
-    <GuidSymbol name="guidHTMLDocumentContextMenu" value="{78f03954-2fb8-4087-8ce7-59d71710b3bb}">
+    <GuidSymbol name="GuidVisualStudioHTMLDocumentContextMenu" value="{78f03954-2fb8-4087-8ce7-59d71710b3bb}">
       <IDSymbol name="idHTMLContextMenu" value="0x1" />
     </GuidSymbol>
 
     <!-- for json file -->
-    <GuidSymbol name="guidJSONDocumentContextMenu" value="{f718ca06-cf4f-4a0c-9106-e79e9ee5e7cd}">
+    <GuidSymbol name="GuidVisualStudioJSONDocumentContextMenu" value="{f718ca06-cf4f-4a0c-9106-e79e9ee5e7cd}">
       <IDSymbol name="idJSONContextMenu" value="0x3" />
     </GuidSymbol>
   
