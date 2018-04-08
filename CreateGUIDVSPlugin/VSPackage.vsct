@@ -129,8 +129,8 @@
     <GuidSymbol name="guidVSPackageCmdSet" value="{21faf2f8-6789-4d5a-bda3-c063d68e1b7d}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="CopyGuidCommandId" value="0x0100" />
-      <IDSymbol value="4129" name="cmdidInsertGuidCommand" />
-      <IDSymbol value="4130" name="cmdidRenewGuidCommand" />
+      <IDSymbol value="0x1021" name="cmdidInsertGuidCommand" />
+      <IDSymbol value="0x1022" name="cmdidRenewGuidCommand" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{7ab86d3e-1142-4cbd-a3b5-72d3b744ec50}">
