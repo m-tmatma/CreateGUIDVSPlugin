@@ -78,7 +78,8 @@ namespace Unittest
         [SetUp]
         public void SetUp()
         {
-            Init();
+            DeleteSubKey();
+            InitTargetClass();
         }
 
         /// <summary>
@@ -87,7 +88,8 @@ namespace Unittest
         [TearDown]
         public void TearDown()
         {
-            Cleanup();
+            CleanupTargetClass();
+            DeleteSubKey();
         }
 
         /// <summary>
@@ -151,9 +153,56 @@ namespace Unittest
         }
 
         /// <summary>
-        /// Initialize this class
+        /// Set and Get Value (Re-Initialize Class)
         /// </summary>
-        private void Init()
+        [TestCase(FormatString1)]
+        [TestCase(FormatString2)]
+        public void Test_SetAndGetValue_ReInit(string input)
+        {
+            // save
+            this.configuration.FormatString = input;
+            this.configuration.Save();
+
+            // release Configuration Class
+            CleanupTargetClass();
+
+            // re-create Configuration Class
+            InitTargetClass();
+
+            // load
+            this.configuration.Load();
+
+            // check the result
+            var expected = input;
+            var output = this.configuration.FormatString;
+
+            Console.WriteLine("output  : " + output);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// Initialize target class
+        /// </summary>
+        private void InitTargetClass()
+        {
+            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true);
+            this.configuration = new Configuration(userRegistryRoot);
+        }
+
+        /// <summary>
+        /// cleanup target class
+        /// </summary>
+        private void CleanupTargetClass()
+        {
+            this.configuration = null;
+            this.userRegistryRoot.Close();
+        }
+
+        /// <summary>
+        /// Delete Sub Key
+        /// </summary>
+        private void DeleteSubKey()
         {
             var tempKey = Registry.CurrentUser.OpenSubKey(topSubKey);
             if (tempKey != null)
@@ -161,19 +210,6 @@ namespace Unittest
                 tempKey.Close();
                 Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
             }
-            this.userRegistryRoot = Registry.CurrentUser.CreateSubKey(topSubKey, true);
-            this.configuration = new Configuration(userRegistryRoot);
         }
-
-        /// <summary>
-        /// cleanup this class
-        /// </summary>
-        private void Cleanup()
-        {
-            this.userRegistryRoot.Close();
-            this.configuration = null;
-
-            Registry.CurrentUser.DeleteSubKeyTree(topSubKey);
-         }
     }
 }
