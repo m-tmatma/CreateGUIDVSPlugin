@@ -15,7 +15,7 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
-using GuidTools;
+using CreateGUIDVSPlugin.Utility;
 
 namespace CreateGUIDVSPlugin
 {

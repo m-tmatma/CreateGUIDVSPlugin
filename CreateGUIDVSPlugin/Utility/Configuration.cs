@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.Win32;
 
-namespace GuidTools
+namespace CreateGUIDVSPlugin.Utility
 {
     /// <summary>
     /// Configuration and setting manager

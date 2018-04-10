@@ -9,7 +9,7 @@ namespace Unittest
     using System.Text;
     using Microsoft.Win32;
     using NUnit.Framework;
-    using GuidTools;
+    using CreateGUIDVSPlugin.Utility;
 
     /// <summary>
     /// unit test for Configuration

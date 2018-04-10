@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace GuidTools
+namespace CreateGUIDVSPlugin.Utility
 {
     /// <summary>
     /// Manager for Variable Name, Description, and Regular Expressioin
