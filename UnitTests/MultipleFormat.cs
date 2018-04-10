@@ -8,7 +8,7 @@ namespace UnitTests
     using System;
     using System.Text;
     using NUnit.Framework;
-    using GuidTools;
+    using CreateGUIDVSPlugin.Utility;
 
     /// <summary>
     /// unit test for ReplaceWithNewGuid

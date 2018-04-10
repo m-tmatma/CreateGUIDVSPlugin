@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CreateGUIDVSPlugin\Utility\Configuration.cs">
+      <Link>Utility\Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\CreateGUIDVSPlugin\Utility\FormatGuid.cs">
+      <Link>Utility\FormatGuid.cs</Link>
+    </Compile>
+    <Compile Include="..\CreateGUIDVSPlugin\Utility\ReplaceWithNewGuid.cs">
+      <Link>Utility\ReplaceWithNewGuid.cs</Link>
+    </Compile>
+    <Compile Include="..\CreateGUIDVSPlugin\Utility\Template.cs">
+      <Link>Utility\Template.cs</Link>
+    </Compile>
     <Compile Include="GuidGenerater.cs" />
     <Compile Include="MultipleFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,8 +71,8 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\GuidTools\GuidTools.projitems" Label="Shared" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

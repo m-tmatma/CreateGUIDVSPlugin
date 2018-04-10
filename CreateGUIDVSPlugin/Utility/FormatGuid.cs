@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GuidTools
+namespace CreateGUIDVSPlugin.Utility
 {
     /// <summary>
     /// GUID formatter
