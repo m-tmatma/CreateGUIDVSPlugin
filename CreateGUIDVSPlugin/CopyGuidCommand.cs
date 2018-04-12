@@ -29,6 +29,10 @@ namespace CreateGUIDVSPlugin
         /// </summary>
         private readonly VSPackage package;
 
+        /// <summary>
+        /// default command text
+        /// </summary>
+        private const string DefaultCommandText = "Copy Guid";
 
         /// <summary>
         /// control whether an menu item is displayed or not.
@@ -40,11 +44,23 @@ namespace CreateGUIDVSPlugin
             {
                 var dte = this.package.GetDTE();
                 var activeDocument = dte.ActiveDocument;
-
-                command.Visible = true;
+                var selection = (EnvDTE.TextSelection)activeDocument.Selection;
+                var seltext = selection.Text;
+                if (!string.IsNullOrEmpty(seltext))
+                {
+                    // text is selected.
+                    command.Enabled = false;
+                    command.Text = DefaultCommandText + " (Unselect text to enable this command)";
+                }
+                else
+                {
+                    // text is not selected.
+                    command.Enabled = true;
+                    command.Text = DefaultCommandText;
+                }
             }
         }
- 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CopyGuidCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
