@@ -176,8 +176,9 @@ namespace CreateGUIDVSPlugin
                     this.OutputString(seltext);
                     this.OutputString(output);
 #endif
-                    selection.Delete();
-                    selection.Insert(output);
+                    // vsInsertFlagsContainNewText
+                    // The specified text overwrites the selected text
+                    selection.Insert(output, (int)EnvDTE.vsInsertFlags.vsInsertFlagsContainNewText);
                 }
             }
         }
