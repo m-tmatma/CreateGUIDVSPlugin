@@ -104,16 +104,33 @@ namespace UnitTests
             Assert.That(output, Is.EqualTo(expected));
         }
 
+        /// <summary>
+        /// create Variable
+        /// </summary>
+        /// <param name="variableName">variable name</param>
+        /// <returns>variable</returns>
         private string FormVariable(string variableName)
         {
             return "{" + variableName + "}";
         }
 
+        /// <summary>
+        /// create Variable with index
+        /// </summary>
+        /// <param name="variableName">variable name</param>
+        /// <param name="index">GUID index</param>
+        /// <returns>variable</returns>
         private string FormVariable(string variableName, int index)
         {
             return "{" + variableName + "(" + index.ToString() + ")" + "}";
         }
 
+        /// <summary>
+        /// expand GUID value
+        /// </summary>
+        /// <param name="guid">GUID value to be expanded</param>
+        /// <param name="variableName">variable name</param>
+        /// <returns>variable</returns>
         private string ExpandGuidValue(Guid guid, string variableName)
         {
             var formatGuid = new FormatGuid(guid);
