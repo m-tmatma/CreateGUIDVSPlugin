@@ -11,14 +11,23 @@ namespace UnitTests
     /// <summary>
     /// Tester Class for providing custom GUID generator 
     /// </summary>
-    internal class GuidQueue
+    public class GuidQueue
     {
+        /// <summary>
+        /// Guid Method
+        /// </summary>
+        public enum GuidGeneratorMethod
+        {
+            Normal,
+            GuidGenerater,
+        }
+
         /// <summary>
         /// delegate for creating new GUID
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        internal delegate Guid NewGuid();
+        public delegate Guid NewGuid();
 
         /// <summary>
         /// seed to create a new GUID.
@@ -31,19 +40,43 @@ namespace UnitTests
         private NewGuid newGuid;
 
         /// <summary>
+        /// guid Generator Method
+        /// </summary>
+        private GuidGeneratorMethod guidGeneratorMethod;
+
+        /// <summary>
+        /// Set and Get guid generation method
+        /// </summary>
+        public GuidGeneratorMethod GuidMethod
+        {
+            get
+            {
+                return this.guidGeneratorMethod;
+            }
+            set
+            {
+                switch(value)
+                {
+                    case GuidGeneratorMethod.Normal:
+                        this.newGuid = delegate () { return Guid.NewGuid(); };
+                        break;
+                    case GuidGeneratorMethod.GuidGenerater:
+                        var guidGenerator = new GuidGenerater();
+                        this.newGuid = guidGenerator.NewGuid;
+                        break;
+                }
+                this.guidGeneratorMethod = value; 
+                this.fifo.Clear();
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GuidQueue" /> class.
         /// </summary>
-        public GuidQueue(NewGuid newGuid = null)
+        public GuidQueue()
         {
             this.fifo = new Queue<Guid>();
-            if (newGuid == null)
-            {
-                this.newGuid = delegate () { return Guid.NewGuid(); };
-            }
-            else
-            {
-                this.newGuid = newGuid;
-            }
+            this.GuidMethod = GuidGeneratorMethod.Normal;
         }
 
         /// <summary>

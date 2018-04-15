@@ -19,7 +19,7 @@ namespace UnitTests
         /// <summary>
         /// GUID generator class to make unit-testing easier
         /// </summary>
-        private GuidGenerater guidGenerator;
+        private GuidQueue guidQueue;
 
         /// <summary>
         /// enum of GUID Format
@@ -110,7 +110,7 @@ namespace UnitTests
         [SetUp]
         public void SetUp()
         {
-            this.guidGenerator = new GuidGenerater();
+            this.guidQueue = new GuidQueue();
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace UnitTests
         [TearDown]
         public void TearDown()
         {
-            this.guidGenerator = null;
+            this.guidQueue = null;
         }
 
         /// <summary>
@@ -321,9 +321,6 @@ namespace UnitTests
             Array values = Enum.GetValues(typeof(ValidFormat));
             var random = new Random();
 
-            // GUID generator for dest data
-            var dstGuidGenerator = new GuidGenerater();
-
             // create source data
             for (int i = 0; i < count; i++)
             {
@@ -339,7 +336,7 @@ namespace UnitTests
                 var dstGuid = Guid.Empty;
                 if (testMethod == TestMethod.ReplaceSameGuidToSameGuid)
                 {
-                    dstGuid = dstGuidGenerator.NewGuid();
+                    dstGuid = this.guidQueue.BrandNewGuid();
                 }
 
                 ValidFormatGuid formatGuid = delegate(StringBuilder builder, Guid guid, ValidFormat destFormat)
@@ -358,7 +355,7 @@ namespace UnitTests
 
                     if (testMethod == TestMethod.ReplaceNewGuid)
                     {
-                        dstGuid = dstGuidGenerator.NewGuid();
+                        dstGuid = this.guidQueue.BrandNewGuid();
                     }
                     // create expected data
                     formatGuid(builderResult, dstGuid, format);
@@ -368,7 +365,7 @@ namespace UnitTests
             var input = builderInput.ToString();
             var expected = builderResult.ToString();
 
-            var replaceWithGuid = new ReplaceWithNewGuid(this.guidGenerator.NewGuid);
+            var replaceWithGuid = new ReplaceWithNewGuid(this.guidQueue.NewGuidFromCache);
             var output = CallMethodOfReplaceWithNewGuid(replaceWithGuid, testMethod, input);
 
 #if PRINTF_DEBUG
@@ -399,9 +396,6 @@ namespace UnitTests
             Array values = Enum.GetValues(typeof(InvalidFormat));
             var random = new Random();
 
-            // GUID generator for dest data
-            var dstGuidGenerator = new GuidGenerater();
-
             // create source data
             for (int i = 0; i < count; i++)
             {
@@ -414,7 +408,7 @@ namespace UnitTests
 #endif // PRINTF_DEBUG
 
                 var srcGuid = newSrcGuid();
-                var dstGuid = dstGuidGenerator.NewGuid();
+                var dstGuid = this.guidQueue.BrandNewGuid();
 
                 InvalidFormatGuid formatGuid = delegate (StringBuilder builder, Guid guid, InvalidFormat destFormat)
                 {
@@ -433,8 +427,7 @@ namespace UnitTests
             }
 
             var input = builderInput.ToString();
-
-            var replaceWithGuid = new ReplaceWithNewGuid(this.guidGenerator.NewGuid);
+            var replaceWithGuid = new ReplaceWithNewGuid(this.guidQueue.NewGuidFromCache);
             var output = CallMethodOfReplaceWithNewGuid(replaceWithGuid, testMethod, input);
 
 #if PRINTF_DEBUG

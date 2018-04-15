@@ -20,15 +20,6 @@ namespace UnitTests
         private GuidQueue guidQueue;
 
         /// <summary>
-        /// Guid Method
-        /// </summary>
-        public enum GuidGeneratorMethod
-        {
-            Normal,
-            GuidGenerater,
-        }
-
-        /// <summary>
         /// setup method to be called to initialize unit tests
         /// </summary>
         [SetUp]
@@ -51,13 +42,13 @@ namespace UnitTests
         /// </summary>
         /// <param name="count">loop count</param>
         /// <param name="method">GUID generation method</param>
-        [TestCase(3, GuidGeneratorMethod.Normal)]
-        [TestCase(3, GuidGeneratorMethod.GuidGenerater)]
-        [TestCase(10, GuidGeneratorMethod.Normal)]
-        [TestCase(10, GuidGeneratorMethod.GuidGenerater)]
-        public void TestRepeatOneByOne(int count, GuidGeneratorMethod method)
+        [TestCase(3, GuidQueue.GuidGeneratorMethod.Normal)]
+        [TestCase(3, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
+        [TestCase(10, GuidQueue.GuidGeneratorMethod.Normal)]
+        [TestCase(10, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
+        public void TestRepeatOneByOne(int count, GuidQueue.GuidGeneratorMethod method)
         {
-            SetGuidGenerationMethod(method);
+            this.guidQueue.GuidMethod = method;
 
             for (int i = 0; i < count; i++)
             {
@@ -73,13 +64,13 @@ namespace UnitTests
         /// </summary>
         /// <param name="count">loop count</param>
         /// <param name="method">GUID generation method</param>
-        [TestCase(3, GuidGeneratorMethod.Normal)]
-        [TestCase(3, GuidGeneratorMethod.GuidGenerater)]
-        [TestCase(10, GuidGeneratorMethod.Normal)]
-        [TestCase(10, GuidGeneratorMethod.GuidGenerater)]
-        public void TestRepeatAllTogether(int count, GuidGeneratorMethod method)
+        [TestCase(3, GuidQueue.GuidGeneratorMethod.Normal)]
+        [TestCase(3, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
+        [TestCase(10, GuidQueue.GuidGeneratorMethod.Normal)]
+        [TestCase(10, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
+        public void TestRepeatAllTogether(int count, GuidQueue.GuidGeneratorMethod method)
         {
-            SetGuidGenerationMethod(method);
+            this.guidQueue.GuidMethod = method;
 
             var guids = new Guid[count];
             for (int i = 0; i < count; i++)
@@ -92,23 +83,6 @@ namespace UnitTests
                 Assert.That(guids[i], Is.EqualTo(guid2));
             }
             Assert.That(() => { this.guidQueue.NewGuidFromCache(); }, Throws.TypeOf<InvalidOperationException>());
-        }
-
-        /// <summary>
-        /// Set Guid Generation method
-        /// </summary>
-        /// <param name="method"></param>
-        private void SetGuidGenerationMethod(GuidGeneratorMethod method)
-        {
-            if (method == GuidGeneratorMethod.Normal)
-            {
-                ;
-            }
-            else if (method == GuidGeneratorMethod.GuidGenerater)
-            {
-                var guidGenerator = new GuidGenerater();
-                this.guidQueue = new GuidQueue(guidGenerator.NewGuid);
-            }
         }
     }
 }
