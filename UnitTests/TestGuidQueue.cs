@@ -42,11 +42,10 @@ namespace UnitTests
         /// </summary>
         /// <param name="count">loop count</param>
         /// <param name="method">GUID generation method</param>
-        [TestCase(3, GuidQueue.GuidGeneratorMethod.Normal)]
-        [TestCase(3, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
-        [TestCase(10, GuidQueue.GuidGeneratorMethod.Normal)]
-        [TestCase(10, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
-        public void TestRepeatOneByOne(int count, GuidQueue.GuidGeneratorMethod method)
+        [Test, Pairwise]
+        public void TestRepeatOneByOne(
+            [Values(3, 10)] int count,
+            [Values] GuidQueue.GuidGeneratorMethod method)
         {
             this.guidQueue.GuidMethod = method;
 
@@ -64,11 +63,10 @@ namespace UnitTests
         /// </summary>
         /// <param name="count">loop count</param>
         /// <param name="method">GUID generation method</param>
-        [TestCase(3, GuidQueue.GuidGeneratorMethod.Normal)]
-        [TestCase(3, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
-        [TestCase(10, GuidQueue.GuidGeneratorMethod.Normal)]
-        [TestCase(10, GuidQueue.GuidGeneratorMethod.GuidGenerater)]
-        public void TestRepeatAllTogether(int count, GuidQueue.GuidGeneratorMethod method)
+        [Test, Pairwise]
+        public void TestRepeatAllTogether(
+            [Values(3, 10)] int count,
+            [Values] GuidQueue.GuidGeneratorMethod method)
         {
             this.guidQueue.GuidMethod = method;
 
