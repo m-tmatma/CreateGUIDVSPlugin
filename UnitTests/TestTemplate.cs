@@ -10,6 +10,7 @@ namespace UnitTests
     using Microsoft.Win32;
     using NUnit.Framework;
     using CreateGUIDVSPlugin.Utility;
+    using System.Collections.Generic;
 
     /// <summary>
     /// unit test for Template
@@ -17,6 +18,13 @@ namespace UnitTests
     [TestFixture]
     public class TestTemplate
     {
+        /// <summary>
+        /// delegate for creating new GUID
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        internal delegate Guid NewGuid();
+
         /// <summary>
         /// GUID generator class to make unit-testing easier
         /// </summary>
@@ -139,6 +147,87 @@ namespace UnitTests
             var expected = builderExpected.ToString();
             var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
 
+            Console.WriteLine("output  : " + output);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// DictionaryGuidGenerator
+        /// </summary>
+        internal class DictionaryGuidGenerator
+        {
+            /// <summary>
+            /// guid generator
+            /// </summary>
+            private NewGuid newGuid;
+
+            /// <summary>
+            /// dictionary to manage GUIDs.
+            /// </summary>
+            private Dictionary<int, Guid> guidDictionary;
+
+            /// <summary>
+            /// constructor
+            /// </summary>
+            /// <param name="newGuid"></param>
+            internal DictionaryGuidGenerator(TestTemplate.NewGuid newGuid)
+            {
+                this.newGuid = newGuid;
+                this.guidDictionary = new Dictionary<int, Guid>();
+            }
+
+            /// <summary>
+            /// Get GUID
+            /// </summary>
+            /// <param name="index">GUID index</param>
+            /// <returns></returns>
+            internal Guid GetGuid(int index)
+            {
+                if (!this.guidDictionary.ContainsKey(index))
+                {
+                    this.guidDictionary[index] = this.newGuid();
+                }
+                return this.guidDictionary[index];
+            }
+        }
+
+        /// <summary>
+        /// Test All Variable for many GUIDs at random
+        /// </summary>
+        /// <param name="numGUIDs">number of GUIDs</param>
+        /// <param name="count">loop count</param>
+        [TestCase(10, 5)]
+        [TestCase(50, 3)]
+        [TestCase(100, 2)]
+        public void TestAllVariableForManyGuidsAtRandom(int numGUIDs, int count)
+        {
+            var guidGenerator = new GuidGenerater();
+            var builderInput = new StringBuilder();
+            var builderExpected = new StringBuilder();
+            var random = new Random();
+
+            var dictionaryGuid = new DictionaryGuidGenerator(guidGenerator.NewGuid);
+            for (int j = 0; j < numGUIDs; j++)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int guidIndex = random.Next(numGUIDs - 1);
+                    foreach (string variable in AllVariableNames)
+                    {
+                        builderInput.Append(FormVariable(variable, guidIndex));
+                        builderInput.Append(Environment.NewLine);
+
+                        builderExpected.Append(ExpandGuidValue(dictionaryGuid.GetGuid(guidIndex), variable));
+                        builderExpected.Append(Environment.NewLine);
+                    }
+                }
+            }
+            var input = builderInput.ToString();
+            var expected = builderExpected.ToString();
+            var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
+
+            Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
