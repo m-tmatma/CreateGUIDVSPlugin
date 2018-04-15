@@ -28,7 +28,7 @@ namespace UnitTests
         /// <summary>
         /// GUID generator class to make unit-testing easier
         /// </summary>
-        private GuidGenerater guidGenerator;
+        private GuidQueue guidQueue;
 
         /// <summary>
         /// All Variable
@@ -65,7 +65,7 @@ namespace UnitTests
         [SetUp]
         public void SetUp()
         {
-            this.guidGenerator = new GuidGenerater();
+            this.guidQueue = new GuidQueue();
 
             // https://github.com/nunit/docs/wiki/TestContext
             Console.WriteLine(TestContext.CurrentContext.Test.Name);
@@ -79,7 +79,7 @@ namespace UnitTests
         [TearDown]
         public void TearDown()
         {
-            this.guidGenerator = null;
+            this.guidQueue = null;
         }
 
         /// <summary>
@@ -92,11 +92,10 @@ namespace UnitTests
         [TestCase(20)]
         public void TestAllVariable(int count)
         {
-            var guidGenerator = new GuidGenerater();
             var builderInput = new StringBuilder();
             var builderExpected = new StringBuilder();
 
-            var guid = guidGenerator.NewGuid();
+            var guid = this.guidQueue.BrandNewGuid();
             for (int i = 0; i < count; i++)
             {
                 foreach (string variable in AllVariableNames)
@@ -112,7 +111,7 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
+            var output = Template.ProcessTemplate(input, this.guidQueue.NewGuidFromCache);
 
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
@@ -131,13 +130,12 @@ namespace UnitTests
         [TestCase(6, 20)]
         public void TestAllVariableForManyGuids(int numGUIDs, int count)
         {
-            var guidGenerator = new GuidGenerater();
             var builderInput = new StringBuilder();
             var builderExpected = new StringBuilder();
 
             for (int j = 0; j < numGUIDs; j++)
             {
-                var guid = guidGenerator.NewGuid();
+                var guid = this.guidQueue.BrandNewGuid();
                 for (int i = 0; i < count; i++)
                 {
                     foreach (string variable in AllVariableNames)
@@ -154,7 +152,7 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
+            var output = Template.ProcessTemplate(input, this.guidQueue.NewGuidFromCache);
 
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
@@ -212,12 +210,11 @@ namespace UnitTests
         [TestCase(100, 2)]
         public void TestAllVariableForManyGuidsAtRandom(int numGUIDs, int count)
         {
-            var guidGenerator = new GuidGenerater();
             var builderInput = new StringBuilder();
             var builderExpected = new StringBuilder();
             var random = new Random();
 
-            var dictionaryGuid = new DictionaryGuidGenerator(guidGenerator.NewGuid);
+            var dictionaryGuid = new DictionaryGuidGenerator(this.guidQueue.BrandNewGuid);
             for (int j = 0; j < numGUIDs; j++)
             {
                 for (int i = 0; i < count; i++)
@@ -237,7 +234,7 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
+            var output = Template.ProcessTemplate(input, this.guidQueue.NewGuidFromCache);
 
             //Console.WriteLine("output  : " + output);
             //Console.WriteLine("expected: " + expected);
