@@ -3,7 +3,7 @@
 //     Copyright (c) Masaru Tsuchiyama. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Unittest
+namespace UnitTests
 {
     using System;
     using System.Text;

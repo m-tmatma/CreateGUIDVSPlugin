@@ -379,12 +379,19 @@ namespace CreateGUIDVSPlugin.Utility
         }
 
         /// <summary>
+        /// delegate for creating new GUID
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        internal delegate Guid NewGuid();
+
+        /// <summary>
         /// Replace the template variable to the values defined by dictionary
         /// </summary>
         /// <param name="template">template string to be replace</param>
         /// <param name="values">the values to replace</param>
         /// <returns></returns>
-        internal static string ProcessTemplate(string template)
+        internal static string ProcessTemplate(string template, NewGuid newGuid = null)
         {
             const int NoIndex = -1;
             const string patternDivide = @"(?<variable>{\w+(\(\d+\))?})";
@@ -392,6 +399,11 @@ namespace CreateGUIDVSPlugin.Utility
             var substrings = Regex.Split(template, patternDivide, RegexOptions.ExplicitCapture);
             var regex = new Regex(patternParse, RegexOptions.Compiled);
             Dictionary<int, Dictionary<string, string>> dataBase = new Dictionary<int, Dictionary<string, string>>();
+
+            if (newGuid == null)
+            {
+                newGuid = delegate () { return Guid.NewGuid(); };
+            }
 
             var builder = new StringBuilder();
             foreach (string str in substrings)
@@ -427,7 +439,7 @@ namespace CreateGUIDVSPlugin.Utility
 
                     if (!dataBase.ContainsKey(guidIndex))
                     {
-                        var guid = Guid.NewGuid();
+                        var guid = newGuid();
                         dataBase[guidIndex] = CreateValuesDictionary(guid);
                     }
                     values = dataBase[guidIndex];
