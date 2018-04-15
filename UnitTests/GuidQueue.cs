@@ -80,13 +80,24 @@ namespace UnitTests
         }
 
         /// <summary>
-        /// create brand-new GUID
+        /// create brand-new GUID with queueing
         /// </summary>
         /// <returns>new GUID</returns>
         public Guid BrandNewGuid()
         {
             var guid = this.newGuid();
             this.fifo.Enqueue(guid);
+            return guid;
+        }
+
+        /// <summary>
+        /// create brand-new GUID without queueing
+        /// </summary>
+        /// <returns>new GUID</returns>
+        public Guid BrandNewGuidNoCache()
+        {
+            var guid = this.newGuid();
+            this.fifo.Clear();
             return guid;
         }
 
