@@ -180,9 +180,11 @@ namespace UnitTests
 
                 var srcGuid = this.srcGuidQueue.BrandNewGuidNoCache();
                 var dstGuid = Guid.Empty;
+                var validDstGuid = false;
                 if (testMethod == TestMethod.ReplaceSameGuidToSameGuid)
                 {
                     dstGuid = this.dstGuidQueue.BrandNewGuid();
+                    validDstGuid = true;
                 }
 
                 ValidFormatGuid formatGuid = delegate(StringBuilder builder, Guid guid, ValidFormat destFormat)
@@ -202,7 +204,12 @@ namespace UnitTests
                     if (testMethod == TestMethod.ReplaceNewGuid)
                     {
                         dstGuid = this.dstGuidQueue.BrandNewGuid();
+                        validDstGuid = true;
                     }
+
+                    // check whether dstGuid was set to valid value.
+                    Assert.That(validDstGuid, Is.EqualTo(true));
+
                     // create expected data
                     formatGuid(builderResult, dstGuid, format);
                 }
