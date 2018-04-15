@@ -9,6 +9,7 @@ namespace UnitTests
     using System.Text;
     using NUnit.Framework;
     using CreateGUIDVSPlugin.Utility;
+    using System.Collections.Generic;
 
     /// <summary>
     /// unit test for ReplaceWithNewGuid
@@ -30,7 +31,7 @@ namespace UnitTests
         /// enum of GUID Format
         /// </summary>
         /// <see href="https://msdn.microsoft.com/en-us/library/97af8hh4(v=vs.110).aspx">Guid.ToString Method (String)</see>
-        private enum ValidFormat
+        public enum ValidFormat
         {
             /// <summary>
             /// enum definition for hyphen separated GUID
@@ -78,7 +79,7 @@ namespace UnitTests
         /// <summary>
         /// enum of Invalid GUID Format
         /// </summary>
-        private enum InvalidFormat
+        public enum InvalidFormat
         {
             /// <summary>
             /// enum definition for wrong DEFINE_GUID
@@ -144,17 +145,20 @@ namespace UnitTests
         delegate void InvalidFormatGuid(StringBuilder builder, Guid guid, InvalidFormat destFormat);
 
         /// <summary>
-        /// utility function for ReplaceSameGuidToSameGuid
+        /// Test ReplaceNewGuid/ReplaceSameGuidToSameGuid for valid data
         /// </summary>
         /// <param name="count">loop count</param>
         /// <param name="repeat">repeat count</param>
+        /// <param name="testMethod">target method of ReplaceWithNewGuid</param>
+        /// <param name="returnMethod">enum select method</param>
         /// <param name="srcMethod">GUID generation method for source GUIDs</param>
         /// <param name="dstMethod">GUID generation method for destination GUIDs</param>
         [Test, Pairwise]
-        public void TestGuidByRandomValidFormat(
+        public void TestGuidValidFormat(
             [Values(3, 5, 7, 10, 20, 50, 100)] int count,
             [Values(2, 5)] int repeat,
             [Values] TestMethod testMethod,
+            [Values] EnumIterator<ValidFormat>.ReturnMethodType returnMethod,
             [Values] GuidQueue.GuidGeneratorMethod srcMethod,
             [Values] GuidQueue.GuidGeneratorMethod dstMethod)
         {
@@ -164,16 +168,11 @@ namespace UnitTests
             var builderInput = new StringBuilder();
             var builderResult = new StringBuilder();
 
-            Array values = Enum.GetValues(typeof(ValidFormat));
-            var random = new Random();
-
             // create source data
-            for (int i = 0; i < count; i++)
+            IEnumerable<ValidFormat> iterater = EnumIterator<ValidFormat>.Enumerable(returnMethod);
+            foreach (ValidFormat format in iterater)
             {
-                // choose enum 'Format' randomly
-                var format = (ValidFormat)values.GetValue(random.Next(values.Length));
-
-                var separator = string.Format("------ {0} ------", i);
+                var separator = string.Format("------------");
 #if PRINTF_DEBUG
                 Console.WriteLine(i.ToString() + ": " + format.ToString());
 #endif // PRINTF_DEBUG
@@ -236,17 +235,20 @@ namespace UnitTests
         }
 
         /// <summary>
-        /// utility function for ReplaceSameGuidToSameGuid
+        /// Test ReplaceNewGuid/ReplaceSameGuidToSameGuid for invalid data
         /// </summary>
         /// <param name="count">loop count</param>
         /// <param name="repeat">repeat count</param>
-        /// <param name="testMethod">test method</param>
-        /// <param name="newSrcGuid">delegate for creating new source GUIDs</param>
+        /// <param name="testMethod">target method of ReplaceWithNewGuid</param>
+        /// <param name="returnMethod">enum select method</param>
+        /// <param name="srcMethod">GUID generation method for source GUIDs</param>
+        /// <param name="dstMethod">GUID generation method for destination GUIDs</param>
         [Test, Pairwise]
-        public void TestGuidByRandomInvalidFormat(
+        public void TestGuidInvalidFormat(
             [Values(3, 5, 7, 10, 20, 50, 100)] int count,
             [Values(2, 5)] int repeat,
             [Values] TestMethod testMethod,
+            [Values] EnumIterator<InvalidFormat>.ReturnMethodType returnMethod,
             [Values] GuidQueue.GuidGeneratorMethod srcMethod,
             [Values] GuidQueue.GuidGeneratorMethod dstMethod)
         {
@@ -255,16 +257,11 @@ namespace UnitTests
 
             var builderInput = new StringBuilder();
 
-            Array values = Enum.GetValues(typeof(InvalidFormat));
-            var random = new Random();
-
             // create source data
-            for (int i = 0; i < count; i++)
+            IEnumerable<InvalidFormat> iterater = EnumIterator<InvalidFormat>.Enumerable(returnMethod);
+            foreach (InvalidFormat format in iterater)
             {
-                // choose enum 'Format' randomly
-                var format = (InvalidFormat)values.GetValue(random.Next(values.Length));
-
-                var separator = string.Format("------ {0} ------", i);
+                var separator = string.Format("------------");
 #if PRINTF_DEBUG
                 Console.WriteLine(i.ToString() + ": " + format.ToString());
 #endif // PRINTF_DEBUG
