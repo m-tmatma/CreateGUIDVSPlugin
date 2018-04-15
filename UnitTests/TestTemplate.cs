@@ -76,7 +76,7 @@ namespace UnitTests
         public void TestAllVariable()
         {
             var guidGenerator = new GuidGenerater();
-            var guid = Guid.NewGuid();
+            var guid = guidGenerator.NewGuid();
 
             var builderInput = new StringBuilder();
             var builderExpected = new StringBuilder();
@@ -90,7 +90,7 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.ProcessTemplate(input);
+            var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
 
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
