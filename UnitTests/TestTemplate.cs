@@ -228,7 +228,6 @@ namespace UnitTests
             var expected = builderExpected.ToString();
             var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
 
-            Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
