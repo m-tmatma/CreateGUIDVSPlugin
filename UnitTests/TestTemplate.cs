@@ -72,21 +72,28 @@ namespace UnitTests
         /// <summary>
         /// Test All Variable
         /// </summary>
-        [Test]
-        public void TestAllVariable()
+        /// <param name="count">loop count</param>
+        [TestCase(1)]
+        [TestCase(3)]
+        [TestCase(10)]
+        [TestCase(20)]
+        public void TestAllVariable(int count)
         {
             var guidGenerator = new GuidGenerater();
             var builderInput = new StringBuilder();
             var builderExpected = new StringBuilder();
 
             var guid = guidGenerator.NewGuid();
-            foreach (string variable in AllVariableNames)
+            for (int i = 0; i < count; i++)
             {
-                builderInput.Append(FormVariable(variable));
-                builderInput.Append(Environment.NewLine);
+                foreach (string variable in AllVariableNames)
+                {
+                    builderInput.Append(FormVariable(variable));
+                    builderInput.Append(Environment.NewLine);
 
-                builderExpected.Append(ExpandGuidValue(guid, variable));
-                builderExpected.Append(Environment.NewLine);
+                    builderExpected.Append(ExpandGuidValue(guid, variable));
+                    builderExpected.Append(Environment.NewLine);
+                }
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
