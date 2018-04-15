@@ -197,6 +197,7 @@ namespace UnitTests
         /// </summary>
         /// <param name="numGUIDs">number of GUIDs</param>
         /// <param name="count">loop count</param>
+        [TestCase(3, 5)]
         [TestCase(10, 5)]
         [TestCase(50, 3)]
         [TestCase(100, 2)]
