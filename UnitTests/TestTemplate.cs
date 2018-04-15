@@ -104,6 +104,46 @@ namespace UnitTests
             Assert.That(output, Is.EqualTo(expected));
         }
 
+
+        /// <summary>
+        /// Test All Variable for many GUIDs
+        /// </summary>
+        /// <param name="numGUIDs">number of GUIDs</param>
+        /// <param name="count">loop count</param>
+        [TestCase(2, 1)]
+        [TestCase(4, 3)]
+        [TestCase(5, 10)]
+        [TestCase(6, 20)]
+        public void TestAllVariableForManyGuids(int numGUIDs, int count)
+        {
+            var guidGenerator = new GuidGenerater();
+            var builderInput = new StringBuilder();
+            var builderExpected = new StringBuilder();
+
+            for (int j = 0; j < numGUIDs; j++)
+            {
+                var guid = guidGenerator.NewGuid();
+                for (int i = 0; i < count; i++)
+                {
+                    foreach (string variable in AllVariableNames)
+                    {
+                        builderInput.Append(FormVariable(variable, j));
+                        builderInput.Append(Environment.NewLine);
+
+                        builderExpected.Append(ExpandGuidValue(guid, variable));
+                        builderExpected.Append(Environment.NewLine);
+                    }
+                }
+            }
+            var input = builderInput.ToString();
+            var expected = builderExpected.ToString();
+            var output = Template.ProcessTemplate(input, this.guidGenerator.NewGuid);
+
+            Console.WriteLine("output  : " + output);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
         /// <summary>
         /// create Variable
         /// </summary>
