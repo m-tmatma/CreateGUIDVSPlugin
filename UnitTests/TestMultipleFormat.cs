@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MultipleFormat.cs" company="Masaru Tsuchiyama">
+// <copyright file="TestMultipleFormat.cs" company="Masaru Tsuchiyama">
 //     Copyright (c) Masaru Tsuchiyama. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace UnitTests
     /// unit test for ReplaceWithNewGuid
     /// </summary>
     [TestFixture]
-    public class MultipleFormat
+    public class TestMultipleFormat
     {
         /// <summary>
         /// GUID generator class to make unit-testing easier
@@ -169,7 +169,7 @@ namespace UnitTests
             var builderResult = new StringBuilder();
 
             // create source data
-            IEnumerable<ValidFormat> iterater = EnumIterator<ValidFormat>.Enumerable(returnMethod);
+            var iterater = EnumIterator<ValidFormat>.Enumerable(returnMethod);
             foreach (ValidFormat format in iterater)
             {
                 var separator = string.Format("------------");
@@ -258,7 +258,7 @@ namespace UnitTests
             var builderInput = new StringBuilder();
 
             // create source data
-            IEnumerable<InvalidFormat> iterater = EnumIterator<InvalidFormat>.Enumerable(returnMethod);
+            var iterater = EnumIterator<InvalidFormat>.Enumerable(returnMethod);
             foreach (InvalidFormat format in iterater)
             {
                 var separator = string.Format("------------");

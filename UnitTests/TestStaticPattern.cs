@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="StaticPattern.cs" company="Masaru Tsuchiyama">
+// <copyright file="TestStaticPattern.cs" company="Masaru Tsuchiyama">
 //     Copyright (c) Masaru Tsuchiyama. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace UnitTests
     /// unit test for ReplaceWithNewGuid
     /// </summary>
     [TestFixture]
-    public class StaticPattern
+    public class TestStaticPattern
     {
         /// <summary>
         /// input data for test1
