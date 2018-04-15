@@ -66,6 +66,11 @@ namespace UnitTests
         public void SetUp()
         {
             this.guidGenerator = new GuidGenerater();
+
+            // https://github.com/nunit/docs/wiki/TestContext
+            Console.WriteLine(TestContext.CurrentContext.Test.Name);
+            Console.WriteLine(TestContext.CurrentContext.Test.ClassName);
+            Console.WriteLine(TestContext.CurrentContext.Test.FullName);
         }
 
         /// <summary>
