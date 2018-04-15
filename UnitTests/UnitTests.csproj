@@ -59,12 +59,14 @@
     <Compile Include="..\CreateGUIDVSPlugin\Utility\Template.cs">
       <Link>Utility\Template.cs</Link>
     </Compile>
+    <Compile Include="EnumIterator.cs" />
     <Compile Include="GuidGenerater.cs" />
     <Compile Include="GuidQueue.cs" />
     <Compile Include="MultipleFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticPattern.cs" />
     <Compile Include="TestConfiguration.cs" />
+    <Compile Include="TestEnumIterator.cs" />
     <Compile Include="TestGuidQueue.cs" />
     <Compile Include="TestTemplate.cs" />
   </ItemGroup>
