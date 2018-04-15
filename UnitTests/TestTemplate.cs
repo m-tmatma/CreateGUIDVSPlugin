@@ -102,11 +102,13 @@ namespace UnitTests
                 foreach (string variable in AllVariableNames)
                 {
                     builderInput.Append(FormVariable(variable));
-                    builderInput.Append(Environment.NewLine);
+                    builderInput.Append(' ');
 
                     builderExpected.Append(ExpandGuidValue(guid, variable));
-                    builderExpected.Append(Environment.NewLine);
+                    builderExpected.Append(' ');
                 }
+                builderInput.Append(Environment.NewLine);
+                builderExpected.Append(Environment.NewLine);
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
@@ -141,11 +143,13 @@ namespace UnitTests
                     foreach (string variable in AllVariableNames)
                     {
                         builderInput.Append(FormVariable(variable, j));
-                        builderInput.Append(Environment.NewLine);
+                        builderInput.Append(' ');
 
                         builderExpected.Append(ExpandGuidValue(guid, variable));
-                        builderExpected.Append(Environment.NewLine);
+                        builderExpected.Append(' ');
                     }
+                    builderInput.Append(Environment.NewLine);
+                    builderExpected.Append(Environment.NewLine);
                 }
             }
             var input = builderInput.ToString();
@@ -222,11 +226,13 @@ namespace UnitTests
                     foreach (string variable in AllVariableNames)
                     {
                         builderInput.Append(FormVariable(variable, guidIndex));
-                        builderInput.Append(Environment.NewLine);
+                        builderInput.Append(' ');
 
                         builderExpected.Append(ExpandGuidValue(dictionaryGuid.GetGuid(guidIndex), variable));
-                        builderExpected.Append(Environment.NewLine);
+                        builderExpected.Append(' ');
                     }
+                    builderInput.Append(Environment.NewLine);
+                    builderExpected.Append(Environment.NewLine);
                 }
             }
             var input = builderInput.ToString();
