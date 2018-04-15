@@ -212,7 +212,7 @@ namespace UnitTests
             {
                 for (int i = 0; i < count; i++)
                 {
-                    int guidIndex = random.Next(numGUIDs - 1);
+                    int guidIndex = random.Next(-1, numGUIDs - 1);
                     foreach (string variable in AllVariableNames)
                     {
                         builderInput.Append(FormVariable(variable, guidIndex));
@@ -251,7 +251,14 @@ namespace UnitTests
         /// <returns>variable</returns>
         private string FormVariable(string variableName, int index)
         {
-            return "{" + variableName + "(" + index.ToString() + ")" + "}";
+            if (index >= 0)
+            {
+                return "{" + variableName + "(" + index.ToString() + ")" + "}";
+            }
+            else
+            {
+                return FormVariable(variableName);
+            }
         }
 
         /// <summary>
