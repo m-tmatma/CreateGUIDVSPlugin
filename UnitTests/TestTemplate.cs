@@ -76,10 +76,10 @@ namespace UnitTests
         public void TestAllVariable()
         {
             var guidGenerator = new GuidGenerater();
-            var guid = guidGenerator.NewGuid();
-
             var builderInput = new StringBuilder();
             var builderExpected = new StringBuilder();
+
+            var guid = guidGenerator.NewGuid();
             foreach (string variable in AllVariableNames)
             {
                 builderInput.Append(FormVariable(variable));
