@@ -242,6 +242,18 @@ namespace UnitTests
         }
 
         /// <summary>
+        /// Test Empty Variable
+        /// </summary>
+        [Test]
+        public void TestAllEmptyVariable()
+        {
+            var input = "{}";
+            var expected = input;
+            var output = Template.ProcessTemplate(input);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
         /// create Variable
         /// </summary>
         /// <param name="variableName">variable name</param>
