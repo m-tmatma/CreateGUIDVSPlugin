@@ -327,6 +327,23 @@ namespace CreateGUIDVSPlugin.Utility
         };
 
         /// <summary>
+        /// check keyword is valid or not
+        /// </summary>
+        /// <param name="keyword">keyword</param>
+        /// <returns></returns>
+        internal static bool IsValidKeyword(string keyword)
+        {
+            foreach (VariableManager variableManager in Template.Variables)
+            {
+                if (keyword == variableManager.Keyword)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Create a dictionary for the template values
         /// </summary>
         /// <returns></returns>
@@ -418,31 +435,31 @@ namespace CreateGUIDVSPlugin.Utility
                 {
                     var groupKeyword = match.Groups["keyword"];
                     var groupIndex = match.Groups["index"];
-                    if (groupKeyword.Success)
+                    if (groupKeyword.Success && IsValidKeyword(groupKeyword.Value))
                     {
                         keywordOrData = groupKeyword.Value;
+                        if (groupIndex.Success)
+                        {
+                            elementType = Type.TemplateIndex;
+                            guidIndex = int.Parse(groupIndex.Value);
+                        }
+                        else
+                        {
+                            elementType = Type.TemplateNoIndex;
+                            guidIndex = NoIndex;
+                        }
+                        if (!dataBase.ContainsKey(guidIndex))
+                        {
+                            var guid = newGuid();
+                            dataBase[guidIndex] = CreateValuesDictionary(guid);
+                        }
+                        values = dataBase[guidIndex];
                     }
                     else
                     {
-                        keywordOrData = string.Empty;
+                        elementType = Type.NormalString;
+                        keywordOrData = str;
                     }
-                    if (groupIndex.Success)
-                    {
-                        elementType = Type.TemplateIndex;
-                        guidIndex = int.Parse(groupIndex.Value);
-                    }
-                    else
-                    {
-                        elementType = Type.TemplateNoIndex;
-                        guidIndex = NoIndex;
-                    }
-
-                    if (!dataBase.ContainsKey(guidIndex))
-                    {
-                        var guid = newGuid();
-                        dataBase[guidIndex] = CreateValuesDictionary(guid);
-                    }
-                    values = dataBase[guidIndex];
                 }
                 else
                 {
