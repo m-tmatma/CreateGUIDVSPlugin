@@ -32,6 +32,21 @@ namespace UnitTests
             /// "}" is missing in a variable
             /// </summary>
             MissingLatterBlacket,
+
+            /// <summary>
+            /// missing first charator in valid variable
+            /// </summary>
+            MissingFirstCharactor,
+
+            /// <summary>
+            /// missing last charator in valid variable
+            /// </summary>
+            MissingLastCharactor,
+
+            /// <summary>
+            /// missing first and last charator in valid variable
+            /// </summary>
+            MissingFirstLastCharactor,
         }
 
         /// <summary>
@@ -291,6 +306,15 @@ namespace UnitTests
                             break;
                         case InvalidVariableType.MissingLatterBlacket:
                             builderInput.Append("{" + variable);
+                            break;
+                        case InvalidVariableType.MissingFirstCharactor:
+                            builderInput.Append(FormVariable(variable.Substring(1)));
+                            break;
+                        case InvalidVariableType.MissingLastCharactor:
+                            builderInput.Append(FormVariable(variable.Substring(0, variable.Length - 1)));
+                            break;
+                        case InvalidVariableType.MissingFirstLastCharactor:
+                            builderInput.Append(FormVariable(variable.Substring(1, variable.Length - 1)));
                             break;
                         default:
                             throw new ArgumentException(invalidType.ToString());
