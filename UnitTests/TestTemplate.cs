@@ -19,6 +19,37 @@ namespace UnitTests
     public class TestTemplate
     {
         /// <summary>
+        /// invalid variable type
+        /// </summary>
+        public enum InvalidVariableType
+        {
+            /// <summary>
+            /// "{" is missing in a variable
+            /// </summary>
+            MissingFormerBlacket,
+
+            /// <summary>
+            /// "}" is missing in a variable
+            /// </summary>
+            MissingLatterBlacket,
+
+            /// <summary>
+            /// missing first charator in valid variable
+            /// </summary>
+            MissingFirstCharactor,
+
+            /// <summary>
+            /// missing last charator in valid variable
+            /// </summary>
+            MissingLastCharactor,
+
+            /// <summary>
+            /// missing first and last charator in valid variable
+            /// </summary>
+            MissingFirstLastCharactor,
+        }
+
+        /// <summary>
         /// delegate for creating new GUID
         /// </summary>
         /// <param name="guid"></param>
@@ -238,6 +269,61 @@ namespace UnitTests
 
             //Console.WriteLine("output  : " + output);
             //Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// Test Empty Variable
+        /// </summary>
+        [Test]
+        public void TestAllEmptyVariable()
+        {
+            var input = "{}";
+            var expected = input;
+            var output = Template.ProcessTemplate(input);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// Test All Variables which don't have both blackets.
+        /// </summary>
+        /// <param name="count">loop count</param>
+        /// <param name="invalidType">type of broken variable</param>
+        [Test, Pairwise]
+        public void TestAllVariableInvalid(
+            [Values(3, 10)] int count,
+            [Values] InvalidVariableType invalidType)
+        {
+            var builderInput = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                foreach (string variable in AllVariableNames)
+                {
+                    switch(invalidType)
+                    {
+                        case InvalidVariableType.MissingFormerBlacket:
+                            builderInput.Append(variable + "}");
+                            break;
+                        case InvalidVariableType.MissingLatterBlacket:
+                            builderInput.Append("{" + variable);
+                            break;
+                        case InvalidVariableType.MissingFirstCharactor:
+                            builderInput.Append(FormVariable(variable.Substring(1)));
+                            break;
+                        case InvalidVariableType.MissingLastCharactor:
+                            builderInput.Append(FormVariable(variable.Substring(0, variable.Length - 1)));
+                            break;
+                        case InvalidVariableType.MissingFirstLastCharactor:
+                            builderInput.Append(FormVariable(variable.Substring(1, variable.Length - 1)));
+                            break;
+                        default:
+                            throw new ArgumentException(invalidType.ToString());
+                    }
+                }
+            }
+            var input = builderInput.ToString();
+            var expected = input;
+            var output = Template.ProcessTemplate(input, this.guidQueue.NewGuidFromCache);
             Assert.That(output, Is.EqualTo(expected));
         }
 
