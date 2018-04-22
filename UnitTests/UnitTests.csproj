@@ -53,6 +53,9 @@
     <Compile Include="..\CreateGUIDVSPlugin\Utility\FormatGuid.cs">
       <Link>Utility\FormatGuid.cs</Link>
     </Compile>
+    <Compile Include="..\CreateGUIDVSPlugin\Utility\ProcessTemplate.cs">
+      <Link>Utility\ProcessTemplate.cs</Link>
+    </Compile>
     <Compile Include="..\CreateGUIDVSPlugin\Utility\ReplaceWithNewGuid.cs">
       <Link>Utility\ReplaceWithNewGuid.cs</Link>
     </Compile>
@@ -64,6 +67,7 @@
     <Compile Include="GuidQueue.cs" />
     <Compile Include="TestMultipleFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestProcessTemplate.cs" />
     <Compile Include="TestStaticPattern.cs" />
     <Compile Include="TestConfiguration.cs" />
     <Compile Include="TestEnumIterator.cs" />
