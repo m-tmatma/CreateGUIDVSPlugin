@@ -69,6 +69,7 @@
     <Compile Include="RenewGuidCommand.cs" />
     <Compile Include="Utility\Configuration.cs" />
     <Compile Include="Utility\FormatGuid.cs" />
+    <Compile Include="Utility\ProcessTemplate.cs" />
     <Compile Include="Utility\ReplaceWithNewGuid.cs" />
     <Compile Include="Utility\Template.cs" />
     <Compile Include="VSPackage.cs" />

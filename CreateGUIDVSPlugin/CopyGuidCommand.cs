@@ -168,7 +168,7 @@ namespace CreateGUIDVSPlugin
                 var configuration = this.package.GetConfiguration();
                 var formatString = configuration.FormatString;
 
-                var copyString = Template.ProcessTemplate(formatString);
+                var copyString = Template.Process(formatString);
 #if DEBUG
                 this.ClearOutout();
                 this.ActivateOutout();
