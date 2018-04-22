@@ -53,7 +53,6 @@ namespace Unittest
         [TestCase("Variable,1", false)]
         [TestCase("Variable.1", false)]
         [TestCase("Variable[1", false)]
-        [TestCase("Variable[1", false)]
         [TestCase("Variable(1", false)]
         [TestCase("Variable1)", false)]
         [TestCase("[Variable1]", false)]
