@@ -38,7 +38,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// instance of regular expression
         /// </summary>
-        static private Regex reg = new Regex(regexStr);
+        static internal Regex reg = new Regex(regexStr);
 
         /// <summary>
         /// definition of delegate

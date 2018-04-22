@@ -37,6 +37,36 @@ namespace Unittest
         {
         }
 
+        [TestCase("Variable1", true)]
+        [TestCase("Variable_5", true)]
+        [TestCase("Variable1(2)", true)]
+        [TestCase("Variable2(123)", true)]
+        [TestCase("Variable1(a)", false)]
+        [TestCase("Variable2(ef)", false)]
+        [TestCase("Variable1(123d)", false)]
+        [TestCase("Variable2(-123)", false)]
+        [TestCase("Variable3(+123)", false)]
+        [TestCase("Variable4(d123)", false)]
+        [TestCase("Variable-1", false)]
+        [TestCase("Variable+1", false)]
+        [TestCase("Variable 1", false)]
+        [TestCase("Variable,1", false)]
+        [TestCase("Variable.1", false)]
+        [TestCase("Variable[1", false)]
+        [TestCase("Variable[1", false)]
+        [TestCase("Variable(1", false)]
+        [TestCase("Variable1)", false)]
+        [TestCase("[Variable1]", false)]
+        public void Test_RegEx(string inputKeyword, bool expected)
+        {
+            var input = "{" + inputKeyword + "}";
+            var output = ProcessTemplate.reg.Match(input);
+            Console.WriteLine("input   : " + input);
+            Console.WriteLine("output  : " + output.Success);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output.Success, Is.EqualTo(expected));
+        }
+
         [TestCase("Variable1", "VariableA")]
         [TestCase("Variable2", "VariableB")]
         [TestCase("Variable3", "VariableC")]
