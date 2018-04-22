@@ -45,14 +45,6 @@ namespace CreateGUIDVSPlugin.Utility
     /// </summary>
     internal class Template
     {
-        internal enum Type
-        {
-            None,
-            NormalString,
-            TemplateNoIndex,
-            TemplateIndex,
-        };
-
         /// <summary>
         /// Template Name for Lower Case GUID with Hyphens
         /// </summary>
@@ -183,6 +175,136 @@ namespace CreateGUIDVSPlugin.Utility
         internal const string VariableUpperCaseBytesPartByte8 = "UpperCaseBytesPartByte8";
 
         /// <summary>
+        /// class to provide delegate for replacing variable to GUID string.
+        /// </summary>
+        internal class GuidTranslationHandler
+        {
+            /// <summary>
+            /// GUID cache
+            /// </summary>
+            private Dictionary<int, Guid> dictGuid = new Dictionary<int, Guid>();
+
+            /// <summary>
+            /// delegate for getting a new GUID
+            /// </summary>
+            private Template.NewGuid newGuid;
+
+            /// <summary>
+            /// constructor
+            /// </summary>
+            internal GuidTranslationHandler(Template.NewGuid newGuid)
+            {
+                this.newGuid = newGuid;
+            }
+
+            /// <summary>
+            /// delegate to substitute keywords
+            /// </summary>
+            /// <param name="keyword">keyword</param>
+            /// <param name="index">index</param>
+            /// <returns></returns>
+            internal string delegateGetNewText(string keyword, int index)
+            {
+                switch (keyword)
+                {
+                    case Template.VariableLowerCaseGuidWithHyphens:
+                    case Template.VariableLowerCaseGuidWithoutHyphens:
+
+                    case Template.VariableLowerCase1stPart:
+                    case Template.VariableLowerCase2ndPart:
+                    case Template.VariableLowerCase3rdPart:
+                    case Template.VariableLowerCaseBytesPartByte1:
+                    case Template.VariableLowerCaseBytesPartByte2:
+                    case Template.VariableLowerCaseBytesPartByte3:
+                    case Template.VariableLowerCaseBytesPartByte4:
+                    case Template.VariableLowerCaseBytesPartByte5:
+                    case Template.VariableLowerCaseBytesPartByte6:
+                    case Template.VariableLowerCaseBytesPartByte7:
+                    case Template.VariableLowerCaseBytesPartByte8:
+
+                    case Template.VariableUpperCaseGuidWithHyphens:
+                    case Template.VariableUpperCaseGuidWithoutHyphens:
+
+                    case Template.VariableUpperCase1stPart:
+                    case Template.VariableUpperCase2ndPart:
+                    case Template.VariableUpperCase3rdPart:
+                    case Template.VariableUpperCaseBytesPartByte1:
+                    case Template.VariableUpperCaseBytesPartByte2:
+                    case Template.VariableUpperCaseBytesPartByte3:
+                    case Template.VariableUpperCaseBytesPartByte4:
+                    case Template.VariableUpperCaseBytesPartByte5:
+                    case Template.VariableUpperCaseBytesPartByte6:
+                    case Template.VariableUpperCaseBytesPartByte7:
+                    case Template.VariableUpperCaseBytesPartByte8:
+                        break;
+                    default:
+                        throw new ProcessTemplate.InvalidKeywordException(keyword);
+                }
+
+                // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
+                // see https://msdn.microsoft.com/library/system.guid(v=vs.110).aspx
+                // see 'Reference Source' link in the above site.
+                var guid = GetGuid(index);
+                var formatGuid = new FormatGuid(guid);
+                switch (keyword)
+                {
+                    case Template.VariableLowerCaseGuidWithHyphens: return guid.ToString("D");
+                    case Template.VariableLowerCaseGuidWithoutHyphens: return guid.ToString("N");
+
+                    case Template.VariableLowerCase1stPart: return formatGuid.Data1.ToString("x8");
+                    case Template.VariableLowerCase2ndPart: return formatGuid.Data2.ToString("x4");
+                    case Template.VariableLowerCase3rdPart: return formatGuid.Data3.ToString("x4");
+                    case Template.VariableLowerCaseBytesPartByte1: return formatGuid.Bytes[0].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte2: return formatGuid.Bytes[1].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte3: return formatGuid.Bytes[2].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte4: return formatGuid.Bytes[3].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte5: return formatGuid.Bytes[4].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte6: return formatGuid.Bytes[5].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte7: return formatGuid.Bytes[6].ToString("x2");
+                    case Template.VariableLowerCaseBytesPartByte8: return formatGuid.Bytes[7].ToString("x2");
+
+                    case Template.VariableUpperCaseGuidWithHyphens: return guid.ToString("D").ToUpper();
+                    case Template.VariableUpperCaseGuidWithoutHyphens: return guid.ToString("N").ToUpper();
+
+                    case Template.VariableUpperCase1stPart: return formatGuid.Data1.ToString("X8");
+                    case Template.VariableUpperCase2ndPart: return formatGuid.Data2.ToString("X4");
+                    case Template.VariableUpperCase3rdPart: return formatGuid.Data3.ToString("X4");
+                    case Template.VariableUpperCaseBytesPartByte1: return formatGuid.Bytes[0].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte2: return formatGuid.Bytes[1].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte3: return formatGuid.Bytes[2].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte4: return formatGuid.Bytes[3].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte5: return formatGuid.Bytes[4].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte6: return formatGuid.Bytes[5].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte7: return formatGuid.Bytes[6].ToString("X2");
+                    case Template.VariableUpperCaseBytesPartByte8: return formatGuid.Bytes[7].ToString("X2");
+
+                    default:
+                        throw new ProcessTemplate.InvalidKeywordException(keyword);
+                }
+            }
+
+            /// <summary>
+            /// fetch a GUID
+            /// </summary>
+            /// <param name="index">index</param>
+            /// <returns>GUID</returns>
+            private Guid GetGuid(int index)
+            {
+                Guid guid = Guid.Empty;
+                if (!dictGuid.ContainsKey(index))
+                {
+                    guid = newGuid();
+                    dictGuid[index] = guid;
+                }
+                else
+                {
+                    guid = dictGuid[index];
+                }
+                return guid;
+            }
+        }
+
+        /// <summary>
         /// Template Variables
         /// </summary>
         internal readonly static VariableManager[] Variables = new VariableManager[]
@@ -307,95 +429,6 @@ namespace CreateGUIDVSPlugin.Utility
 #endif
 
         /// <summary>
-        /// Table between variables of Upper Case and variables of Lower Case
-        /// </summary>
-        internal readonly static Dictionary<string, string> CaseMap = new Dictionary<string, string>
-        {
-            {Template.VariableUpperCaseGuidWithHyphens,    Template.VariableLowerCaseGuidWithHyphens},
-            {Template.VariableUpperCaseGuidWithoutHyphens, Template.VariableLowerCaseGuidWithoutHyphens},
-            {Template.VariableUpperCase1stPart, Template.VariableLowerCase1stPart},
-            {Template.VariableUpperCase2ndPart, Template.VariableLowerCase2ndPart},
-            {Template.VariableUpperCase3rdPart, Template.VariableLowerCase3rdPart},
-            {Template.VariableUpperCaseBytesPartByte1, Template.VariableLowerCaseBytesPartByte1},
-            {Template.VariableUpperCaseBytesPartByte2, Template.VariableLowerCaseBytesPartByte2},
-            {Template.VariableUpperCaseBytesPartByte3, Template.VariableLowerCaseBytesPartByte3},
-            {Template.VariableUpperCaseBytesPartByte4, Template.VariableLowerCaseBytesPartByte4},
-            {Template.VariableUpperCaseBytesPartByte5, Template.VariableLowerCaseBytesPartByte5},
-            {Template.VariableUpperCaseBytesPartByte6, Template.VariableLowerCaseBytesPartByte6},
-            {Template.VariableUpperCaseBytesPartByte7, Template.VariableLowerCaseBytesPartByte7},
-            {Template.VariableUpperCaseBytesPartByte8, Template.VariableLowerCaseBytesPartByte8},
-        };
-
-        /// <summary>
-        /// check keyword is valid or not
-        /// </summary>
-        /// <param name="keyword">keyword</param>
-        /// <returns></returns>
-        internal static bool IsValidKeyword(string keyword)
-        {
-            foreach (VariableManager variableManager in Template.Variables)
-            {
-                if (keyword == variableManager.Keyword)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Create a dictionary for the template values
-        /// </summary>
-        /// <returns></returns>
-        internal static Dictionary<string, string> CreateValuesDictionary(Guid guid)
-        {
-            var values = new Dictionary<string, string>();
-            foreach (VariableManager variableManager in Template.Variables)
-            {
-                values[variableManager.Keyword] = string.Empty;
-            }
-
-            //
-            // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
-            // see https://msdn.microsoft.com/library/system.guid(v=vs.110).aspx
-            // see 'Reference Source' link in the above site.
-            //
-            var lowerWithHyphens = guid.ToString("D");
-            values[Template.VariableLowerCaseGuidWithHyphens] = lowerWithHyphens;
-
-            var lowerWithoutHyphens = guid.ToString("N");
-            values[Template.VariableLowerCaseGuidWithoutHyphens] = lowerWithoutHyphens;
-
-            var formatGuid = new FormatGuid(guid);
-            values[Template.VariableLowerCase1stPart] = formatGuid.Data1.ToString("x8");
-            values[Template.VariableLowerCase2ndPart] = formatGuid.Data2.ToString("x4");
-            values[Template.VariableLowerCase3rdPart] = formatGuid.Data3.ToString("x4");
-            values[Template.VariableLowerCaseBytesPartByte1] = formatGuid.Bytes[0].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte2] = formatGuid.Bytes[1].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte3] = formatGuid.Bytes[2].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte4] = formatGuid.Bytes[3].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte5] = formatGuid.Bytes[4].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte6] = formatGuid.Bytes[5].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte7] = formatGuid.Bytes[6].ToString("x2");
-            values[Template.VariableLowerCaseBytesPartByte8] = formatGuid.Bytes[7].ToString("x2");
-
-            // set variables for Upper Case
-            foreach (KeyValuePair<string, string> element in CaseMap)
-            {
-                // ex. Template.VariableUpperCaseGuidWithHyphens
-                var targetKeyName = element.Key;
-
-                // ex. Template.VariableLowerCaseGuidWithHyphens
-                var sourceKeyName = element.Value;
-
-                var value = values[sourceKeyName];
-                values[targetKeyName] = value.ToUpper();
-            }
-
-            return values;
-        }
-
-        /// <summary>
         /// delegate for creating new GUID
         /// </summary>
         /// <param name="guid"></param>
@@ -403,86 +436,20 @@ namespace CreateGUIDVSPlugin.Utility
         internal delegate Guid NewGuid();
 
         /// <summary>
-        /// Replace the template variable to the values defined by dictionary
+        /// Replace the template variable
         /// </summary>
         /// <param name="template">template string to be replace</param>
-        /// <param name="values">the values to replace</param>
+        /// <param name="newGuid">delegate to create a GUID</param>
         /// <returns></returns>
-        internal static string ProcessTemplate(string template, NewGuid newGuid = null)
+        internal static string Process(string template, NewGuid newGuid = null)
         {
-            const int NoIndex = -1;
-            const string patternDivide = @"(?<variable>{\w+(\(\d+\))?})";
-            const string patternParse = @"{(?<keyword>\w+)(\((?<index>\d+)\))?}";
-            var substrings = Regex.Split(template, patternDivide, RegexOptions.ExplicitCapture);
-            var regex = new Regex(patternParse, RegexOptions.Compiled);
-            Dictionary<int, Dictionary<string, string>> dataBase = new Dictionary<int, Dictionary<string, string>>();
-
             if (newGuid == null)
             {
                 newGuid = delegate () { return Guid.NewGuid(); };
             }
-
-            var builder = new StringBuilder();
-            foreach (string str in substrings)
-            {
-                int guidIndex = NoIndex;
-                Type elementType = Type.None;
-                string keywordOrData = string.Empty;
-
-                Dictionary<string, string> values = null;
-                var match = regex.Match(str);
-                if (match.Success)
-                {
-                    var groupKeyword = match.Groups["keyword"];
-                    var groupIndex = match.Groups["index"];
-                    if (groupKeyword.Success && IsValidKeyword(groupKeyword.Value))
-                    {
-                        keywordOrData = groupKeyword.Value;
-                        if (groupIndex.Success)
-                        {
-                            elementType = Type.TemplateIndex;
-                            guidIndex = int.Parse(groupIndex.Value);
-                        }
-                        else
-                        {
-                            elementType = Type.TemplateNoIndex;
-                            guidIndex = NoIndex;
-                        }
-                        if (!dataBase.ContainsKey(guidIndex))
-                        {
-                            var guid = newGuid();
-                            dataBase[guidIndex] = CreateValuesDictionary(guid);
-                        }
-                        values = dataBase[guidIndex];
-                    }
-                    else
-                    {
-                        elementType = Type.NormalString;
-                        keywordOrData = str;
-                    }
-                }
-                else
-                {
-                    elementType = Type.NormalString;
-                    keywordOrData = str;
-                }
-                switch (elementType)
-                {
-                    case Type.None:
-                        break;
-                    case Type.NormalString:
-                        builder.Append(keywordOrData);
-                        break;
-                    case Type.TemplateIndex:
-                        builder.Append(values[keywordOrData]);
-                        break;
-                    case Type.TemplateNoIndex:
-                        builder.Append(values[keywordOrData]);
-                        break;
-                }
-            }
-
-            return builder.ToString();
+            var handler = new GuidTranslationHandler(newGuid);
+            var output = ProcessTemplate.ReplaceVariable(template, handler.delegateGetNewText);
+            return output;
         }
     }
 }
