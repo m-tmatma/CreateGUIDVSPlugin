@@ -107,13 +107,13 @@ namespace Unittest
             Assert.That(output, Is.EqualTo(expected));
         }
 
-        [TestCase("Variable1", "VariableA", 1)]
-        [TestCase("Variable2", "VariableB", 2)]
-        [TestCase("Variable3", "VariableC", 3)]
-        [TestCase("Variable4", "VariableD", 4)]
-        public void Test_ParseVariableIndex(string inputKeyword, string outputKeyword, int index)
+        [TestCase("Variable1", "VariableA", "1")]
+        [TestCase("Variable2", "VariableB", "2")]
+        [TestCase("Variable3", "VariableC", "3")]
+        [TestCase("Variable4", "VariableD", "4")]
+        public void Test_ParseVariableIndex(string inputKeyword, string outputKeyword, string index)
         {
-            var indexStr = "(" + index.ToString() + ")";
+            var indexStr = "(" + index + ")";
             var input = "{" + inputKeyword + indexStr + "}";
             var expected = outputKeyword + indexStr;
             var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
@@ -124,18 +124,18 @@ namespace Unittest
         }
 
 
-        [TestCase("Variable1", "VariableA", 1, "[", "]")]
-        [TestCase("Variable2", "VariableB", 2, "{", "}")]
-        [TestCase("Variable3", "VariableC", 3, "<", ">")]
-        [TestCase("Variable4", "VariableD", 4, "[", "")]
-        [TestCase("Variable5", "VariableE", 5, "{", "")]
-        [TestCase("Variable6", "VariableF", 6, "(", "")]
-        [TestCase("Variable7", "VariableG", 7, "", "]")]
-        [TestCase("Variable8", "VariableH", 8, "", "}")]
-        [TestCase("Variable9", "VariableI", 9, "", ")")]
-        public void Test_ParseVariableInvalidIndex(string inputKeyword, string outputKeyword, int index, string left, string right)
+        [TestCase("Variable1", "VariableA", "1", "[", "]")]
+        [TestCase("Variable2", "VariableB", "2", "{", "}")]
+        [TestCase("Variable3", "VariableC", "3", "<", ">")]
+        [TestCase("Variable4", "VariableD", "4", "[", "")]
+        [TestCase("Variable5", "VariableE", "5", "{", "")]
+        [TestCase("Variable6", "VariableF", "6", "(", "")]
+        [TestCase("Variable7", "VariableG", "7", "", "]")]
+        [TestCase("Variable8", "VariableH", "8", "", "}")]
+        [TestCase("Variable9", "VariableI", "9", "", ")")]
+        public void Test_ParseVariableInvalidIndex(string inputKeyword, string outputKeyword, string index, string left, string right)
         {
-            var indexStr = left + index.ToString() + right;
+            var indexStr = left + index + right;
             var input = "{" + inputKeyword + indexStr + "}";
             var expected = input;
             var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
