@@ -169,13 +169,6 @@ namespace CreateGUIDVSPlugin
                 var formatString = configuration.FormatString;
 
                 var copyString = Template.Process(formatString);
-#if DEBUG
-                this.ClearOutout();
-                this.ActivateOutout();
-                this.OutputString(copyString);
-#endif
-                Clipboard.SetDataObject(copyString);
-
                 var textView = this.package.GetTextView();
                 if (textView != null)
                 {
