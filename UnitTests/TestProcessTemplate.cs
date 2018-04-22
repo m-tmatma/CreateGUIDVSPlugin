@@ -62,7 +62,7 @@ namespace Unittest
             var input = "{" + inputKeyword + "}";
             var output = ProcessTemplate.reg.Match(input);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
+            Console.WriteLine("output  : " + output.Success);
             Console.WriteLine("expected: " + expected);
             Assert.That(output.Success, Is.EqualTo(expected));
         }
