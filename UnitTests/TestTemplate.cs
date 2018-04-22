@@ -66,28 +66,28 @@ namespace UnitTests
         /// </summary>
         private static readonly string[] AllVariableNames = new string[]
         {
-            Template.VariableLowerCase1stPart,
-            Template.VariableLowerCase2ndPart,
-            Template.VariableLowerCase3rdPart,
-            Template.VariableLowerCaseBytesPartByte1,
-            Template.VariableLowerCaseBytesPartByte2,
-            Template.VariableLowerCaseBytesPartByte3,
-            Template.VariableLowerCaseBytesPartByte4,
-            Template.VariableLowerCaseBytesPartByte5,
-            Template.VariableLowerCaseBytesPartByte6,
-            Template.VariableLowerCaseBytesPartByte7,
-            Template.VariableLowerCaseBytesPartByte8,
-            Template.VariableUpperCase1stPart,
-            Template.VariableUpperCase2ndPart,
-            Template.VariableUpperCase3rdPart,
-            Template.VariableUpperCaseBytesPartByte1,
-            Template.VariableUpperCaseBytesPartByte2,
-            Template.VariableUpperCaseBytesPartByte3,
-            Template.VariableUpperCaseBytesPartByte4,
-            Template.VariableUpperCaseBytesPartByte5,
-            Template.VariableUpperCaseBytesPartByte6,
-            Template.VariableUpperCaseBytesPartByte7,
-            Template.VariableUpperCaseBytesPartByte8,
+            Template.VariableLowerPart1,
+            Template.VariableLowerPart2,
+            Template.VariableLowerPart3,
+            Template.VariableLowerBytes1,
+            Template.VariableLowerBytes2,
+            Template.VariableLowerBytes3,
+            Template.VariableLowerBytes4,
+            Template.VariableLowerBytes5,
+            Template.VariableLowerBytes6,
+            Template.VariableLowerBytes7,
+            Template.VariableLowerBytes8,
+            Template.VariableUpperPart1,
+            Template.VariableUpperPart2,
+            Template.VariableUpperPart3,
+            Template.VariableUpperBytes1,
+            Template.VariableUpperBytes2,
+            Template.VariableUpperBytes3,
+            Template.VariableUpperBytes4,
+            Template.VariableUpperBytes5,
+            Template.VariableUpperBytes6,
+            Template.VariableUpperBytes7,
+            Template.VariableUpperBytes8,
         };
 
         /// <summary>
@@ -367,29 +367,29 @@ namespace UnitTests
 
             switch (variableName)
             {
-                case Template.VariableLowerCase1stPart: return formatGuid.Data1.ToString("x8");
-                case Template.VariableLowerCase2ndPart: return formatGuid.Data2.ToString("x4");
-                case Template.VariableLowerCase3rdPart: return formatGuid.Data3.ToString("x4");
-                case Template.VariableLowerCaseBytesPartByte1: return formatGuid.Bytes[0].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte2: return formatGuid.Bytes[1].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte3: return formatGuid.Bytes[2].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte4: return formatGuid.Bytes[3].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte5: return formatGuid.Bytes[4].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte6: return formatGuid.Bytes[5].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte7: return formatGuid.Bytes[6].ToString("x2");
-                case Template.VariableLowerCaseBytesPartByte8: return formatGuid.Bytes[7].ToString("x2");
+                case Template.VariableLowerPart1: return formatGuid.Data1.ToString("x8");
+                case Template.VariableLowerPart2: return formatGuid.Data2.ToString("x4");
+                case Template.VariableLowerPart3: return formatGuid.Data3.ToString("x4");
+                case Template.VariableLowerBytes1: return formatGuid.Bytes[0].ToString("x2");
+                case Template.VariableLowerBytes2: return formatGuid.Bytes[1].ToString("x2");
+                case Template.VariableLowerBytes3: return formatGuid.Bytes[2].ToString("x2");
+                case Template.VariableLowerBytes4: return formatGuid.Bytes[3].ToString("x2");
+                case Template.VariableLowerBytes5: return formatGuid.Bytes[4].ToString("x2");
+                case Template.VariableLowerBytes6: return formatGuid.Bytes[5].ToString("x2");
+                case Template.VariableLowerBytes7: return formatGuid.Bytes[6].ToString("x2");
+                case Template.VariableLowerBytes8: return formatGuid.Bytes[7].ToString("x2");
 
-                case Template.VariableUpperCase1stPart: return formatGuid.Data1.ToString("X8");
-                case Template.VariableUpperCase2ndPart: return formatGuid.Data2.ToString("X4");
-                case Template.VariableUpperCase3rdPart: return formatGuid.Data3.ToString("X4");
-                case Template.VariableUpperCaseBytesPartByte1: return formatGuid.Bytes[0].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte2: return formatGuid.Bytes[1].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte3: return formatGuid.Bytes[2].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte4: return formatGuid.Bytes[3].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte5: return formatGuid.Bytes[4].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte6: return formatGuid.Bytes[5].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte7: return formatGuid.Bytes[6].ToString("X2");
-                case Template.VariableUpperCaseBytesPartByte8: return formatGuid.Bytes[7].ToString("X2");
+                case Template.VariableUpperPart1: return formatGuid.Data1.ToString("X8");
+                case Template.VariableUpperPart2: return formatGuid.Data2.ToString("X4");
+                case Template.VariableUpperPart3: return formatGuid.Data3.ToString("X4");
+                case Template.VariableUpperBytes1: return formatGuid.Bytes[0].ToString("X2");
+                case Template.VariableUpperBytes2: return formatGuid.Bytes[1].ToString("X2");
+                case Template.VariableUpperBytes3: return formatGuid.Bytes[2].ToString("X2");
+                case Template.VariableUpperBytes4: return formatGuid.Bytes[3].ToString("X2");
+                case Template.VariableUpperBytes5: return formatGuid.Bytes[4].ToString("X2");
+                case Template.VariableUpperBytes6: return formatGuid.Bytes[5].ToString("X2");
+                case Template.VariableUpperBytes7: return formatGuid.Bytes[6].ToString("X2");
+                case Template.VariableUpperBytes8: return formatGuid.Bytes[7].ToString("X2");
                 default:
                     throw new ArgumentException(variableName);
             }

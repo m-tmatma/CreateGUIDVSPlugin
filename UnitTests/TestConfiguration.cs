@@ -55,12 +55,12 @@ namespace UnitTests
         /// <summary>
         /// Format String1
         /// </summary>
-        private const string FormatString1 = "// {" + "{" + Template.VariableLowerCaseGuidWithHyphens + "}" + "}";
+        private const string FormatString1 = "// {" + "{" + Template.VariableLowerHyphens + "}" + "}";
 
         /// <summary>
         /// Format String1
         /// </summary>
-        private const string FormatString2 = "// {" + "{" + Template.VariableLowerCaseGuidWithoutHyphens + "}" + "}";
+        private const string FormatString2 = "// {" + "{" + Template.VariableLowerNoHyphens + "}" + "}";
 
         /// <summary>
         /// Configuration class
