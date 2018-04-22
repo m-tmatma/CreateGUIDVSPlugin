@@ -81,7 +81,13 @@ namespace Unittest
             Assert.That(output, Is.EqualTo(expected));
         }
 
-        public void Test_ParseInvalidVariable(string inputKeyword, string outputKeyword, string left, string right)
+        [TestCase("Variable1", "-", "")]
+        [TestCase("Variable1", "+", "")]
+        [TestCase("Variable1", "", "-")]
+        [TestCase("Variable1", "", "+")]
+        [TestCase("Variable1", "-", "-")]
+        [TestCase("Variable1", "+", "+")]
+        public void Test_ParseInvalidVariable(string inputKeyword, string left, string right)
         {
             var input = "{" + left + inputKeyword + right + "}";
             var expected = input;
