@@ -66,6 +66,10 @@ namespace UnitTests
         /// </summary>
         private static readonly string[] AllVariableNames = new string[]
         {
+            Template.VariableLowerHyphens,
+            Template.VariableUpperHyphens,
+            Template.VariableLowerNoHyphens,
+            Template.VariableUpperNoHyphens,
             Template.VariableLowerPart1,
             Template.VariableLowerPart2,
             Template.VariableLowerPart3,
@@ -144,6 +148,7 @@ namespace UnitTests
             var expected = builderExpected.ToString();
             var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
 
+            Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
@@ -367,6 +372,9 @@ namespace UnitTests
 
             switch (variableName)
             {
+                case Template.VariableLowerHyphens: return guid.ToString("D");
+                case Template.VariableLowerNoHyphens: return guid.ToString("N");
+
                 case Template.VariableLowerPart1: return formatGuid.Data1.ToString("x8");
                 case Template.VariableLowerPart2: return formatGuid.Data2.ToString("x4");
                 case Template.VariableLowerPart3: return formatGuid.Data3.ToString("x4");
@@ -378,6 +386,9 @@ namespace UnitTests
                 case Template.VariableLowerBytes6: return formatGuid.Bytes[5].ToString("x2");
                 case Template.VariableLowerBytes7: return formatGuid.Bytes[6].ToString("x2");
                 case Template.VariableLowerBytes8: return formatGuid.Bytes[7].ToString("x2");
+
+                case Template.VariableUpperHyphens: return guid.ToString("D").ToUpper();
+                case Template.VariableUpperNoHyphens: return guid.ToString("N").ToUpper();
 
                 case Template.VariableUpperPart1: return formatGuid.Data1.ToString("X8");
                 case Template.VariableUpperPart2: return formatGuid.Data2.ToString("X4");
