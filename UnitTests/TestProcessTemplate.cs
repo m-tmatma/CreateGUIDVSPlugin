@@ -133,6 +133,13 @@ namespace Unittest
         [TestCase("Variable7", "VariableG", "7", "", "]")]
         [TestCase("Variable8", "VariableH", "8", "", "}")]
         [TestCase("Variable9", "VariableI", "9", "", ")")]
+        [TestCase("Variable1", "VariableA", "a", "(", ")")]
+        [TestCase("Variable1", "VariableA", "ab", "(", ")")]
+        [TestCase("Variable1", "VariableA", "123ab", "(", ")")]
+        [TestCase("Variable1", "VariableA", "-1", "(", ")")]
+        [TestCase("Variable1", "VariableA", "+1", "(", ")")]
+        [TestCase("Variable1", "VariableA", "_1", "(", ")")]
+        [TestCase("Variable1", "VariableA", "1_", "(", ")")]
         public void Test_ParseVariableInvalidIndex(string inputKeyword, string outputKeyword, string index, string left, string right)
         {
             var indexStr = left + index + right;
