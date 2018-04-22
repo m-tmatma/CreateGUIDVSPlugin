@@ -12,7 +12,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression of left separator for variable
         /// </summary>
-        const string regexStrLeftSep = @"(?<={)";
+        const string regexStrLeftSep = @"{";
 
         /// <summary>
         /// regular expression of keyword in variable
@@ -27,7 +27,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression of right separator for variable
         /// </summary>
-        const string regexStrRightSep = @"(?=})";
+        const string regexStrRightSep = @"}";
 
         /// <summary>
         /// regular expression
