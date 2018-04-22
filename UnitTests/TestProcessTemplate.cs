@@ -44,7 +44,7 @@ namespace Unittest
         public void Test_ParseVariable(string inputKeyword, string outputKeyword)
         {
             var input = "{" + inputKeyword + "}";
-            var expected = "{" + outputKeyword + "}";
+            var expected = outputKeyword;
             var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
@@ -85,7 +85,7 @@ namespace Unittest
         {
             var indexStr = "(" + index.ToString() + ")";
             var input = "{" + inputKeyword + indexStr + "}";
-            var expected = "{" + outputKeyword + indexStr + "}";
+            var expected = outputKeyword + indexStr;
             var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
@@ -123,12 +123,11 @@ namespace Unittest
         /// <returns></returns>
         internal string delegateGetNewText(string keyword, int index)
         {
-            var newkeyword = keyword;
-            if (keywordMap.ContainsKey(keyword))
+            if (!keywordMap.ContainsKey(keyword))
             {
-                newkeyword = keywordMap[keyword];
+                throw new ProcessTemplate.InvalidKeywordException(keyword);
             }
-
+            var newkeyword = keywordMap[keyword];
             if (index < 0)
             {
                 return newkeyword;

@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 namespace CreateGUIDVSPlugin.Utility
 {
+    using System;
     using System.Text.RegularExpressions;
 
     public class ProcessTemplate
@@ -46,6 +47,17 @@ namespace CreateGUIDVSPlugin.Utility
         /// <param name="index"></param>
         /// <returns></returns>
         public delegate string GetNewText(string keyword, int index);
+
+        /// <summary>
+        /// exception when keyword is not valid
+        /// </summary>
+        internal class InvalidKeywordException : Exception
+        {
+            internal InvalidKeywordException(string message)
+            : base(message)
+            {
+            }
+        }
 
         /// <summary>
         /// class to provide a delegate of MatchEvaluator
@@ -91,7 +103,14 @@ namespace CreateGUIDVSPlugin.Utility
                     index = int.Parse(groupIndex.Value);
                 }
 
-                outData = this.delegateTranslate(keyword, index);
+                try
+                {
+                    outData = this.delegateTranslate(keyword, index);
+                }
+                catch(InvalidKeywordException)
+                {
+                    outData = m.Groups[0].Value;
+                }
                 return outData;
             }
         }
