@@ -36,6 +36,11 @@ namespace CreateGUIDVSPlugin.Utility
         const string regexStrIndex = @"(?<index>\d+)";
 
         /// <summary>
+        /// regular expression of index in variable
+        /// </summary>
+        const string regexStrValidId = regexStrkeyword + @"(" + @"\(" + regexStrIndex + @"\)" + @")?";
+
+        /// <summary>
         /// regular expression of right separator for variable
         /// </summary>
         const string regexStrRightSep = @"}";
@@ -43,7 +48,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression for variable
         /// </summary>
-        const string regexVariable = regexStrLeftSep + regexStrkeyword + @"(" + @"\(" + regexStrIndex + @"\)" + @")?" + regexStrRightSep;
+        const string regexVariable = regexStrLeftSep + regexStrValidId + regexStrRightSep;
 
         /// <summary>
         /// regular expression of left separator for variable with parentheses
