@@ -63,7 +63,11 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression
         /// </summary>
-        const string regexStr = "(" + regexStrEscapeLeftSepPar + "|" + regexStrEscapeRightSepPar + "|" + regexVariablePar + ")";
+        const string regexStr = "("
+            + regexStrEscapeLeftSepPar  + "|"
+            + regexStrEscapeRightSepPar + "|"
+            + regexVariablePar
+            + ")";
 
         /// <summary>
         /// instance of regular expression
@@ -115,43 +119,44 @@ namespace CreateGUIDVSPlugin.Utility
             /// <returns>replaced text</returns>
             public string delegateReplace(Match m)
             {
-                var groupLeft = m.Groups["escape_left"];
-                var groupRight = m.Groups["escape_right"];
-                var groupKeyword = m.Groups["keyword"];
-                var groupIndex   = m.Groups["index"];
-                if (groupLeft.Success)
+                var groupEscapeLeft  = m.Groups["escape_left"];
+                var groupEscapeRight = m.Groups["escape_right"];
+                var groupKeyword     = m.Groups["keyword"];
+                var groupIndex       = m.Groups["index"];
+                if (groupEscapeLeft.Success)
                 {
                     return "{";
                 }
-                if (groupRight.Success)
+                else if (groupEscapeRight.Success)
                 {
                     return "}";
                 }
-                if (!groupKeyword.Success)
+                else if (groupKeyword.Success)
+                {
+                    // get matched keyword
+                    var keyword = groupKeyword.Value;
+                    var outData = keyword;
+                    var index = -1;
+    
+                    if (groupIndex.Success)
+                    {
+                        // with index
+                        index = int.Parse(groupIndex.Value);
+                    }
+                    try
+                    {
+                        outData = this.delegateTranslate(keyword, index);
+                    }
+                    catch(InvalidKeywordException)
+                    {
+                        outData = m.Groups[0].Value;
+                    }
+                    return outData;
+                }
+                else
                 {
                     return m.Groups[0].Value;
                 }
-
-                // get matched keyword
-                var keyword = groupKeyword.Value;
-                var outData = keyword;
-                var index = -1;
-
-                if (groupIndex.Success)
-                {
-                    // with index
-                    index = int.Parse(groupIndex.Value);
-                }
-
-                try
-                {
-                    outData = this.delegateTranslate(keyword, index);
-                }
-                catch(InvalidKeywordException)
-                {
-                    outData = m.Groups[0].Value;
-                }
-                return outData;
             }
         }
 
