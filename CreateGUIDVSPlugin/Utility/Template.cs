@@ -341,7 +341,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// </summary>
 #if ORIGINAL
         internal readonly static string DefaultFormatString =
-              "// {" + "{" + VariableLowerHyphens + "}" + "}"
+              "// {{" + "{" + VariableLowerHyphens + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "},"
@@ -375,7 +375,7 @@ namespace CreateGUIDVSPlugin.Utility
             + Environment.NewLine;
 #else
         internal readonly static string DefaultFormatString =
-              "// {" + "{" + VariableLowerHyphens + "}" + "}"
+              "// {{" + "{" + VariableLowerHyphens + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "}," + " "
@@ -392,7 +392,7 @@ namespace CreateGUIDVSPlugin.Utility
             + ");"
             + Environment.NewLine
             + Environment.NewLine
-            + "// {" + "{" + VariableLowerHyphens + "(1)" + "}" + "}"
+            + "// {{" + "{" + VariableLowerHyphens + "(1)" + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "(1)" + "}," + " "
@@ -409,7 +409,7 @@ namespace CreateGUIDVSPlugin.Utility
             + ");"
             + Environment.NewLine
             + Environment.NewLine
-            + "// {" + "{" + VariableLowerHyphens + "(2)" + "}" + "}"
+            + "// {{" + "{" + VariableLowerHyphens + "(2)" + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "(2)" + "}," + " "

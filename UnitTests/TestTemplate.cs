@@ -333,6 +333,46 @@ namespace UnitTests
         }
 
         /// <summary>
+        /// Test escaped valid Variable
+        /// </summary>
+        /// <param name="count">loop count</param>
+        [Test, Pairwise]
+        public void TestAllEscapedValidVariable(
+            [Values(3, 10)] int count
+        )
+        {
+            var builderInput = new StringBuilder();
+            var builderExpected = new StringBuilder();
+
+            var guid = this.guidQueue.BrandNewGuid();
+            for (int i = 0; i < count; i++)
+            {
+                foreach (string variable in AllVariableNames)
+                {
+                    builderInput.Append("{{");
+                    builderInput.Append(FormVariable(variable));
+                    builderInput.Append("}}");
+                    builderInput.Append(' ');
+
+                    builderExpected.Append('{');
+                    builderExpected.Append(ExpandGuidValue(guid, variable));
+                    builderExpected.Append('}');
+                    builderExpected.Append(' ');
+                }
+                builderInput.Append(Environment.NewLine);
+                builderExpected.Append(Environment.NewLine);
+            }
+            var input = builderInput.ToString();
+            var expected = builderExpected.ToString();
+            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+
+            Console.WriteLine("input   : " + input);
+            Console.WriteLine("output  : " + output);
+            Console.WriteLine("expected: " + expected);
+            Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
         /// create Variable
         /// </summary>
         /// <param name="variableName">variable name</param>

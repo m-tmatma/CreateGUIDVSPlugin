@@ -11,6 +11,16 @@ namespace CreateGUIDVSPlugin.Utility
     public class ProcessTemplate
     {
         /// <summary>
+        /// regular expression of left brace for variable
+        /// </summary>
+        const string regexStrEscapeLeftSep = @"(?<escape_left>{{)";
+
+        /// <summary>
+        /// regular expression of right brace for variable
+        /// </summary>
+        const string regexStrEscapeRightSep = @"(?<escape_right>}})";
+
+        /// <summary>
         /// regular expression of left separator for variable
         /// </summary>
         const string regexStrLeftSep = @"{";
@@ -31,9 +41,29 @@ namespace CreateGUIDVSPlugin.Utility
         const string regexStrRightSep = @"}";
 
         /// <summary>
+        /// regular expression for variable
+        /// </summary>
+        const string regexVariable = regexStrLeftSep + regexStrkeyword + @"(" + @"\(" + regexStrIndex + @"\)" + @")?" + regexStrRightSep;
+
+        /// <summary>
+        /// regular expression of left separator for variable with parentheses
+        /// </summary>
+        const string regexStrEscapeLeftSepPar = @"(" + regexStrEscapeLeftSep + @")";
+
+        /// <summary>
+        /// regular expression of right separator for variable with parentheses
+        /// </summary>
+        const string regexStrEscapeRightSepPar = @"(" + regexStrEscapeRightSep + @")";
+
+        /// <summary>
+        /// regular expression for variable with parentheses
+        /// </summary>
+        const string regexVariablePar = "(" + regexVariable + ")";
+
+        /// <summary>
         /// regular expression
         /// </summary>
-        const string regexStr = regexStrLeftSep + regexStrkeyword + @"(" + @"\(" + regexStrIndex + @"\)" + @")?" + regexStrRightSep;
+        const string regexStr = "(" + regexStrEscapeLeftSepPar + "|" + regexStrEscapeRightSepPar + "|" + regexVariablePar + ")";
 
         /// <summary>
         /// instance of regular expression
@@ -85,8 +115,18 @@ namespace CreateGUIDVSPlugin.Utility
             /// <returns>replaced text</returns>
             public string delegateReplace(Match m)
             {
+                var groupLeft = m.Groups["escape_left"];
+                var groupRight = m.Groups["escape_right"];
                 var groupKeyword = m.Groups["keyword"];
                 var groupIndex   = m.Groups["index"];
+                if (groupLeft.Success)
+                {
+                    return "{";
+                }
+                if (groupRight.Success)
+                {
+                    return "}";
+                }
                 if (!groupKeyword.Success)
                 {
                     return m.Groups[0].Value;
