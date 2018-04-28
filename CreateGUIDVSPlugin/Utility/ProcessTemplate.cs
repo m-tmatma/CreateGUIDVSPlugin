@@ -137,7 +137,7 @@ namespace CreateGUIDVSPlugin.Utility
                     var keyword = groupKeyword.Value;
                     var outData = keyword;
                     var index = -1;
-    
+
                     if (groupIndex.Success)
                     {
                         // with index
@@ -147,7 +147,7 @@ namespace CreateGUIDVSPlugin.Utility
                     {
                         outData = this.delegateTranslate(keyword, index);
                     }
-                    catch(InvalidKeywordException)
+                    catch (InvalidKeywordException)
                     {
                         outData = m.Groups[0].Value;
                     }
