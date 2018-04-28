@@ -146,11 +146,11 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
-
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -188,10 +188,11 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
-
-            Console.WriteLine("output  : " + output);
+            Console.WriteLine("input   : " + input);
             Console.WriteLine("expected: " + expected);
+
+            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -364,11 +365,11 @@ namespace UnitTests
             }
             var input = builderInput.ToString();
             var expected = builderExpected.ToString();
-            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
-
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 

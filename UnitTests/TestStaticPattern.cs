@@ -153,11 +153,12 @@ namespace UnitTests
         [Category("ReplaceSameGuidToSameGuid")]
         public void Test_ReplaceSameGuidToSameGuid_GuidGenerater(string input, string expected)
         {
+            Console.WriteLine("input   : " + input);
+            Console.WriteLine("expected: " + expected);
+
             var replaceWithGuid = new ReplaceWithNewGuid(this.guidGenerator.NewGuid);
             var output = replaceWithGuid.ReplaceSameGuidToSameGuid(input);
-            Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
-            Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -177,11 +178,12 @@ namespace UnitTests
         [Category("ReplaceNewGuid")]
         public void Test_ReplaceNewGuid_GuidGenerater(string input, string expected)
         {
+            Console.WriteLine("input   : " + input);
+            Console.WriteLine("expected: " + expected);
+
             var replaceWithGuid = new ReplaceWithNewGuid(this.guidGenerator.NewGuid);
             var output = replaceWithGuid.ReplaceNewGuid(input);
-            Console.WriteLine("input   : " + input);
             Console.WriteLine("output  : " + output);
-            Console.WriteLine("expected: " + expected);
             Assert.That(output, Is.EqualTo(expected));
         }
 

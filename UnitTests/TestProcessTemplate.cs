@@ -59,10 +59,11 @@ namespace Unittest
         public void Test_RegEx(string inputKeyword, bool expected)
         {
             var input = "{" + inputKeyword + "}";
-            var output = ProcessTemplate.reg.Match(input);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output.Success);
             Console.WriteLine("expected: " + expected);
+
+            var output = ProcessTemplate.reg.Match(input);
+            Console.WriteLine("output  : " + output.Success);
             Assert.That(output.Success, Is.EqualTo(expected));
         }
 
@@ -74,10 +75,11 @@ namespace Unittest
         {
             var input = "{" + inputKeyword + "}";
             var expected = outputKeyword;
-            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -91,10 +93,11 @@ namespace Unittest
         {
             var input = "{" + left + inputKeyword + right + "}";
             var expected = input;
-            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -105,10 +108,11 @@ namespace Unittest
         {
             var input = left + inputKeyword + right;
             var expected = input;
-            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -121,10 +125,11 @@ namespace Unittest
             var indexStr = "(" + index + ")";
             var input = "{" + inputKeyword + indexStr + "}";
             var expected = outputKeyword + indexStr;
-            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -150,10 +155,11 @@ namespace Unittest
             var indexStr = left + index + right;
             var input = "{" + inputKeyword + indexStr + "}";
             var expected = input;
-            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = ProcessTemplate.ReplaceVariable(input, delegateGetNewText);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
