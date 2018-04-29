@@ -53,6 +53,19 @@ namespace CreateGUIDVSPlugin.Utility
         const string regexStrValidId = regexStrkeyword + @"(" + @"\(" + regexStrIndex + @"\)" + @")?";
 
         /// <summary>
+        /// regular expression of index in variable
+        /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
+        const string regexStrInvalidId = @"(?<invalidId>[^{}]*?)";
+
+        /// <summary>
+        /// regular expression of index in variable
+        /// </summary>
+        const string regexStrId = @"(" + regexStrValidId + "|" + regexStrInvalidId + ")";
+
+        /// <summary>
         /// regular expression of right separator for variable
         /// </summary>
         const string regexStrRightSep = @"}";
@@ -60,7 +73,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression for variable
         /// </summary>
-        const string regexVariable = regexStrLeftSep + regexStrValidId + regexStrRightSep;
+        public const string regexVariable = regexStrLeftSep + regexStrId + regexStrRightSep;
 
         /// <summary>
         /// regular expression of left separator for variable with parentheses
@@ -75,16 +88,34 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression for variable with parentheses
         /// </summary>
-        const string regexVariablePar = "(" + regexVariable + ")";
+        public const string regexVariablePar = "(" + regexVariable + ")";
+
+        /// <summary>
+        /// regular expression of left brace for variable
+        /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
+        const string regexStrOrphanedLeftSep = @"(?<orphanedLeft>{)";
+
+        /// <summary>
+        /// regular expression of right brace for variable
+        /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
+        const string regexStrOrphanedRightSep = @"(?<orphanedRight>})";
 
         /// <summary>
         /// regular expression
         /// </summary>
-        const string regexStr = "("
+        public const string regexStr = "("
             + regexStrEscapeLeftSepPar  + "|"
+            + regexVariablePar          + "|"
             + regexStrEscapeRightSepPar + "|"
-            + regexVariablePar
-            + ")";
+            + regexStrOrphanedLeftSep   + "|"
+            + regexStrOrphanedRightSep  + ")";
+
 
         /// <summary>
         /// instance of regular expression
@@ -105,6 +136,28 @@ namespace CreateGUIDVSPlugin.Utility
         internal class InvalidKeywordException : Exception
         {
             internal InvalidKeywordException(string message)
+            : base(message)
+            {
+            }
+        }
+
+        /// <summary>
+        /// exception orphaned left brace
+        /// </summary>
+        internal class OrphanedLeftBraceException : Exception
+        {
+            internal OrphanedLeftBraceException(string message)
+            : base(message)
+            {
+            }
+        }
+
+        /// <summary>
+        /// exception orphaned right brace
+        /// </summary>
+        internal class OrphanedRightBraceException : Exception
+        {
+            internal OrphanedRightBraceException(string message)
             : base(message)
             {
             }
@@ -140,6 +193,10 @@ namespace CreateGUIDVSPlugin.Utility
                 var groupEscapeRight = m.Groups["escape_right"];
                 var groupKeyword     = m.Groups["keyword"];
                 var groupIndex       = m.Groups["index"];
+                var groupInvalidId   = m.Groups["invalidId"];
+                var groupOrphanedLeft = m.Groups["orphanedLeft"];
+                var groupOrphanedRight = m.Groups["orphanedRight"];
+
                 if (groupEscapeLeft.Success)
                 {
                     return "{";
@@ -169,6 +226,18 @@ namespace CreateGUIDVSPlugin.Utility
                         outData = m.Groups[0].Value;
                     }
                     return outData;
+                }
+                else if (groupInvalidId.Success)
+                {
+                    return m.Groups[0].Value;
+                }
+                else if (groupOrphanedLeft.Success)
+                {
+                    throw new ProcessTemplate.OrphanedLeftBraceException("");
+                }
+                else if (groupOrphanedRight.Success)
+                {
+                    throw new ProcessTemplate.OrphanedRightBraceException("");
                 }
                 else
                 {

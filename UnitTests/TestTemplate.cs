@@ -50,6 +50,22 @@ namespace UnitTests
         }
 
         /// <summary>
+        /// escape variable type
+        /// </summary>
+        public enum EscapeVariableType
+        {
+            /// <summary>
+            /// "{{variable}
+            /// </summary>
+            LeftEscape,
+
+            /// <summary>
+            /// "{variable}}
+            /// </summary>
+            RightEscape,
+        }
+
+        /// <summary>
         /// delegate for creating new GUID
         /// </summary>
         /// <param name="guid"></param>
@@ -300,6 +316,7 @@ namespace UnitTests
             [Values(3, 10)] int count,
             [Values] InvalidVariableType invalidType)
         {
+            Type typeException = null;
             var builderInput = new StringBuilder();
             for (int i = 0; i < count; i++)
             {
@@ -309,9 +326,11 @@ namespace UnitTests
                     {
                         case InvalidVariableType.MissingFormerBlacket:
                             builderInput.Append(variable + "}");
+                            typeException = typeof(ProcessTemplate.OrphanedRightBraceException);
                             break;
                         case InvalidVariableType.MissingLatterBlacket:
                             builderInput.Append("{" + variable);
+                            typeException = typeof(ProcessTemplate.OrphanedLeftBraceException);
                             break;
                         case InvalidVariableType.MissingFirstCharactor:
                             builderInput.Append(FormVariable(variable.Substring(1)));
@@ -328,9 +347,76 @@ namespace UnitTests
                 }
             }
             var input = builderInput.ToString();
-            var expected = input;
-            var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
-            Assert.That(output, Is.EqualTo(expected));
+            if (typeException != null)
+            {
+                Assert.That(
+                    () => {
+                        var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+                    },
+                    Throws.InstanceOf(typeException)
+                );
+            }
+            else
+            {
+                var expected = input;
+                var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+                Assert.That(output, Is.EqualTo(expected));
+            }
+        }
+
+        /// <summary>
+        /// Test escaped dummy variable
+        /// </summary>
+        /// <param name="count">loop count</param>
+        /// <param name="escapeVariableType">escape type</param>
+        [TestCase(3, EscapeVariableType.LeftEscape, typeof(ProcessTemplate.OrphanedRightBraceException))]
+        [TestCase(5, EscapeVariableType.RightEscape, typeof(ProcessTemplate.OrphanedRightBraceException))]
+        public void TestAllEscapedInvalidVariable(
+            int count,
+            EscapeVariableType escapeVariableType,
+            Type typeException
+        )
+        {
+            var builderInput = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                foreach (string variable in AllVariableNames)
+                {
+                    switch (escapeVariableType)
+                    {
+                        case EscapeVariableType.LeftEscape:
+                            builderInput.Append("{");
+                            break;
+                        default:
+                            break;
+                    }
+                    builderInput.Append(FormVariable(variable));
+                    switch (escapeVariableType)
+                    {
+                        case EscapeVariableType.RightEscape:
+                            builderInput.Append("}");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            var input = builderInput.ToString();
+            Console.WriteLine("input   : " + input);
+            //var builderExpected = new StringBuilder(input);
+            //builderExpected.Replace("{{", "{");
+            //builderExpected.Replace("}}", "}");
+
+            //var expected = builderExpected.ToString();
+            //Console.WriteLine("expected: " + expected);
+
+            Assert.That(
+                () => {
+                    var output = Template.Process(input, this.guidQueue.BrandNewGuid);
+                    Console.WriteLine("output  : " + output);
+                },
+                Throws.InstanceOf(typeException)
+            );
         }
 
         /// <summary>
