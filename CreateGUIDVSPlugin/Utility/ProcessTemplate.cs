@@ -13,11 +13,17 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression of left brace for variable
         /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
         const string regexStrEscapeLeftSep = @"(?<escape_left>{{)";
 
         /// <summary>
         /// regular expression of right brace for variable
         /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
         const string regexStrEscapeRightSep = @"(?<escape_right>}})";
 
         /// <summary>
@@ -28,11 +34,17 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// regular expression of keyword in variable
         /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
         const string regexStrkeyword = @"(?<keyword>\w+)";
 
         /// <summary>
         /// regular expression of index in variable
         /// </summary>
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#named_matched_subexpression">
+        /// Named Matched Subexpressions
+        /// </see>
         const string regexStrIndex = @"(?<index>\d+)";
 
         /// <summary>
