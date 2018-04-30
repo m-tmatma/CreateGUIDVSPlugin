@@ -105,6 +105,7 @@ namespace UnitTests
         /// create new GUID from cache.
         /// </summary>
         /// <returns>new GUID</returns>
+        /// <exception cref="System.InvalidOperationException">Thrown when the GUID cache is empty.</exception>
         public Guid NewGuidFromCache()
         {
             var guid = this.fifo.Dequeue();
