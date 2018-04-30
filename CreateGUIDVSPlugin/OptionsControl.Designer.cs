@@ -62,6 +62,7 @@
             // comboBoxVariable
             // 
             this.comboBoxVariable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVariable.DropDownWidth = 600;
             this.comboBoxVariable.FormattingEnabled = true;
             this.comboBoxVariable.Location = new System.Drawing.Point(40, 26);
             this.comboBoxVariable.Name = "comboBoxVariable";
@@ -102,7 +103,7 @@
             // 
             this.numericUpDownGUID.Location = new System.Drawing.Point(471, 26);
             this.numericUpDownGUID.Name = "numericUpDownGUID";
-            this.numericUpDownGUID.Size = new System.Drawing.Size(99, 29);
+            this.numericUpDownGUID.Size = new System.Drawing.Size(99, 28);
             this.numericUpDownGUID.TabIndex = 6;
             // 
             // buttonLeftBrace
