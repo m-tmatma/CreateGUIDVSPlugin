@@ -104,10 +104,11 @@ namespace UnitTests
         [Category("GetSubKeyName")]
         public void Test_GetSubKeyName(string input, string expected)
         {
-            var output = this.configuration.GetSubKeyName(input);
             Console.WriteLine("input   : " + input);
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = this.configuration.GetSubKeyName(input);
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -119,10 +120,10 @@ namespace UnitTests
         {
             this.configuration.Load();
             var expected = Template.DefaultFormatString;
-            var output = this.configuration.FormatString;
-
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = this.configuration.FormatString;
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 
@@ -155,6 +156,8 @@ namespace UnitTests
         /// <param name="isRecreate">whether to re-create the instance of Configuration class</param>
         private void SetAndGetValue(string input, bool isRecreate)
         {
+            Console.WriteLine("input   : " + input);
+
             // save
             this.configuration.FormatString = input;
             this.configuration.Save();
@@ -180,10 +183,10 @@ namespace UnitTests
 
             // check the result
             var expected = input;
-            var output = this.configuration.FormatString;
-
-            Console.WriteLine("output  : " + output);
             Console.WriteLine("expected: " + expected);
+
+            var output = this.configuration.FormatString;
+            Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
         }
 

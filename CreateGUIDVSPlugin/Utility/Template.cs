@@ -203,6 +203,7 @@ namespace CreateGUIDVSPlugin.Utility
             /// <param name="keyword">keyword</param>
             /// <param name="index">index</param>
             /// <returns></returns>
+            /// <exception cref="ProcessTemplate.InvalidKeywordException">Thrown when a keyword is invalid</exception>
             internal string delegateGetNewText(string keyword, int index)
             {
                 switch (keyword)
@@ -238,7 +239,7 @@ namespace CreateGUIDVSPlugin.Utility
                     case Template.VariableUpperBytes8:
                         break;
                     default:
-                        throw new ProcessTemplate.InvalidKeywordException(keyword);
+                        throw new ProcessTemplate.InvalidKeywordException(-1, keyword);
                 }
 
                 // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
@@ -279,7 +280,7 @@ namespace CreateGUIDVSPlugin.Utility
                     case Template.VariableUpperBytes8: return formatGuid.Bytes[7].ToString("X2");
 
                     default:
-                        throw new ProcessTemplate.InvalidKeywordException(keyword);
+                        throw new ProcessTemplate.InvalidKeywordException(-1, keyword);
                 }
             }
 
@@ -341,7 +342,7 @@ namespace CreateGUIDVSPlugin.Utility
         /// </summary>
 #if ORIGINAL
         internal readonly static string DefaultFormatString =
-              "// {" + "{" + VariableLowerHyphens + "}" + "}"
+              "// {{" + "{" + VariableLowerHyphens + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "},"
@@ -375,7 +376,7 @@ namespace CreateGUIDVSPlugin.Utility
             + Environment.NewLine;
 #else
         internal readonly static string DefaultFormatString =
-              "// {" + "{" + VariableLowerHyphens + "}" + "}"
+              "// {{" + "{" + VariableLowerHyphens + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "}," + " "
@@ -392,7 +393,7 @@ namespace CreateGUIDVSPlugin.Utility
             + ");"
             + Environment.NewLine
             + Environment.NewLine
-            + "// {" + "{" + VariableLowerHyphens + "(1)" + "}" + "}"
+            + "// {{" + "{" + VariableLowerHyphens + "(1)" + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "(1)" + "}," + " "
@@ -409,7 +410,7 @@ namespace CreateGUIDVSPlugin.Utility
             + ");"
             + Environment.NewLine
             + Environment.NewLine
-            + "// {" + "{" + VariableLowerHyphens + "(2)" + "}" + "}"
+            + "// {{" + "{" + VariableLowerHyphens + "(2)" + "}" + "}}"
             + Environment.NewLine
             + "DEFINE_GUID(<<name>>, "
             + "0x{" + VariableLowerPart1 + "(2)" + "}," + " "
@@ -441,12 +442,18 @@ namespace CreateGUIDVSPlugin.Utility
         /// <param name="template">template string to be replace</param>
         /// <param name="newGuid">delegate to create a GUID</param>
         /// <returns></returns>
+        /// <exception cref="ProcessTemplate.OrphanedLeftBraceException">Thrown when an orphaned '{' is found</exception>
+        /// <exception cref="ProcessTemplate.OrphanedRightBraceException">Thrown when an orphaned '}' is found</exception>
         internal static string Process(string template, NewGuid newGuid = null)
         {
             if (newGuid == null)
             {
                 newGuid = delegate () { return Guid.NewGuid(); };
             }
+
+            // the internal method ProcessTemplate.MatchEvaluatorHandler.delegateReplace() catches
+            // the exception 'ProcessTemplate.InvalidKeywordException' thrown by
+            // GuidTranslationHandler.delegateGetNewText()
             var handler = new GuidTranslationHandler(newGuid);
             var output = ProcessTemplate.ReplaceVariable(template, handler.delegateGetNewText);
             return output;

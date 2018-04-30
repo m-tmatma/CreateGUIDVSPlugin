@@ -105,10 +105,21 @@ namespace UnitTests
         /// create new GUID from cache.
         /// </summary>
         /// <returns>new GUID</returns>
+        /// <exception cref="System.InvalidOperationException">Thrown when the GUID cache is empty.</exception>
         public Guid NewGuidFromCache()
         {
             var guid = this.fifo.Dequeue();
             return guid;
+        }
+
+        /// <summary>
+        /// create new GUID interface which always throws an exception 
+        /// </summary>
+        /// <returns>new GUID</returns>
+        /// <exception cref="System.InvalidOperationException">always thrown</exception>
+        public Guid NewGuidAlwaysFail()
+        {
+            throw new InvalidOperationException();
         }
     }
 }
