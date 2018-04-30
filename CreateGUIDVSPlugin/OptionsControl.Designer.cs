@@ -35,6 +35,8 @@
             this.buttonInsertLineEnding = new System.Windows.Forms.Button();
             this.buttonSetDefault = new System.Windows.Forms.Button();
             this.numericUpDownGUID = new System.Windows.Forms.NumericUpDown();
+            this.buttonLeftBrace = new System.Windows.Forms.Button();
+            this.buttonRightBrace = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGUID)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,10 +105,32 @@
             this.numericUpDownGUID.Size = new System.Drawing.Size(99, 29);
             this.numericUpDownGUID.TabIndex = 6;
             // 
+            // buttonLeftBrace
+            // 
+            this.buttonLeftBrace.Location = new System.Drawing.Point(294, 77);
+            this.buttonLeftBrace.Name = "buttonLeftBrace";
+            this.buttonLeftBrace.Size = new System.Drawing.Size(55, 29);
+            this.buttonLeftBrace.TabIndex = 7;
+            this.buttonLeftBrace.Text = "{";
+            this.buttonLeftBrace.UseVisualStyleBackColor = true;
+            this.buttonLeftBrace.Click += new System.EventHandler(this.buttonLeftBrace_Click);
+            // 
+            // buttonRightBrace
+            // 
+            this.buttonRightBrace.Location = new System.Drawing.Point(372, 77);
+            this.buttonRightBrace.Name = "buttonRightBrace";
+            this.buttonRightBrace.Size = new System.Drawing.Size(55, 29);
+            this.buttonRightBrace.TabIndex = 8;
+            this.buttonRightBrace.Text = "}";
+            this.buttonRightBrace.UseVisualStyleBackColor = true;
+            this.buttonRightBrace.Click += new System.EventHandler(this.buttonRightBrace_Click);
+            // 
             // OptionsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonRightBrace);
+            this.Controls.Add(this.buttonLeftBrace);
             this.Controls.Add(this.numericUpDownGUID);
             this.Controls.Add(this.buttonSetDefault);
             this.Controls.Add(this.buttonInsertLineEnding);
@@ -131,5 +155,7 @@
         private System.Windows.Forms.Button buttonInsertLineEnding;
         private System.Windows.Forms.Button buttonSetDefault;
         private System.Windows.Forms.NumericUpDown numericUpDownGUID;
+        private System.Windows.Forms.Button buttonLeftBrace;
+        private System.Windows.Forms.Button buttonRightBrace;
     }
 }
