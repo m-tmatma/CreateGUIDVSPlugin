@@ -187,6 +187,8 @@ namespace CreateGUIDVSPlugin.Utility
             /// </summary>
             /// <param name="m">matched information</param>
             /// <returns>replaced text</returns>
+            /// <exception cref="ProcessTemplate.OrphanedLeftBraceException">Thrown when an orphaned '{' is found</exception>
+            /// <exception cref="ProcessTemplate.OrphanedRightBraceException">Thrown when an orphaned '}' is found</exception>
             public string delegateReplace(Match m)
             {
                 var groupEscapeLeft  = m.Groups["escape_left"];
@@ -252,6 +254,8 @@ namespace CreateGUIDVSPlugin.Utility
         /// <param name="input">input text to be processed</param>
         /// <param name="delegateTranslate">delegate for processing variables</param>
         /// <returns>converted text</returns>
+        /// <exception cref="ProcessTemplate.OrphanedLeftBraceException">Thrown when an orphaned '{' is found</exception>
+        /// <exception cref="ProcessTemplate.OrphanedRightBraceException">Thrown when an orphaned '}' is found</exception>
         public static string ReplaceVariable(string input, GetNewText delegateTranslate)
         {
             var evaluateHander = new MatchEvaluatorHandler(delegateTranslate);

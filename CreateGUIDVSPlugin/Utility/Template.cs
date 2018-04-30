@@ -203,6 +203,7 @@ namespace CreateGUIDVSPlugin.Utility
             /// <param name="keyword">keyword</param>
             /// <param name="index">index</param>
             /// <returns></returns>
+            /// <exception cref="ProcessTemplate.InvalidKeywordException">Thrown when a keyword is invalid</exception>
             internal string delegateGetNewText(string keyword, int index)
             {
                 switch (keyword)
@@ -441,12 +442,18 @@ namespace CreateGUIDVSPlugin.Utility
         /// <param name="template">template string to be replace</param>
         /// <param name="newGuid">delegate to create a GUID</param>
         /// <returns></returns>
+        /// <exception cref="ProcessTemplate.OrphanedLeftBraceException">Thrown when an orphaned '{' is found</exception>
+        /// <exception cref="ProcessTemplate.OrphanedRightBraceException">Thrown when an orphaned '}' is found</exception>
         internal static string Process(string template, NewGuid newGuid = null)
         {
             if (newGuid == null)
             {
                 newGuid = delegate () { return Guid.NewGuid(); };
             }
+
+            // the internal method ProcessTemplate.MatchEvaluatorHandler.delegateReplace() catches
+            // the exception 'ProcessTemplate.InvalidKeywordException' thrown by
+            // GuidTranslationHandler.delegateGetNewText()
             var handler = new GuidTranslationHandler(newGuid);
             var output = ProcessTemplate.ReplaceVariable(template, handler.delegateGetNewText);
             return output;
