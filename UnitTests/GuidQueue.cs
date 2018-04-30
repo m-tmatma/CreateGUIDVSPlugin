@@ -111,5 +111,15 @@ namespace UnitTests
             var guid = this.fifo.Dequeue();
             return guid;
         }
+
+        /// <summary>
+        /// create new GUID interface which always throws an exception 
+        /// </summary>
+        /// <returns>new GUID</returns>
+        /// <exception cref="System.InvalidOperationException">always thrown</exception>
+        public Guid NewGuidAlwaysFail()
+        {
+            throw new InvalidOperationException();
+        }
     }
 }

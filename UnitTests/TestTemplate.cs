@@ -351,7 +351,7 @@ namespace UnitTests
             {
                 Assert.That(
                     () => {
-                        var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+                        var output = Template.Process(input, this.guidQueue.NewGuidAlwaysFail);
                     },
                     Throws.InstanceOf(typeException)
                 );
@@ -359,7 +359,7 @@ namespace UnitTests
             else
             {
                 var expected = input;
-                var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
+                var output = Template.Process(input, this.guidQueue.NewGuidAlwaysFail);
                 Assert.That(output, Is.EqualTo(expected));
             }
         }
@@ -457,6 +457,44 @@ namespace UnitTests
             var output = Template.Process(input, this.guidQueue.NewGuidFromCache);
             Console.WriteLine("output  : " + output);
             Assert.That(output, Is.EqualTo(expected));
+        }
+
+        /// <summary>
+        /// Test not closed brace
+        /// </summary>
+        [Test]
+        public void TestNotClosedBrace()
+        {
+            var builderInput = new StringBuilder();
+            foreach (string variable in AllVariableNames)
+            {
+                builderInput.Clear();
+                builderInput.Append("{");
+                builderInput.Append(variable);
+                var input = builderInput.ToString();
+                Assert.That(
+                    () => {
+                        var output = Template.Process(input, this.guidQueue.NewGuidAlwaysFail);
+                        Console.WriteLine("output  : " + output);
+                    },
+                    Throws.InstanceOf(typeof(ProcessTemplate.OrphanedLeftBraceException))
+                );
+            }
+
+            foreach (string variable in AllVariableNames)
+            {
+                builderInput.Clear();
+                builderInput.Append(variable);
+                builderInput.Append("}");
+                var input = builderInput.ToString();
+                Assert.That(
+                    () => {
+                        var output = Template.Process(input, this.guidQueue.NewGuidAlwaysFail);
+                        Console.WriteLine("output  : " + output);
+                    },
+                    Throws.InstanceOf(typeof(ProcessTemplate.OrphanedRightBraceException))
+                );
+            }
         }
 
         /// <summary>
