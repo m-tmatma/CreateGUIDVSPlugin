@@ -168,13 +168,28 @@ namespace CreateGUIDVSPlugin
                 var configuration = this.package.GetConfiguration();
                 var formatString = configuration.FormatString;
 
-                var copyString = Template.Process(formatString);
+                try
+                {
+                    var copyString = Template.Process(formatString);
 #if DEBUG
-                this.ClearOutout();
-                this.ActivateOutout();
-                this.OutputString(copyString);
+                    this.ClearOutout();
+                    this.ActivateOutout();
+                    this.OutputString(copyString);
 #endif
-                Clipboard.SetDataObject(copyString);
+                    Clipboard.SetDataObject(copyString);
+                }
+                catch (ProcessTemplate.OrphanedLeftBraceException ex)
+                {
+                    var message = "found orphaned '{' at " + ex.Index.ToString() + " in template";
+                    var caption = "Error";
+                    MessageBox.Show(message, caption, MessageBoxButtons.OK);
+                }
+                catch (ProcessTemplate.OrphanedRightBraceException ex)
+                {
+                    var message = "found orphaned '}' at " + ex.Index.ToString() + " in template";
+                    var caption = "Error";
+                    MessageBox.Show(message, caption, MessageBoxButtons.OK);
+                }
             }
         }
     }

@@ -239,7 +239,7 @@ namespace CreateGUIDVSPlugin.Utility
                     case Template.VariableUpperBytes8:
                         break;
                     default:
-                        throw new ProcessTemplate.InvalidKeywordException(keyword);
+                        throw new ProcessTemplate.InvalidKeywordException(-1, keyword);
                 }
 
                 // see https://msdn.microsoft.com/library/97af8hh4(v=vs.110).aspx about the parameter of Guid.ToString().
@@ -280,7 +280,7 @@ namespace CreateGUIDVSPlugin.Utility
                     case Template.VariableUpperBytes8: return formatGuid.Bytes[7].ToString("X2");
 
                     default:
-                        throw new ProcessTemplate.InvalidKeywordException(keyword);
+                        throw new ProcessTemplate.InvalidKeywordException(-1, keyword);
                 }
             }
 

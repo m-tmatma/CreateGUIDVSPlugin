@@ -251,7 +251,7 @@ namespace Unittest
         {
             if (!keywordMap.ContainsKey(keyword))
             {
-                throw new ProcessTemplate.InvalidKeywordException(keyword);
+                throw new ProcessTemplate.InvalidKeywordException(-1, keyword);
             }
             var newkeyword = keywordMap[keyword];
             if (index < 0)

@@ -133,21 +133,46 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// exception when keyword is not valid
         /// </summary>
-        internal class InvalidKeywordException : Exception
+        internal class BaseException : Exception
         {
-            internal InvalidKeywordException(string message)
-            : base(message)
+            protected int index;
+
+            internal int Index
             {
+                get
+                {
+                    return index;
+                }
+            }
+
+            internal BaseException(int index)
+            : base()
+            {
+                this.index = index;
+            }
+        }
+
+        /// <summary>
+        /// exception when keyword is not valid
+        /// </summary>
+        internal class InvalidKeywordException : BaseException
+        {
+            protected string keyword;
+
+            internal InvalidKeywordException(int index, string keyword)
+            : base(index)
+            {
+                this.keyword = keyword;
             }
         }
 
         /// <summary>
         /// exception orphaned left brace
         /// </summary>
-        internal class OrphanedLeftBraceException : Exception
+        internal class OrphanedLeftBraceException : BaseException
         {
-            internal OrphanedLeftBraceException(string message)
-            : base(message)
+            internal OrphanedLeftBraceException(int index)
+            : base(index)
             {
             }
         }
@@ -155,10 +180,10 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// exception orphaned right brace
         /// </summary>
-        internal class OrphanedRightBraceException : Exception
+        internal class OrphanedRightBraceException : BaseException
         {
-            internal OrphanedRightBraceException(string message)
-            : base(message)
+            internal OrphanedRightBraceException(int index)
+            : base(index)
             {
             }
         }
@@ -235,11 +260,11 @@ namespace CreateGUIDVSPlugin.Utility
                 }
                 else if (groupOrphanedLeft.Success)
                 {
-                    throw new ProcessTemplate.OrphanedLeftBraceException("");
+                    throw new ProcessTemplate.OrphanedLeftBraceException(m.Index);
                 }
                 else if (groupOrphanedRight.Success)
                 {
-                    throw new ProcessTemplate.OrphanedRightBraceException("");
+                    throw new ProcessTemplate.OrphanedRightBraceException(m.Index);
                 }
                 else
                 {
