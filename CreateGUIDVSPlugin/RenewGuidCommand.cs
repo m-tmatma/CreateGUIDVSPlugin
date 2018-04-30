@@ -169,7 +169,7 @@ namespace CreateGUIDVSPlugin
                     var replaceWithNewGuid = new ReplaceWithNewGuid();
 
                     // Renew GUIDs in the selected text.
-                    var output = replaceWithNewGuid.ReplaceNewGuid(seltext);
+                    var output = replaceWithNewGuid.ReplaceSameGuidToSameGuid(seltext);
 #if DEBUG
                     this.ClearOutout();
                     this.ActivateOutout();
