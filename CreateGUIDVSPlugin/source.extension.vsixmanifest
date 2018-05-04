@@ -3,10 +3,10 @@
     <Metadata>
         <Identity Id="a0666b41-c91d-4613-9e93-9e38aab1ae6d" Version="1.0" Language="en-US" Publisher="Masaru-Tsuchiyama" />
         <DisplayName>CreateGUIDVSPlugin</DisplayName>
-        <Description xml:space="preserve">Copy Guid.
+        <Description xml:space="preserve">Copy, Insert, Replace Guids.
 The source code is available at https://github.com/m-tmatma/CreateGUIDVSPlugin
-    </Description>
-        <MoreInfo>https://github.com/m-tmatma/CreateGUIDVSPlugin</MoreInfo>
+</Description>
+        <MoreInfo>https://m-tmatma.github.io/VC/CreateGUIDVSPluginManulEN.html</MoreInfo>
         <License>LICENCE.txt</License>
     </Metadata>
     <Installation>
