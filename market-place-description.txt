@@ -1,0 +1,15 @@
+# Description 
+
+This plugin creates GUID strings. It can copy, insert based on template, or replace selected GUID text to new ones.
+
+## Manual
+
+https://m-tmatma.github.io/VC/CreateGUIDVSPluginManulEN.html
+
+## Source
+
+https://github.com/m-tmatma/CreateGUIDVSPlugin
+
+## Licence
+
+This plugin's licence is MIT licence.
