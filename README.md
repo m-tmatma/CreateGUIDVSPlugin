@@ -12,6 +12,11 @@ Create, Insert, Renew GUID Visual Studio Plugin
 * Copy GUID
 * Renew GUID in selected text in the active document.
 
+## Get Binary
+
+* [Market Place](https://marketplace.visualstudio.com/items?itemName=tmatma.CreateGUIDVSPlugin)
+* [My plugins](https://marketplace.visualstudio.com/search?term=publisher%3A%22tmatma%22&target=VS&category=All%20categories&vsVersion=&sortBy=Relevance)
+
 ## Get Source Code
 
 	> git clone https://github.com/m-tmatma/CreateGUIDVSPlugin.git
