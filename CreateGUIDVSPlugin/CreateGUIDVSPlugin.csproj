@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenewGuidCommand.cs" />
+    <Compile Include="RenewGuidCurrentCommand.cs" />
     <Compile Include="Utility\Configuration.cs" />
     <Compile Include="Utility\FormatGuid.cs" />
     <Compile Include="Utility\ProcessTemplate.cs" />
@@ -90,6 +91,7 @@
     <Content Include="Resources\CopyGuidCommand.png" />
     <Content Include="Resources\InsertGuidCommand.png" />
     <Content Include="Resources\RenewGuidCommand.png" />
+    <Content Include="Resources\RenewGuidCurrentCommand.png" />
     <Content Include="Resources\VSPackage.ico" />
     <Content Include="stylesheet.css" />
     <VSCTCompile Include="VSPackage.vsct">
