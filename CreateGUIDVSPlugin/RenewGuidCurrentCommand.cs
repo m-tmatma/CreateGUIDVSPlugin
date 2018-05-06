@@ -124,33 +124,21 @@ namespace CreateGUIDVSPlugin
 
             if (activeDocument != null)
             {
-                var configuration = this.package.GetConfiguration();
-                var formatString = configuration.FormatString;
-
-                try
+                var textView = this.package.GetTextView();
+                if (textView != null)
                 {
-                    var copyString = Template.Process(formatString);
-                    var textView = this.package.GetTextView();
-                    if (textView != null)
+                    if (textView.HasAggregateFocus)
                     {
-                        if (textView.HasAggregateFocus)
-                        {
-                            // Insert GUID
-                            textView.TextBuffer.Insert(textView.Caret.Position.BufferPosition, copyString);
-                        }
+                        var buffer = textView.TextBuffer;
+                        var edit = buffer.CreateEdit();
+
+                        var snapshot = buffer.CurrentSnapshot;
+                        var replaceWithNewGuid = new ReplaceWithNewGuid();
+                        var output = replaceWithNewGuid.ReplaceSameGuidToSameGuid(snapshot.GetText());
+
+                        edit.Replace(0, buffer.CurrentSnapshot.Length, output);
+                        edit.Apply();
                     }
-                }
-                catch (ProcessTemplate.OrphanedLeftBraceException ex)
-                {
-                    var message = "found orphaned '{' at " + ex.Index.ToString() + " in template";
-                    var caption = "Error";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK);
-                }
-                catch (ProcessTemplate.OrphanedRightBraceException ex)
-                {
-                    var message = "found orphaned '}' at " + ex.Index.ToString() + " in template";
-                    var caption = "Error";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK);
                 }
             }
         }
