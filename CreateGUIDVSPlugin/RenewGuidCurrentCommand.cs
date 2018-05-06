@@ -44,19 +44,15 @@ namespace CreateGUIDVSPlugin
             {
                 var dte = this.package.GetDTE();
                 var activeDocument = dte.ActiveDocument;
-                var selection = (EnvDTE.TextSelection)activeDocument.Selection;
-                var seltext = selection.Text;
-                if (!string.IsNullOrEmpty(seltext))
+                if (activeDocument != null)
                 {
-                    // text is selected.
-                    command.Enabled = false;
-                    command.Text = DefaultCommandText + " (Unselect text to enable this command)";
+                    command.Enabled = true;
+                    command.Text = DefaultCommandText;
                 }
                 else
                 {
-                    // text is not selected.
-                    command.Enabled = true;
-                    command.Text = DefaultCommandText;
+                    command.Enabled = false;
+                    command.Text = DefaultCommandText + " (activate document to enable this command)";
                 }
             }
         }
