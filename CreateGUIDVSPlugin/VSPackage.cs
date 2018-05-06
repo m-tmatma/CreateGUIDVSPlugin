@@ -135,6 +135,7 @@ namespace CreateGUIDVSPlugin
             CopyGuidCommand.Initialize(this);
             InsertGuidCommand.Initialize(this);
             RenewGuidCommand.Initialize(this);
+            RenewGuidCurrentCommand.Initialize(this);
 
 #if DEBUG
             AddOutputWindow("Create GUID");
