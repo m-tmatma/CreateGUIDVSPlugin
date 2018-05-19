@@ -53,6 +53,9 @@
     <Compile Include="..\CreateGUIDVSPlugin\Utility\FormatGuid.cs">
       <Link>Utility\FormatGuid.cs</Link>
     </Compile>
+    <Compile Include="..\CreateGUIDVSPlugin\Utility\ProcessGuid.cs">
+      <Link>Utility\ProcessGuid.cs</Link>
+    </Compile>
     <Compile Include="..\CreateGUIDVSPlugin\Utility\ProcessTemplate.cs">
       <Link>Utility\ProcessTemplate.cs</Link>
     </Compile>
