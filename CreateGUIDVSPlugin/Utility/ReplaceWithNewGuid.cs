@@ -32,12 +32,12 @@ namespace CreateGUIDVSPlugin.Utility
         /// <summary>
         /// 00000000-0000-0000-0000-000000000000
         /// </summary>
-        static private string raw_guid_string1 = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
+        static private string raw_guid_hyphens = "([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})";
 
         /// <summary>
         /// 00000000000000000000000000000000
         /// </summary>
-        static private string raw_guid_string2 = "([0-9A-Fa-f]{32})";
+        static private string raw_guid_no_hyphens = "([0-9A-Fa-f]{32})";
 
         /// <summary>
         /// 0x00000000
@@ -131,20 +131,20 @@ namespace CreateGUIDVSPlugin.Utility
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/regular-expression-language-quick-reference#backreference_constructs
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
         static private string word_separater = @"\b";
-        static private string name_guid_string1 = @"(?<RawHyphenDigits>" + raw_guid_string1 + ")";
-        static private string name_guid_string2 = @"(?<Raw32Digits>"     + raw_guid_string2 + ")";
-        static private string name_guid_string3 = @"(?<GuidVariable>" + raw_string_array + ")";
-        static private string name_guid_string4 = @"(?<DEFINE_GUID>"  + raw_define_guid    + ")";
-        static private string name_guid_string5 = @"(?<OLECREATE>"    + raw_impl_olecreate + ")";
-        static private string guid_string1 = word_separater + name_guid_string1 + word_separater;
-        static private string guid_string2 = word_separater + name_guid_string2 + word_separater;
+        static private string name_guid_hyphens    = @"(?<RawHyphenDigits>" + raw_guid_hyphens + ")";
+        static private string name_guid_no_hyphens = @"(?<Raw32Digits>"  + raw_guid_no_hyphens + ")";
+        static private string name_string_array    = @"(?<GuidVariable>" + raw_string_array    + ")";
+        static private string name_define_guid     = @"(?<DEFINE_GUID>"  + raw_define_guid     + ")";
+        static private string name_impl_olecreate  = @"(?<OLECREATE>"    + raw_impl_olecreate  + ")";
+        static private string guid_hyphens    = word_separater + name_guid_hyphens    + word_separater;
+        static private string guid_no_hyphens = word_separater + name_guid_no_hyphens + word_separater;
         static private string[] elements = new string[]
         {
-            guid_string1,
-            guid_string2,
-            name_guid_string3,
-            name_guid_string4,
-            name_guid_string5,
+            guid_hyphens,
+            guid_no_hyphens,
+            name_string_array,
+            name_define_guid,
+            name_impl_olecreate,
         };
         static private string[] elements_par = Array.ConvertAll(elements, delegate (string elem) { return "(" + elem + ")"; });
         static private string guid_string = string.Join("|", elements_par);
