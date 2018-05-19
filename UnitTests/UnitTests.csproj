@@ -65,6 +65,7 @@
     <Compile Include="..\CreateGUIDVSPlugin\Utility\Template.cs">
       <Link>Utility\Template.cs</Link>
     </Compile>
+    <Compile Include="DictionaryGuidGenerator.cs" />
     <Compile Include="EnumIterator.cs" />
     <Compile Include="GuidGenerater.cs" />
     <Compile Include="GuidQueue.cs" />
