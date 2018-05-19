@@ -220,7 +220,7 @@ namespace UnitTests
             /// <summary>
             /// guid generator
             /// </summary>
-            private NewGuid newGuid;
+            private TestTemplate.NewGuid newGuid;
 
             /// <summary>
             /// dictionary to manage GUIDs.
