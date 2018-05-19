@@ -131,17 +131,15 @@ namespace CreateGUIDVSPlugin.Utility
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/regular-expression-language-quick-reference#backreference_constructs
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
         static private string word_separater = @"\b";
-        static private string name_guid_hyphens    = @"(?<RawHyphenDigits>" + raw_guid_hyphens + ")";
-        static private string name_guid_no_hyphens = @"(?<Raw32Digits>"  + raw_guid_no_hyphens + ")";
+        static private string name_guid_hyphens    = word_separater + @"(?<RawHyphenDigits>" + raw_guid_hyphens     + ")" + word_separater;
+        static private string name_guid_no_hyphens = word_separater + @"(?<Raw32Digits>"     + raw_guid_no_hyphens  + ")" + word_separater;
         static private string name_string_array    = @"(?<GuidVariable>" + raw_string_array    + ")";
-        static private string name_define_guid     = @"(?<DEFINE_GUID>"  + raw_define_guid     + ")";
-        static private string name_impl_olecreate  = @"(?<OLECREATE>"    + raw_impl_olecreate  + ")";
-        static private string guid_hyphens    = word_separater + name_guid_hyphens    + word_separater;
-        static private string guid_no_hyphens = word_separater + name_guid_no_hyphens + word_separater;
+        static private string name_define_guid     = word_separater + @"(?<DEFINE_GUID>" + raw_define_guid     + ")" + word_separater;
+        static private string name_impl_olecreate  = word_separater + @"(?<OLECREATE>"   + raw_impl_olecreate  + ")" + word_separater;
         static private string[] elements = new string[]
         {
-            guid_hyphens,
-            guid_no_hyphens,
+            name_guid_hyphens,
+            name_guid_no_hyphens,
             name_string_array,
             name_define_guid,
             name_impl_olecreate,
