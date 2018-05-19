@@ -213,46 +213,6 @@ namespace UnitTests
         }
 
         /// <summary>
-        /// DictionaryGuidGenerator
-        /// </summary>
-        internal class DictionaryGuidGenerator
-        {
-            /// <summary>
-            /// guid generator
-            /// </summary>
-            private TestTemplate.NewGuid newGuid;
-
-            /// <summary>
-            /// dictionary to manage GUIDs.
-            /// </summary>
-            private Dictionary<int, Guid> guidDictionary;
-
-            /// <summary>
-            /// constructor
-            /// </summary>
-            /// <param name="newGuid"></param>
-            internal DictionaryGuidGenerator(TestTemplate.NewGuid newGuid)
-            {
-                this.newGuid = newGuid;
-                this.guidDictionary = new Dictionary<int, Guid>();
-            }
-
-            /// <summary>
-            /// Get GUID
-            /// </summary>
-            /// <param name="index">GUID index</param>
-            /// <returns></returns>
-            internal Guid GetGuid(int index)
-            {
-                if (!this.guidDictionary.ContainsKey(index))
-                {
-                    this.guidDictionary[index] = this.newGuid();
-                }
-                return this.guidDictionary[index];
-            }
-        }
-
-        /// <summary>
         /// Test All Variable for many GUIDs at random
         /// </summary>
         /// <param name="numGUIDs">number of GUIDs</param>
