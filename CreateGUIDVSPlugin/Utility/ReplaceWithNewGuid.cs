@@ -55,8 +55,6 @@ namespace CreateGUIDVSPlugin.Utility
         static private string hex_1byte_string = "(0[xX][0-9A-Fa-f]{1,2})";
         static private string spaces = @"\s*";
         static private string comma_spaces = spaces + "," + spaces;
-        //static private string raw_head_separater = @"[{""]";
-        //static private string raw_tail_separater = @"[}""]";
 
         /// <summary>
         /// 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
@@ -132,8 +130,6 @@ namespace CreateGUIDVSPlugin.Utility
         // For reference
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/regular-expression-language-quick-reference#backreference_constructs
         // https://docs.microsoft.com/ja-jp/dotnet/standard/base-types/backreference-constructs-in-regular-expressions
-        //static private string name_head_separater = @"(?:" + raw_head_separater + ")";
-        //static private string name_tail_separater = @"(?:" + raw_tail_separater + ")";
         static private string word_separater = @"\b";
         static private string name_guid_string1 = @"(?<RawHyphenDigits>" + raw_guid_string1 + ")";
         static private string name_guid_string2 = @"(?<Raw32Digits>"     + raw_guid_string2 + ")";
@@ -142,7 +138,6 @@ namespace CreateGUIDVSPlugin.Utility
         static private string name_guid_string5 = @"(?<OLECREATE>"    + raw_impl_olecreate + ")";
         static private string guid_string1 = word_separater + name_guid_string1 + word_separater;
         static private string guid_string2 = word_separater + name_guid_string2 + word_separater;
-        //static private string guid_string3 = word_separater + name_guid_string3 + word_separater;
         static private string[] elements = new string[]
         {
             guid_string1,
